@@ -1,1 +1,2 @@
 # PotionChain
+ Supply chain visualizer for RS3 potions. Putting this together mainly to practice what I know of Mongo-Express-EJS-NodeJS and also for when I can never remember how to make an elder overload from scratch.
