@@ -1,0 +1,13 @@
+<% layout("layouts/boilerplate") -%>
+<form action="/results" method="GET" class="validated-form" novalidate>
+<div class="input-group input-group-lg mb-3">
+    <span class="input-group-text" id="potionInput">Potion</span>
+    <input type="text" class="form-control" name="name" placeholder="Enter potion name (E.g. &quot;Elder Overload&quot;)" aria-label="Enter potion name (E.g. \'Elder Overload\')" aria-describedby="potionInput" required>
+    <!-- <button class="btn btn-outline-secondary" type="button" id="potionInputButton">Submit</button> -->
+</div>
+<div class="input-group input-group-lg mb-3">
+    <span class="input-group-text" id="potionQuantity">Quantity</span>
+    <input type="number"  name="number" min="0" max="2147483647" class="form-control" placeholder="How many potions? (Number between 0 and 2,147,483,647) " aria-label="Number of Potions" aria-describedby="potionQuantity" required>
+</div>
+<button class="btn btn-primary">Submit</button>
+</form>
