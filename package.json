@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Tiamtum/PotionChain.git"
+    "url": "git+https://github.com/morganchafe/PotionChain.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Tiamtum/PotionChain/issues"
+    "url": "https://github.com/morganchafe/PotionChain/issues"
   },
-  "homepage": "https://github.com/Tiamtum/PotionChain#readme",
+  "homepage": "https://github.com/morganchafe/PotionChain#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "ejs": "^3.1.6",
