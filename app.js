@@ -65,8 +65,6 @@ app.use((err,req,res,next)=>{  //generic errors
     res.status(statusCode).render("error",{pageTitle:"Error",error: err,statusCode});
 })
 
-
-
 app.listen(port,()=>{
     console.log(`Listening on localhost:${port}`);
 })
