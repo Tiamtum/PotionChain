@@ -26,7 +26,7 @@ module.exports.showResults = async (req,res)=>{
     {
         console.log(`==findIDQueryAndRender called, name:${name}`);
         try{
-            await fs.readFile("itemIDs",(err,data)=>{
+            await fs.readFile("filteredItemIDs",(err,data)=>{
                 console.log("===readFile entered")
                 for(ID in itemIDs)
                 {

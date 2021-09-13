@@ -9,6 +9,5 @@ router.route("/")
     .post(index.createPotion);
 
 router.get("/results",wrapAsync(index.showResults));
-// router.get("/results",(req,res)=>res.send("asregaerg"));
 
 module.exports = router;
