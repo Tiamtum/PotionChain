@@ -82,72 +82,28 @@ module.exports.showResults = async (req,res)=>{
     )    
 }
 
-function getIngredients(data,depth)
+function getIngredients(data,tab=0,itemAndTab=[])
 {
     if(data.requires.length===0)
     {
-        console.log(data.name,depth)
-        depth++;
+        const item = data.name;
+        itemAndTab.push({item,tab})
+        tab++;
     }
     else
     {
-        console.log(data.name,depth);
-        for(const item of data.requires)
+        const item = data.name;
+        itemAndTab.push({item,tab})
+        for(const ingredient of data.requires)
         {
-            getIngredients(item,depth+1)
+            getIngredients(ingredient,tab+1,itemAndTab)
         }
+        return itemAndTab;
     }
-/*
-This prints out: 
-
-    Extreme attack (3)
-    Super attack (3)
-    Irit potion (unf)
-    Clean irit
-    Grimy irit
-    Vial of water
-    Vial
-    Eye of newt
-    Clean avantoe
-    Grimy avantoe
-
-What I need is someway to return these names such that I can produce:
-
-    Extreme attack (3)
-        Super attack (3)
-            Irit potion (unf)
-                Clean irit
-                    Grimy irit
-                Vial of water
-                    Vial
-            Eye of newt
-        Clean avantoe
-            Grimy avantoe
-            
-In the EJS. I.e., I need to include information that says when to tab and when not to tab.    
-Maybe return [Super attack (3),[Irit potion (unf), [Clean irit,[Grimy irit],Vial of water,[Vial]],Eye of newt], Clean avantoe,[Grimy avantoe]] ?
-Or: [{Super attack (3), tab:1},{Irit potion (unf),tab:2},{Clean Irit,tab:3},{Grimy irit,tab:4},{Vial of water,tab:3},{Vial,tab:4},{Eye of newt,tab:2},{Clean avantoe,tab:1},{Grimy avantoe,tab:2}]?
-I think the object approach might work based experiements with nested arrays not yielding good results.
-*/
-
 }
 
 module.exports.renderTest = async (req,res)=>{
     const extremeAttack = await HerbloreItem.findOne({name:"Extreme attack (3)"});
-     getIngredients(extremeAttack,0);
-    // const data1 = ["Super attack (3)",["Irit potion (unf)", ["Clean irit",["Grimy irit"],"Vial of water",["Vial"]],"Eye of newt"], "Clean avantoe",["Grimy avantoe"]]
-    // const dataString = JSON.stringify(data1).trim();
-    const data2 = 
-    [
-        {"Super attack (3)":"Super attack (3)", tab:1},
-        {"Irit potion (unf)":"Irit potion (unf)",tab:2},
-        {"Clean Irit":"Clean Irit",tab:3},
-        {"Grimy irit":"Grimy irit",tab:4},
-        {"Vial of water":"Vial of water",tab:3},
-        {"Vial":"Vial",tab:4},
-        {"Eye of newt":"Eye of newt",tab:2},
-        {"Clean avantoe":"Clean avantoe",tab:1},
-        {"Grimy avantoe":"Grimy avantoe",tab:2}
-    ]
-    res.render("test",{extremeAttack,data2,pageTitle:"Testing Grounds"});
+    const itemAndTab = getIngredients(extremeAttack);
+    res.render("test",{extremeAttack,itemAndTab,pageTitle:"Testing Grounds"});
 }
