@@ -10,5 +10,6 @@ router.route("/")
 
 router.get("/results",checkPreviousSearch,wrapAsync(index.showResults));
 
+router.get("/test",index.renderTest);
 
 module.exports = router;

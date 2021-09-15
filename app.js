@@ -8,7 +8,7 @@ const session = require("express-session");
 
 app = express();
 const port = 3000;
-const dbUrl = "mongodb://localhost:27017/PotionChain"
+const dbUrl = "mongodb://localhost:27017/testDB"
 
 mongoose.connect(dbUrl,
     // {   useNewUrlParser:true, 

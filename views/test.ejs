@@ -1,0 +1,11 @@
+<% layout("layouts/boilerplate") -%>
+<h1 class="text-center">Testing Things Here</h1>
+<h2><%=extremeAttack.name%></h2>
+<%for(const objs of data2){%>    
+        <p>
+            <% for(let i = 0; i<objs.tab; i++){ %>
+                &emsp;&emsp;
+            <% } %>
+            <%=Object.keys(objs)[0]%>
+        </p>
+<% }%>
