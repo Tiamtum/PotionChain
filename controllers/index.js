@@ -82,18 +82,19 @@ module.exports.showResults = async (req,res)=>{
     )    
 }
 
-function getIngredients(data)
+function getIngredients(data,depth)
 {
     if(data.requires.length===0)
     {
-        console.log(data.name)
+        console.log(data.name,depth)
+        depth++;
     }
     else
     {
-        console.log(data.name);
+        console.log(data.name,depth);
         for(const item of data.requires)
         {
-            getIngredients(item)
+            getIngredients(item,depth+1)
         }
     }
 /*
@@ -133,7 +134,7 @@ I think the object approach might work based experiements with nested arrays not
 
 module.exports.renderTest = async (req,res)=>{
     const extremeAttack = await HerbloreItem.findOne({name:"Extreme attack (3)"});
-    // getIngredients(extremeAttack);
+     getIngredients(extremeAttack,0);
     // const data1 = ["Super attack (3)",["Irit potion (unf)", ["Clean irit",["Grimy irit"],"Vial of water",["Vial"]],"Eye of newt"], "Clean avantoe",["Grimy avantoe"]]
     // const dataString = JSON.stringify(data1).trim();
     const data2 = 
