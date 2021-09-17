@@ -16,6 +16,7 @@ module.exports.checkPreviousSearch = (req,res,next)=>{
             else if(name === req.session.data.name && number !== req.session.data.number)
             {
                 const {name,image,coinPile,exactPrice} = req.session.data;
+                //add coinPile if-else if code here
                 const totalPrice = parseInt(exactPrice)*number;
                 req.session.data.totalPrice = totalPrice; 
                 req.session.data.number = number;

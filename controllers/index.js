@@ -5,6 +5,7 @@ const getItemInfo = require("../utils/getItemInfo");
 const mongoose = require("mongoose");
 const HerbloreItem = require("../model/herbloreitem");
 const ingredient = require("../model/ingredient");
+const { get } = require("http");
 
 module.exports.renderIndex = (req,res)=>{
     console.log("renderIndex Called")
@@ -82,6 +83,10 @@ module.exports.showResults = async (req,res)=>{
     )    
 }
 
+module.exports.addPotionData = async (req,res)=>{
+    
+}
+
 function getIngredients(data,tab=0,itemAndTab=[])
 {
     if(data.requires.length===0)
@@ -107,3 +112,7 @@ module.exports.renderTest = async (req,res)=>{
     const itemAndTab = getIngredients(extremeAttack);
     res.render("test",{extremeAttack,itemAndTab,pageTitle:"Testing Grounds"});
 }
+
+
+//makeDBentry("Extreme defence (3)", requires:[...])
+
