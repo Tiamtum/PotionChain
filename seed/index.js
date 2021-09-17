@@ -213,6 +213,21 @@ const primitiveIngredients =
     "12174": "Grimy spirit weed",
     "12539": "Grenwall spikes",
     "14836": "Grimy wergali",
+    "19972": "Oily vine",
+    "19973": "Draconic vine",
+    "19975": "Plant teeth",
+    "19976": "Aquatic vine",
+    "19977": "Shadow vine",
+    "19979": "Corrupt vine",
+    "19980": "Marble vine",
+    "19981": "Saradomin vine",
+    "19982": "Guthix vine",
+    "19983": "Zamorak vine",
+    "19984": "Grimy erzille",
+    "19985": "Grimy argway",
+    "19986": "Grimy ugune",
+    "19987": "Grimy shengo",
+    "19988": "Grimy samaden",
     "19996": "Juju vial",
     "21622": "Morchella mushroom",
     "21626": "Grimy fellstalk",
@@ -339,6 +354,11 @@ const nonPrimitiveIngredients =
     "14854": "Clean wergali",
     "14856": "Wergali potion (unf)",
     "15329": "Super prayer (3)",
+    "19990": "Clean argway",
+    "19989": "Clean erzille",
+    "19991": "Clean ugune",
+    "19992": "Clean shengo",
+    "19993": "Clean samaden",
     "19994": "Juju vial of water",
     "19998": "Erzille potion (unf)",
     "19999": "Ugune potion (unf)",
@@ -430,9 +450,6 @@ const seedDB = async ()=>{
     }
 }
 
-
-
-
 const addRequires = async (potion,requires) =>
 {
     const items = []
@@ -447,8 +464,10 @@ const addRequires = async (potion,requires) =>
         await HerbloreItem.findOneAndUpdate({name:potion},{$push:{requires:item}});
     }
 }
-
-
+//TODO:
+//Handle multiple of each ingredient if needed
+//Handle untradable images
+//Handle alternative recipies 
 seedDB().then(()=>{
     addRequires("Vial of water",["Vial"])
     addRequires("Juju vial of water",["Juju vial"])
@@ -591,35 +610,32 @@ seedDB().then(()=>{
     addRequires("Mixture - step 2 (3)",["Mixture - step 1 (3)","Clean snake weed"])
     addRequires("Sanfew serum (3)",["Mixture - step 2 (3)","Nail beast nails"])
 
+    addRequires("Scentless potion (3)",["Argway potion (unf)","Shadow vine"])  
 
-    //add these once handling untradable items is implemented
+    addRequires("Perfect juju agility potion (3)",["Harmony moss","Scentless potion (3)"]) 
 
-    // addRequires("Scentless potion (3)",["Argway potion (unf)","Shadow vine"])   //shadow vine
+    addRequires("Juju cooking potion (3)",["Shengo potion (unf)","Plant teeth"])
 
-    // addRequires("Perfect juju agility potion (3)",["Harmony moss","Scentless potion (3)"]) 
+    addRequires("Perfect juju dungeoneering potion (3)",["Harmony moss","Zamorak's favour (3)"]) 
 
-    // addRequires("Juju cooking potion (3)",["Shengo potion (unf)","Plant teeth"]) //plant teeth
+    addRequires("Juju farming potion (3)",["Ugune potion (unf)","Marble vine"]) 
+    addRequires("Perfect juju farming potion (3)",["Harmony moss","Juju farming potion (3)"]) 
 
-    // addRequires("Perfect juju dungeoneering potion (3)",["Harmony moss","Zamorak's favour (3)"]) 
+    addRequires("Juju fishing potion (3)",["Shengo potion (unf)","Aquatic vine"]) 
 
-    // addRequires("Juju farming potion (3)",["Ugune potion (unf)","Marble vine"]) //marble vine
-    // addRequires("Perfect juju farming potion (3)",["Harmony moss","Juju farming potion (3)"]) 
+    addRequires("Perfect juju herblore potion (3)",["Harmony moss","Guthix's gift (3)"]) 
 
-    // addRequires("Juju fishing potion (3)",["Shengo potion (unf)","Aquatic vine"]) //aquatic vine
+    addRequires("Juju hunter potion (3)",["Erzille potion (unf)","Corrupt vine"])
 
-    // addRequires("Perfect juju herblore potion (3)",["Harmony moss","Guthix's gift (3)"]) 
+    addRequires("Juju mining potion (3)",["Samaden potion (unf)","Draconic vine"])
+    addRequires("Perfect juju mining potion (3)",["Harmony moss","Juju mining potion (3)"])
 
-    // addRequires("Juju hunter potion (3)",["Erzille potion (unf)","Corrupt vine"]) //corrupt vine
+    addRequires("Perfect juju prayer potion (3)",["Harmony moss","Saradomin's blessing (3)"])
 
-    // addRequires("Juju mining potion (3)",["Samaden potion (unf)","Draconic vine"])
-    // addRequires("Perfect juju mining potion (3)",["Harmony moss","Juju mining potion (3)"])
+    addRequires("Perfect juju smithing potion (3)",["Harmony moss","Juju hunter potion (3)"])
 
-    // addRequires("Perfect juju prayer potion (3)",["Harmony moss","Saradomin's blessing (3)"])
-
-    // addRequires("Perfect juju smithing potion (3)",["Harmony moss","Juju hunter potion (3)"])
-
-    // addRequires("Juju woodcutting potion (3)",["Samaden potion (unf)","Oily vine"])
-    // addRequires("Perfect juju woodcutting potion (3)",["Harmony moss","Juju woodcutting potion (3)"])
+    addRequires("Juju woodcutting potion (3)",["Samaden potion (unf)","Oily vine"])
+    addRequires("Perfect juju woodcutting potion (3)",["Harmony moss","Juju woodcutting potion (3)"])
 
 });
 
