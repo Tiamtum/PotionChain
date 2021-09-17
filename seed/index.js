@@ -102,7 +102,6 @@ const fourDoses =
     "3024": "Super restore (4)",
     "3032": "Agility potion (4)",
     "3040": "Super magic potion (4)",
-    "6470": "Compost potion (4)",
     "9739": "Combat potion (4)",
     "9998": "Hunter potion (4)",
     "10909": "Mixture - step 1 (4)",
@@ -167,11 +166,21 @@ const primitiveIngredients =
     "239": "White berries", 
     "243": "Blue dragon scale",
     "245": "Wine of Zamorak",
-    "247": "Jangerberries",       
+    "247": "Jangerberries",    
+    "371": "Raw swordfish",   
     "592": "Ashes",
+    "948": "Bear fur",
+    "1470": "Red bead",
+    "1472": "Yellow bead",
+    "1474": "Black bead",
+    "1476": "White bead",
+    "1525": "Grimy snake weed",
     "1533": "Grimy rogue's purse",
+    "1631": "Uncut dragonstone",
     "1923": "Bowl",
     "1939": "Swamp tar",
+    "1951": "Redberries",
+    "1973": "Chocolate bar",
     "2150": "Swamp toad",
     "2355": "Silver bar",
     "2485": "Grimy lantadyme",
@@ -181,15 +190,26 @@ const primitiveIngredients =
     "3049": "Grimy toadflax",
     "3051": "Grimy snapdragon",
     "4698": "Mud rune",
+    "5004": "Frog spawn",
+    "5982": "Watermelon",
     "6016": "Cactus spine",
     "6018": "Poison ivy berries",
     "6693": "Crushed nest",
+    "6812": "Wyvern bones",
+    "9194": "Onyx bolt tips",
     "9735": "Desert goat horn",
     "10109": "Kebbit teeth",
+    "10134": "Rabbit foot",
     "10937": "Nail beast nails",
     "11328": "Leaping trout",
     "11330": "Leaping salmon",
     "11332": "Leaping sturgeon",
+    "11525": "Wimpy feather",
+    "12109": "Cockatrice egg",
+    "12158": "Gold charm",
+    "12159": "Green charm",
+    "12160": "Crimson charm",
+    "12163": "Blue charm",
     "12174": "Grimy spirit weed",
     "12539": "Grenwall spikes",
     "14836": "Grimy wergali",
@@ -200,6 +220,7 @@ const primitiveIngredients =
     "28253": "Wine of Guthix",
     "28256": "Wine of Saradomin",
     "32947": "Harmony moss",
+    "34159": "Searing ashes",
     "37975": "Grimy bloodweed",
     "39067": "Adrenaline crystal",
     "43973": "Chinchompa residue",
@@ -232,11 +253,14 @@ const primitiveIngredients =
     "48926": "Bottled dinosaur roar",
     "48960": "Powerburst vial",
     "48961": "Bomb vial",
-    "48966": "Primal fruit pulp"
+    "48966": "Primal fruit pulp",
+    "49523": "Aerated sediment",
+    "50803": "Timeworn tincture",
 }
 
 const nonPrimitiveIngredients = 
 {
+    "91": "Guam potion (unf)",
     "93": "Marrentill potion (unf)",
     "95": "Tarromin potion (unf)",
     "97": "Harralander potion (unf)",
@@ -274,8 +298,12 @@ const nonPrimitiveIngredients =
     "265": "Clean cadantine",
     "267": "Clean dwarf weed",
     "269": "Clean torstol",
+    "373": "Swordfish",
+    "1526": "Clean snake weed",
     "1534": "Clean rogue's purse",
+    "1615": "Dragonstone",
     "1921": "Bowl of water",
+    "1975": "Chocolate dust",
     "2152": "Toad's legs",
     "2481": "Clean lantadyme",
     "2483": "Lantadyme potion (unf)",
@@ -291,7 +319,6 @@ const nonPrimitiveIngredients =
     "4419": "Guthix rest (3)",
     "4456": "Bowl of hot water",
     "4840": "Rogue's purse potion (unf)",
-    "6472": "Compost potion (3)",
     "6687": "Saradomin brew (3)",
     "7650": "Silver dust", 
     "9594": "Ground mud runes",
@@ -300,11 +327,8 @@ const nonPrimitiveIngredients =
     "10000": "Hunter potion (3)",
     "10111": "Kebbit teeth dust", 
     "10911": "Mixture - step 1 (3)",
-    "10913": "Mixture - step 1 (2)",
-    "10915": "Mixture - step 1 (1)",
     "10919": "Mixture - step 2 (3)",
-    "10921": "Mixture - step 2 (2)",
-    "10923": "Mixture - step 2 (1)",
+    "10927": "Sanfew serum (3)",
     "11324": "Roe",
     "11326": "Caviar",
     "12142": "Summoning potion (3)",
@@ -316,6 +340,11 @@ const nonPrimitiveIngredients =
     "14856": "Wergali potion (unf)",
     "15329": "Super prayer (3)",
     "19994": "Juju vial of water",
+    "19998": "Erzille potion (unf)",
+    "19999": "Ugune potion (unf)",
+    "20000": "Argway potion (unf)",
+    "20001": "Shengo potion (unf)",
+    "20002": "Samaden potion (unf)",
     "20004": "Juju mining potion (3)",
     "20008": "Juju cooking potion (3)",
     "20012": "Juju farming potion (3)",
@@ -323,6 +352,9 @@ const nonPrimitiveIngredients =
     "20020": "Juju fishing potion (3)",
     "20024": "Juju hunter potion (3)",
     "20028": "Scentless potion (3)",
+    "20032": "Saradomin's blessing (3)",
+    "20036": "Guthix's gift (3)",
+    "20040": "Zamorak's favour (3)",
     "21624": "Clean fellstalk",
     "21628": "Fellstalk potion (unf)",
     "27506": "Ranging potion (3)",
@@ -339,9 +371,12 @@ const nonPrimitiveIngredients =
     "32805": "Perfect juju herblore potion (3)",
     "32813": "Perfect juju dungeoneering potion (3)",
     "35739": "Perfect juju fishing potion (3)",
+    "37914": "Crushed dragonstone",
     "37953": "Clean bloodweed",
+    "37963": "Luck potion",
     "37969": "Aggression potion (3)",
     "37973": "Bloodweed potion (unf)",
+    "39820": "Enhanced luck potion",
     "44047": "Divination potion (3)",
     "44055": "Runecrafting potion (3)",
     "44063": "Invention potion (3)",
@@ -356,6 +391,7 @@ const nonPrimitiveIngredients =
     "48986": "Charming potion (3)",
     "48994": "Cooking potion (3)",
     "49002": "Super cooking potion (3)",
+    "49123": "Ground wyvern bones",
     "50853": "Archaeology potion (3)",
     "50861": "Spirit attraction potion (3)"
 }
@@ -400,6 +436,7 @@ const seedDB = async ()=>{
 const addRequires = async (potion,requires) =>
 {
     const items = []
+    console.log(requires);
     for(const material of requires)
     {
         const item = await HerbloreItem.findOne({name:material});
@@ -423,9 +460,14 @@ seedDB().then(()=>{
     addRequires("Silver dust",["Silver bar"] )
     addRequires("Ground mud runes",["Mud rune"])
     addRequires("Goat horn dust",["Desert goat horn"])
-    addRequires("Kebbit teeth dust"["Kebbit teeth"])
+    addRequires("Kebbit teeth dust",["Kebbit teeth"])
     addRequires("Roe",["Leaping trout"])
     addRequires("Caviar",["Leaping sturgeon"])
+    addRequires("Chocolate dust",["Chocolate bar"]);
+    addRequires("Ground wyvern bones",["Wyvern bones"]);
+    addRequires("Swordfish",["Raw swordfish"]);
+    addRequires("Dragonstone",["Uncut dragonstone"])
+    addRequires("Crushed dragonstone",["Dragonstone"])
 
     addRequires("Clean guam",["Grimy guam"])
     addRequires("Clean marrentill",["Grimy marrentill"])
@@ -438,6 +480,7 @@ seedDB().then(()=>{
     addRequires("Clean cadantine",["Grimy cadantine"])
     addRequires("Clean dwarf weed",["Grimy dwarf weed"])
     addRequires("Clean torstol",["Grimy torstol"])
+    addRequires("Clean snake weed",["Grimy snake weed"])
     addRequires("Clean rogue's purse",["Grimy rogue's purse"])
     addRequires("Clean lantadyme",["Grimy lantadyme"])
     addRequires("Clean toadflax",["Grimy toadflax"])
@@ -469,104 +512,115 @@ seedDB().then(()=>{
     addRequires("Bloodweed potion (unf)",["Clean bloodweed","Vial of water"])
     addRequires("Arbuck potion (unf)",["Clean arbuck","Vial of water"])
 
-    // addRequires("Attack potion (3)",[])
-    // addRequires("Super attack (3)",[])
+    addRequires("Attack potion (3)",["Guam potion (unf)","Eye of newt"])
+    addRequires("Super attack (3)",["Irit potion (unf)","Eye of newt"])
 
-    // addRequires("Strength potion (3)",[])
-    // addRequires("Super strength (3)",[])
+    addRequires("Strength potion (3)",["Tarromin potion (unf)", "Limpwurt root"])
+    addRequires("Super strength (3)",["Kwuarm potion (unf)","Limpwurt root"])
 
-    // addRequires("Defence potion (3)",[])
-    // addRequires("Super defence (3)",[])
+    addRequires("Defence potion (3)",["Marrentill potion (unf)","Bear fur"])
+    addRequires("Super defence (3)",["Cadantine potion (unf)","White berries"])
 
-    // addRequires("Ranging potion (3)",[])
-    // addRequires("Super ranging potion (3)",[])
+    addRequires("Ranging potion (3)",["Guam potion (unf)","Redberries"])
+    addRequires("Super ranging potion (3)",["Dwarf weed potion (unf)","Wine of Zamorak"])
 
-    // addRequires("Magic potion (3)",[])
-    // addRequires("Super magic potion (3)",[])
+    //addRequires("Magic potion (3)",["Tarromin potion (unf)","Black bead"]) //note: need to consider alternative recipies
+    addRequires("Super magic potion (3)",["Lantadyme potion (unf)","Potato cactus"])
 
-    // addRequires("Antipoison (3)",[])
-    // addRequires("Super antipoison (3)",[])
+    addRequires("Antipoison (3)",["Marrentill potion (unf)","Unicorn horn dust"])
+    addRequires("Super antipoison (3)",["Irit potion (unf)","Unicorn horn dust"])
 
-    // addRequires("Energy potion (3)",[])
-    // addRequires("Super energy (3)",[])
+    addRequires("Energy potion (3)",["Harralander potion (unf)","Chocolate dust"])
+    addRequires("Super energy (3)",["Avantoe potion (unf)","Mort myre fungus"])
 
-    // addRequires("Restore potion (3)",[])
-     // addRequires("Super restore (3)",[])
+    addRequires("Restore potion (3)",["Harralander potion (unf)","Red spiders' eggs"])
+    addRequires("Super restore (3)",["Snapdragon potion (unf)","Red spiders' eggs"])
 
-    // addRequires("Prayer potion (3)",[])
-    // addRequires("Super prayer (3)",[])
+    addRequires("Prayer potion (3)",["Ranarr potion (unf)","Snape grass"])
+    addRequires("Super prayer (3)",["Prayer potion (3)","Ground wyvern bones"])
 
-    // addRequires("Combat potion (3)",[])
-    // addRequires("Summoning potion (3)",[])
+    addRequires("Combat potion (3)",["Harralander potion (unf)","Goat horn dust"])
+    addRequires("Summoning potion (3)",["Spirit weed potion (unf)","Cockatrice egg"])
 
-    // addRequires("Saradomin brew (3)",[])
-    // addRequires("Super Saradomin brew (3)",[])
+    addRequires("Saradomin brew (3)",["Toadflax potion (unf)","Crushed nest"])
+    addRequires("Super Saradomin brew (3)",["Saradomin brew (3)","Wine of Saradomin"])
 
-    // addRequires("Zamorak brew (3)",[])
-    // addRequires("Super Zamorak brew (3)",[])
+    addRequires("Zamorak brew (3)",["Torstol potion (unf)","Jangerberries"])
+    addRequires("Super Zamorak brew (3)",["Zamorak brew (3)","Wine of Zamorak"])
 
-    // addRequires("Guthix rest (3),[]")
-    // addRequires("Super Guthix rest (3)",[])
+    addRequires("Guthix rest (3)",["Harralander potion (unf)","Clean marrentill"])
+    addRequires("Super Guthix rest (3)",["Guthix rest (3)","Wine of Guthix"])
 
-    // addRequires("Aggression potion (3)",[])
+    addRequires("Luck potion",["Bloodweed potion (unf)","Crushed dragonstone"])
+    addRequires("Enhanced luck potion",["Luck potion","Onyx bolt tips"])
 
-    // addRequires("Agility potion (3)",[])
+    addRequires("Aggression potion (3)",["Bloodweed potion (unf)","Searing ashes"])
+
+    addRequires("Agility potion (3)",["Toadflax potion (unf)","Toad's legs"])
     
-    // addRequires("Archaeology potion (3)",[])
+    addRequires("Archaeology potion (3)",["Avantoe potion (unf)","Aerated sediment"])
 
-    // addRequires("Cooking potion (3)",[])
-    // addRequires("Super cooking potion (3)",[])
+    addRequires("Cooking potion (3)",["Harralander potion (unf)","Swordfish"])
+    addRequires("Super cooking potion (3)",["Cooking potion (3)","Zygomite fruit"])
 
-    // addRequires("Crafting potion (3)",[])
+    addRequires("Crafting potion (3)",["Wergali potion (unf)","Frog spawn"])
 
-    // addRequires("Divination potion (3)",[])
-    // addRequires("Super divination (3)",[])
+    addRequires("Divination potion (3)",["Spirit weed potion (unf)","Rabbit foot"])
+    addRequires("Super divination (3)",["Divination potion (3)","Zygomite fruit"])
 
-    // addRequires("Fishing potion (3)",[])
+    addRequires("Fishing potion (3)",["Avantoe potion (unf)","Snape grass"])
 
-    // addRequires("Fletching potion (3)",[])
+    addRequires("Fletching potion (3)",["Wergali potion (unf)","Wimpy feather"])
 
-    // addRequires("Hunter potion (3)",[])
-    // addRequires("Super hunter (3)",[])
+    addRequires("Hunter potion (3)",["Avantoe potion (unf)","Kebbit teeth dust"])
+    addRequires("Super hunter (3)",["Hunter potion (3)","Rabbit teeth"])
 
-    // addRequires("Invention potion (3)",[])
-    // addRequires("Super invention (3)",[])
+    addRequires("Invention potion (3)",["Snapdragon potion (unf)","Chinchompa residue"])
+    addRequires("Super invention (3)",["Invention potion (3)","Spider fangs"])
 
-    // addRequires("Runecrafting potion (3)",[])
-    // addRequires("Super runecrafting (3)",[])
-
-
-    // addRequires("Spirit attraction potion (3),[]")
-    // addRequires("Compost potion (3)",[])
-    // addRequires("Harvest potion (3)",[])
-    // addRequires("Charming potion (3)",[])
+    addRequires("Runecrafting potion (3)",["Wergali potion (unf)","Summerdown wool"])
+    addRequires("Super runecrafting (3)",["Runecrafting potion (3)","Yak milk"])
 
 
-    // addRequires("Mixture - step 1 (3)",[])
-    // addRequires("Mixture - step 1 (2)",[])
-    // addRequires("Mixture - step 1 (1)",[])
-    // addRequires("Mixture - step 2 (3)",[])
-    // addRequires("Mixture - step 2 (2)",[])
-    // addRequires("Mixture - step 2 (1)",[])
-   
-    // addRequires("Juju mining potion (3)",[])
-    // addRequires("Juju cooking potion (3)",[])
-    // addRequires("Juju farming potion (3)",[])
-    // addRequires("Juju woodcutting potion (3)",[])
-    // addRequires("Juju fishing potion (3)",[])
-    // addRequires("Juju hunter potion (3)",[])
-    // addRequires("Scentless potion (3)",[])
+    addRequires("Spirit attraction potion (3)",["Primal extract","Enhanced luck potion","Timeworn tincture"])
+    addRequires("Harvest potion (3)",["Primal extract","Clean arbuck","Watermelon"])
+    // addRequires("Charming potion (3)",["Primal extract","Gold charm","Green charm","Crimson charm","Blue charm","Spark chitin"]) //need to handle x of each ingredient where x>1
 
-    // addRequires("Perfect juju woodcutting potion (3)",[])
-    // addRequires("Perfect juju farming potion (3)",[])
-    // addRequires("Perfect juju mining potion (3)",[])
-    // addRequires("Perfect juju smithing potion (3)",[])
-    // addRequires("Perfect juju agility potion (3)",[])
-    // addRequires("Perfect juju prayer potion (3)",[])
-    // addRequires("Perfect juju herblore potion (3)",[])
-    // addRequires("Perfect juju dungeoneering potion (3)",[])
 
-    
+    addRequires("Mixture - step 1 (3)",["Super restore (3)","Unicorn horn dust"])
+    addRequires("Mixture - step 2 (3)",["Mixture - step 1 (3)","Clean snake weed"])
+    addRequires("Sanfew serum (3)",["Mixture - step 2 (3)","Nail beast nails"])
+
+
+    //add these once handling untradable items is implemented
+
+    // addRequires("Scentless potion (3)",["Argway potion (unf)","Shadow vine"])   //shadow vine
+
+    // addRequires("Perfect juju agility potion (3)",["Harmony moss","Scentless potion (3)"]) 
+
+    // addRequires("Juju cooking potion (3)",["Shengo potion (unf)","Plant teeth"]) //plant teeth
+
+    // addRequires("Perfect juju dungeoneering potion (3)",["Harmony moss","Zamorak's favour (3)"]) 
+
+    // addRequires("Juju farming potion (3)",["Ugune potion (unf)","Marble vine"]) //marble vine
+    // addRequires("Perfect juju farming potion (3)",["Harmony moss","Juju farming potion (3)"]) 
+
+    // addRequires("Juju fishing potion (3)",["Shengo potion (unf)","Aquatic vine"]) //aquatic vine
+
+    // addRequires("Perfect juju herblore potion (3)",["Harmony moss","Guthix's gift (3)"]) 
+
+    // addRequires("Juju hunter potion (3)",["Erzille potion (unf)","Corrupt vine"]) //corrupt vine
+
+    // addRequires("Juju mining potion (3)",["Samaden potion (unf)","Draconic vine"])
+    // addRequires("Perfect juju mining potion (3)",["Harmony moss","Juju mining potion (3)"])
+
+    // addRequires("Perfect juju prayer potion (3)",["Harmony moss","Saradomin's blessing (3)"])
+
+    // addRequires("Perfect juju smithing potion (3)",["Harmony moss","Juju hunter potion (3)"])
+
+    // addRequires("Juju woodcutting potion (3)",["Samaden potion (unf)","Oily vine"])
+    // addRequires("Perfect juju woodcutting potion (3)",["Harmony moss","Juju woodcutting potion (3)"])
+
 });
 
 
