@@ -1,11 +1,7 @@
-const fs = require("fs");
-const path = require("path");
 const ExpressError = require("../utils/ExpressError");
 const getItemInfo = require("../utils/getItemInfo");
-const mongoose = require("mongoose");
+const getIngredients = require("../utils/getIngredients");
 const HerbloreItem = require("../model/herbloreitem");
-const ingredient = require("../model/ingredient");
-const { get } = require("http");
 
 module.exports.renderIndex = (req,res)=>{
     console.log("renderIndex Called")
@@ -20,31 +16,17 @@ module.exports.createPotion = (req,res) =>{
     res.redirect(`/results?name=${queryName}&number=${number}`);
 }
 
+//TODO:
+//convert the then-catch chain into async-await 
+//integrate the test page functionality into the showResults route
 module.exports.showResults = async (req,res)=>{  
     const name = req.query.name;
     const number = parseInt(req.query.number);
-    const jsonPath = path.join(__dirname,"..","filteredItemIDs.json")
-    fs.promises.readFile(jsonPath)
-    .then(data=>
-        {
-            return filteredItemIDs = JSON.parse(data);
-        }
-    )
-    .then(filteredItemIDs=>
-        {
-            for(ID in filteredItemIDs)
-            {
-                if(filteredItemIDs[ID]===name)
-                {
-                     return itemID = ID; 
-                }
-            }
-        }
-    )
-    .then(itemID=>
+    await HerbloreItem.findOne({name:name})
+    .then((potion)=>
         {
             console.log("======api queried======");
-            return getItemInfo(itemID);
+            return getItemInfo(potion.itemID);
         }
     )
     .then(itemInfo=>
@@ -83,36 +65,10 @@ module.exports.showResults = async (req,res)=>{
     )    
 }
 
-module.exports.addPotionData = async (req,res)=>{
-    
-}
-
-function getIngredients(data,tab=0,itemAndTab=[])
-{
-    if(data.requires.length===0)
-    {
-        const item = data.name;
-        itemAndTab.push({item,tab})
-        tab++;
-    }
-    else
-    {
-        const item = data.name;
-        itemAndTab.push({item,tab})
-        for(const ingredient of data.requires)
-        {
-            getIngredients(ingredient,tab+1,itemAndTab)
-        }
-        return itemAndTab;
-    }
-}
-
 module.exports.renderTest = async (req,res)=>{
-    const extremeAttack = await HerbloreItem.findOne({name:"Extreme attack (3)"});
+    const extremeAttack = await HerbloreItem.findOne({name:"Super attack (3)"});
     const itemAndTab = getIngredients(extremeAttack);
     res.render("test",{extremeAttack,itemAndTab,pageTitle:"Testing Grounds"});
 }
 
-
-//makeDBentry("Extreme defence (3)", requires:[...])
 
