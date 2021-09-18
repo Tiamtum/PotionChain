@@ -2,6 +2,7 @@ const ExpressError = require("../utils/ExpressError");
 const getItemInfo = require("../utils/getItemInfo");
 const getIngredients = require("../utils/getIngredients");
 const HerbloreItem = require("../model/herbloreitem");
+const { render } = require("ejs");
 
 module.exports.renderIndex = (req,res)=>{
     console.log("renderIndex Called")
@@ -16,53 +17,60 @@ module.exports.createPotion = (req,res) =>{
     res.redirect(`/results?name=${queryName}&number=${number}`);
 }
 
+
+const getItemByName = async(name)=>{
+    return await HerbloreItem.findOne({name:name})
+}
+const parseItemInfo = async(itemInfo,number)=>
+{
+    const image = itemInfo[0].icons.default
+    const exactPrice = itemInfo[1].daily[Object.keys(itemInfo[1].daily)[Object.keys(itemInfo[1].daily).length-1]] //access the value of the last key in daily
+    const totalPrice = exactPrice*number;
+    let coinPile;
+    if(totalPrice===1){coinPile="/images/Coins_1.webp";}
+    else if(totalPrice===2){coinPile="/images/Coins_2.webp";}
+    else if(totalPrice===3){coinPile="/images/Coins_3.webp";}
+    else if(totalPrice===4){coinPile="/images/Coins_4.webp";}
+    else if(totalPrice>=5 && totalPrice<25){coinPile="/images/Coins_5.webp";}
+    else if(totalPrice>=25 && totalPrice<100){coinPile="/images/Coins_25.webp";}
+    else if(totalPrice>=100 && totalPrice<250){coinPile="/images/Coins_100.webp";}
+    else if(totalPrice>=250 && totalPrice<1000){coinPile="/images/Coins_250.webp";}
+    else if(totalPrice>=1000 && totalPrice<10000){coinPile="/images/Coins_1000.webp";}
+    else{coinPile="/images/Coins_10000.webp";}
+    return [image,exactPrice,totalPrice,coinPile];
+}
+// const setSessionAndRender = async(name,number,data,session,res)=>
+// {
+//     const [image,exactPrice,totalPrice,coinPile] = data;
+//     session.data = {name, number, image, exactPrice, totalPrice, coinPile};
+//     session.save();
+//     res.render("results",{name, number, image, exactPrice, totalPrice, coinPile, pageTitle:"PotionChain"})
+// }
+
 //TODO:
 //convert the then-catch chain into async-await 
 //integrate the test page functionality into the showResults route
 module.exports.showResults = async (req,res)=>{  
     const name = req.query.name;
     const number = parseInt(req.query.number);
-    await HerbloreItem.findOne({name:name})
-    .then((potion)=>
-        {
-            console.log("======api queried======");
-            return getItemInfo(potion.itemID);
-        }
-    )
-    .then(itemInfo=>
-        {
-            const image = itemInfo[0].icons.default
-            const exactPrice = itemInfo[1].daily[Object.keys(itemInfo[1].daily)[Object.keys(itemInfo[1].daily).length-1]] //access the value of the last key in daily
-            const totalPrice = exactPrice*number;
-            let coinPile;
-            if(totalPrice===1){coinPile="/images/Coins_1.webp";}
-            else if(totalPrice===2){coinPile="/images/Coins_2.webp";}
-            else if(totalPrice===3){coinPile="/images/Coins_3.webp";}
-            else if(totalPrice===4){coinPile="/images/Coins_4.webp";}
-            else if(totalPrice>=5 && totalPrice<25){coinPile="/images/Coins_5.webp";}
-            else if(totalPrice>=25 && totalPrice<100){coinPile="/images/Coins_25.webp";}
-            else if(totalPrice>=100 && totalPrice<250){coinPile="/images/Coins_100.webp";}
-            else if(totalPrice>=250 && totalPrice<1000){coinPile="/images/Coins_250.webp";}
-            else if(totalPrice>=1000 && totalPrice<10000){coinPile="/images/Coins_1000.webp";}
-            else{coinPile="/images/Coins_10000.webp";}
-            return [image,exactPrice,totalPrice,coinPile];
-        }    
-    )
-    .then(frontEndData=>
-        {
-            const [image,exactPrice,totalPrice,coinPile] = frontEndData;
-            req.session.data = {name, number, image, exactPrice, totalPrice, coinPile};
-            req.session.save();
-            res.render("results",{name, number, image, exactPrice, totalPrice, coinPile, pageTitle:"PotionChain"})
-        }
-    )
-    .catch(error=>
-        {
-            //should be handled with ExpressError instead
-            const statusCode=500;
-            res.status(statusCode).render("error",{error,statusCode,pageTitle:"Error"});
-        }
-    )    
+    try
+    {
+        const potion = await getItemByName(name);
+        //for each requires of potion, get iteminfo, get data.
+        const itemInfo = await getItemInfo(potion.itemID);
+        const data = await parseItemInfo(itemInfo,number);   
+        // await setSessionAndRender(name,number,data,req.session,res);
+        
+        const [image,exactPrice,totalPrice,coinPile] = data;
+        req.session.data = {name, number, image, exactPrice, totalPrice, coinPile};
+        req.session.save();
+        res.render("results",{name, number, image, exactPrice, totalPrice, coinPile, pageTitle:"PotionChain"})
+    }
+    catch(e)
+    {
+        console.log("showResults error",e);
+        throw new ExpressError(e,500);
+    }
 }
 
 module.exports.renderTest = async (req,res)=>{
