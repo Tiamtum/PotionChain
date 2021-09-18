@@ -2,7 +2,6 @@ const ExpressError = require("../utils/ExpressError");
 const getItemInfo = require("../utils/getItemInfo");
 const getIngredients = require("../utils/getIngredients");
 const HerbloreItem = require("../model/herbloreitem");
-const { render } = require("ejs");
 
 module.exports.renderIndex = (req,res)=>{
     console.log("renderIndex Called")
@@ -56,12 +55,13 @@ module.exports.showResults = async (req,res)=>{
     try
     {
         const potion = await getItemByName(name);
-        //for each requires of potion, get iteminfo, get data.
+        //getIngredients, getItemInfo over each ingredient
+        console.log(getIngredients(potion));
         const itemInfo = await getItemInfo(potion.itemID);
         const data = await parseItemInfo(itemInfo,number);   
         // await setSessionAndRender(name,number,data,req.session,res);
         
-        const [image,exactPrice,totalPrice,coinPile] = data;
+        const [image,exactPrice,totalPrice,coinPile] = data; //put this data onto each item of the getIngredients array
         req.session.data = {name, number, image, exactPrice, totalPrice, coinPile};
         req.session.save();
         res.render("results",{name, number, image, exactPrice, totalPrice, coinPile, pageTitle:"PotionChain"})
