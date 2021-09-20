@@ -8,7 +8,8 @@ router.route("/")
     .get(index.renderIndex)
     .post(index.createPotion);
 
-router.get("/results",checkPreviousSearch,wrapAsync(index.showResults));
+// router.get("/results",checkPreviousSearch,wrapAsync(index.showResults));
+router.get("/results",wrapAsync(index.showResults));
 
 router.get("/test",index.renderTest);
 

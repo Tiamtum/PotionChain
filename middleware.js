@@ -1,3 +1,4 @@
+//middleware cannot find ingredients array, this needs to be fixed
 module.exports.checkPreviousSearch = (req,res,next)=>{
     const {name,number} = req.query;
     if(Object.keys(req.session).find(key => key==="data")===undefined)

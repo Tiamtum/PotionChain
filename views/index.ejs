@@ -3,11 +3,49 @@
 <div class="input-group input-group-lg mb-3">
     <span class="input-group-text" id="potionInput">Potion</span>
     <input type="text" class="form-control" name="name" placeholder="Enter potion name (E.g. &quot;Elder Overload&quot;)" aria-label="Enter potion name (E.g. \'Elder Overload\')" aria-describedby="potionInput" required>
-    <!-- <button class="btn btn-outline-secondary" type="button" id="potionInputButton">Submit</button> -->
+    <div class="valid-feedback">
+        Looks good!
+    </div>
 </div>
 <div class="input-group input-group-lg mb-3">
     <span class="input-group-text" id="potionQuantity">Quantity</span>
-    <input type="number"  name="number" min="0" max="2147483647" class="form-control" placeholder="How many potions? (Number between 0 and 2,147,483,647) " aria-label="Number of Potions" aria-describedby="potionQuantity" required>
+    <input type="number" name="number" min="0 max="2147483647" class="form-control" placeholder="How many potions? (Number between 0 and 2,147,483,647) " aria-label="Number of Potions" aria-describedby="potionQuantity" required>
+    <div class="valid-feedback">
+        Looks good!
+    </div>
 </div>
-<button class="btn btn-primary">Submit</button>
+<button class="btn btn-primary" id="submitButton" >
+    <span class="spinner-border spinner-border-sm" role="status" id="spinner" hidden></span>
+</button>
 </form>
+
+<script src="/javascripts/validateForms.js"></script>
+
+<script>
+    const button = document.querySelector("#submitButton");
+    const spinner = document.querySelector("#spinner");
+
+    const submitText = document.createElement("span");
+    submitText.id = "submitText";
+    submitText.append(document.createTextNode("Submit"));
+    button.appendChild(submitText);
+
+    const loadingText = document.createElement("span");
+    loadingText.id = "loadingText";
+    loadingText.append(document.createTextNode("Querying Database, please wait..."))
+    
+    const buttonSpan = document.querySelector("#submitText");
+    const potionInput = document.querySelector("input[type='text']");
+    const numberInput = document.querySelector("input[type='number']");
+
+    button.addEventListener("click",()=>
+    {
+        if(!potionInput.matches(".form-control:invalid") && !numberInput.matches(".form-control:invalid"))
+        {
+            spinner.hidden = false;
+            button.disabled = true;
+            button.replaceChild(loadingText,submitText);  
+        }
+    })
+
+</script>
