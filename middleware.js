@@ -1,6 +1,8 @@
-//middleware cannot find ingredients array, this needs to be fixed
+const {getCoinPile} = require("./utils/potionDataHelpers");
+
 module.exports.checkPreviousSearch = (req,res,next)=>{
-    const {name,number} = req.query;
+    const name = req.query.name;
+    const number = parseInt(req.query.number);
     if(Object.keys(req.session).find(key => key==="data")===undefined)
         {
             next();
@@ -8,43 +10,42 @@ module.exports.checkPreviousSearch = (req,res,next)=>{
         else
         {
             console.log("ELSE CONDITION, req.session.data exists")
-            if(name === req.session.data.name && number === req.session.data.number)
+            if(name === req.session.data[0].item && number === req.session.data[0].data.number)
             {
-                console.log("query.name=session.name && query.name = data.number")
-                const {name,number, image, coinPile, exactPrice,totalPrice} = req.session.data;
-                res.render("results",{name,number,image,coinPile,exactPrice,totalPrice, pageTitle:"PotionChain"})
-            }
-            else if(name === req.session.data.name && number !== req.session.data.number)
-            {
-                const {name,image,exactPrice} = req.session.data;
-                const totalPrice = parseInt(exactPrice)*number;
-                
-                let coinPile;
-                if(totalPrice===1){coinPile="/images/Coins_1.webp";}
-                else if(totalPrice===2){coinPile="/images/Coins_2.webp";}
-                else if(totalPrice===3){coinPile="/images/Coins_3.webp";}
-                else if(totalPrice===4){coinPile="/images/Coins_4.webp";}
-                else if(totalPrice>=5 && totalPrice<25){coinPile="/images/Coins_5.webp";}
-                else if(totalPrice>=25 && totalPrice<100){coinPile="/images/Coins_25.webp";}
-                else if(totalPrice>=100 && totalPrice<250){coinPile="/images/Coins_100.webp";}
-                else if(totalPrice>=250 && totalPrice<1000){coinPile="/images/Coins_250.webp";}
-                else if(totalPrice>=1000 && totalPrice<10000){coinPile="/images/Coins_1000.webp";}
-                else{coinPile="/images/Coins_10000.webp";}
+                console.log("same name, same number")
+                const finalPrice = req.session.finalPrice
+                const ingredients = req.session.data;
+                res.render("results",{ingredients,finalPrice, pageTitle:"PotionChain"})
 
-                req.session.data.totalPrice = totalPrice; 
-                req.session.data.number = number;
-                req.session.data.coinPile = coinPile;
+            }
+            else if(name === req.session.data[0].item && number !== req.session.data[0].data.number)
+            {
+                console.log("==same name, different number==")
+                const ingredients = req.session.data;
+                let finalPrice = 0 ;
+                for(const ingredient of ingredients )
+                {
+                    ingredient.data.number = number;
+                    ingredient.data.totalPrice = number * ingredient.data.exactPrice;
+                    ingredient.data.coinPile = getCoinPile(ingredient.data.totalPrice);
+                    if(ingredient.item != name)
+                    {
+                        finalPrice+=ingredient.data.totalPrice;
+                    }
+                }
+
+                console.log(finalPrice,typeof(finalPrice));
+                req.session.data = ingredients;
+                req.session.finalPrice = finalPrice;
                 req.session.save();
-                console.log(req.session);
-                res.render("results",{name,number,image,coinPile,exactPrice,totalPrice, pageTitle:"PotionChain"})
+                res.render("results",{ingredients,finalPrice,pageTitle:"Potion Chain"});
             }
             else
             {
-                console.log("query.name != session.name")
-                console.log("deleting req.session.data");
+                console.log("==different name==")
                 delete req.session.data;
                 console.log(req.session);
-                console.log("calling findIDQueryAndRender");
+                console.log("querying db...");
                 next();
             }     
         }
