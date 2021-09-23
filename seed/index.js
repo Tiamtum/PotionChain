@@ -353,6 +353,7 @@ const nonPrimitiveIngredients =
     "14848": "Fletching potion (3)",
     "14854": "Clean wergali",
     "14856": "Wergali potion (unf)",
+    "15308": "Extreme attack (3)",
     "15329": "Super prayer (3)",
     "19990": "Clean argway",
     "19989": "Clean erzille",
@@ -533,6 +534,7 @@ seedDB().then(()=>{
 
     addRequires("Attack potion (3)",["Guam potion (unf)","Eye of newt"])
     addRequires("Super attack (3)",["Irit potion (unf)","Eye of newt"])
+    addRequires("Extreme attack (3)",["Super attack (3)","Clean avantoe"])
 
     addRequires("Strength potion (3)",["Tarromin potion (unf)", "Limpwurt root"])
     addRequires("Super strength (3)",["Kwuarm potion (unf)","Limpwurt root"])

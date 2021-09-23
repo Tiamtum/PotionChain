@@ -1,0 +1,12 @@
+<% layout("layouts/boilerplate") -%>
+<%for(const ingredient of ingredients){%>    
+    <p>
+        <% for(let i = 0; i<ingredient.tab; i++){ %>
+            &emsp;&emsp;
+        <% } %>
+        <%=ingredient.data.number%>&times;<%=ingredient.item%> <img src="<%=ingredient.data.image%>">
+        Total price: <%=ingredient.data.totalPrice%> <img src="<%=ingredient.data.coinPile%>">
+        (<%=ingredient.data.exactPrice%>gp/ea.)
+    </p>
+<% }%>
+<!-- <p>Final price: <%=finalPrice%></p> -->

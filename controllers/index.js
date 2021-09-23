@@ -52,4 +52,58 @@ module.exports.showResults = async (req,res)=>{
     }
 }
 
+const untradeableIDs = [15308]
 
+module.exports.test = async (req,res)=>{
+    const name = "Extreme attack (3)";
+    const number = 1;
+    let finalPrice = 0 ;
+    req.session.data = [];
+    const potion = await getItemByName(name);
+    const ingredients = getIngredients(potion);
+    const testNumber = 1
+    const testImage = "/images/untradables/Extreme_attack_(3).webp"
+    const testExactPrice = 1
+    const testTotalPrice = 1 //'tab: 1' ingredient costs will be the price
+    const testCoinPile = "/images/Coins_1000.webp"
+    testData = {number:testNumber,image:testImage,exactPrice:testExactPrice,totalPrice:testTotalPrice,coinPile:testCoinPile};
+    ingredients[0].data = testData;
+    req.session.data.push(ingredients[0]);
+    // console.log(ingredients);
+    if(untradeableIDs.find(ID => ID===ingredients[0].itemID))
+    {
+        const tradables = ingredients.slice(1)
+        // console.log(tradables);
+        for(const ingredient of tradables)
+        {
+            const itemInfo = await getItemInfo(ingredient.itemID);
+            const data = await parseItemInfo(itemInfo,number);
+            const [image,exactPrice,totalPrice,coinPile] = data
+            if(ingredient.item != name)
+            {
+                finalPrice+=totalPrice;
+            }
+            ingredient.data = {number,image,exactPrice,totalPrice,coinPile};
+            req.session.data.push(ingredient);
+        }
+
+        console.log(ingredients);
+        let price = 0;
+        for(const ingredient of ingredients)
+        {
+            if(ingredient.data.tab===1)
+            {
+                price+=ingredient.data.totalPrice;
+            }
+        }
+        console.log(ingredient)
+        ingredients[0].data.totalPrice = price;
+        req.session.finalPrice = finalPrice;
+        req.session.save();
+        res.render("test",{ingredients,finalPrice,pageTitle:"PotionChain"})
+    }
+    else
+    {
+        // const itemInfo = await getItemInfo(ingredients[0].itemID);
+    }
+}
