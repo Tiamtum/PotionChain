@@ -52,10 +52,20 @@ module.exports.showResults = async (req,res)=>{
     }
 }
 
-const untradeableIDs = [15308]
+const untradeableIDs = [899995,899996,899997,899998,899999,900000,900001,900002,900003,900004]
+// "899995": "Extreme runecrafting (3)",
+//     "899996": "Extreme invention (3)",
+//     "899997": "Extreme hunter (3)",
+//     "899998": "Extreme divination (3)",
+//     "899999": "Extreme cooking potion (3)",
+//     "900000": "Extreme attack (3)",
+//     "900001": "Extreme strength (3) ",
+//     "900002": "Extreme defence (3) ",
+//     "900003": "Extreme ranging (3) ",
+//     "900004": "Extreme magic (3) ",
 
 module.exports.test = async (req,res)=>{
-    const name = "Extreme attack (3)";
+    const name = "Overload (3)";
     const number = 1;
     let finalPrice = 0 ;
     req.session.data = [];
@@ -69,13 +79,16 @@ module.exports.test = async (req,res)=>{
     testData = {number:testNumber,image:testImage,exactPrice:testExactPrice,totalPrice:testTotalPrice,coinPile:testCoinPile};
     ingredients[0].data = testData;
     req.session.data.push(ingredients[0]);
-    // console.log(ingredients);
+    console.log(ingredients);
+    const outerLoop = 0;
+    res.render("test",{ingredients,outerLoop,pageTitle:"PotionChain"})
     if(untradeableIDs.find(ID => ID===ingredients[0].itemID))
     {
         const tradables = ingredients.slice(1)
         // console.log(tradables);
         for(const ingredient of tradables)
         {
+            console.log(ingredient);
             const itemInfo = await getItemInfo(ingredient.itemID);
             const data = await parseItemInfo(itemInfo,number);
             const [image,exactPrice,totalPrice,coinPile] = data
@@ -96,11 +109,11 @@ module.exports.test = async (req,res)=>{
                 price+=ingredient.data.totalPrice;
             }
         }
-        console.log(ingredient)
+        // console.log(ingredient)
         ingredients[0].data.totalPrice = price;
         req.session.finalPrice = finalPrice;
         req.session.save();
-        res.render("test",{ingredients,finalPrice,pageTitle:"PotionChain"})
+        // res.render("test",{ingredients,finalPrice,pageTitle:"PotionChain"})
     }
     else
     {
