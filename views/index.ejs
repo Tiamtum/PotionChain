@@ -1,5 +1,5 @@
 <% layout("layouts/boilerplate") -%>
-<form action="/results" method="GET" class="validated-form" novalidate>
+<!-- <form action="/results" method="GET" class="validated-form" novalidate>
 <div class="input-group input-group-lg mb-3">
     <span class="input-group-text" id="potionInput">Potion</span>
     <input type="text" class="form-control" name="name" placeholder="Enter potion name (E.g. &quot;Elder Overload&quot;)" aria-label="Enter potion name (E.g. \'Elder Overload\')" aria-describedby="potionInput" required>
@@ -17,6 +17,25 @@
 <button class="btn btn-primary" id="submitButton" >
     <span class="spinner-border spinner-border-sm" role="status" id="spinner" hidden></span>
 </button>
+</form> -->
+<form action="/test" method="GET" class="validated-form" novalidate>
+    <div class="input-group input-group-lg mb-3">
+        <span class="input-group-text" id="potionInput">Potion</span>
+        <input type="text" class="form-control" name="name" placeholder="TO /TEST" aria-label="Enter potion name (E.g. \'Elder Overload\')" aria-describedby="potionInput" required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+    </div>
+    <div class="input-group input-group-lg mb-3">
+        <span class="input-group-text" id="potionQuantity">Quantity</span>
+        <input type="number" name="number" min="0 max="2147483647" class="form-control" placeholder="TO /TEST " aria-label="Number of Potions" aria-describedby="potionQuantity" required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+    </div>
+    <button class="btn btn-primary" id="submitButton" >
+        /test
+    </button>
 </form>
 
 <script src="/javascripts/validateForms.js"></script>

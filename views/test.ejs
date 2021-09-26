@@ -5,7 +5,7 @@ this process again at the newfound ingredient of tab 1. Repeat until no more ing
 The last ingredient is dealt with individually, possibly due to bad implementation.-->
 
 
-    <h1 class="text-center"><%=ingredients[0].item%></h1>
+    <h1 class="text-center"><img src="<%=ingredients[0].data.image%>" alt=""> <%=ingredients[0].item%></h1>
     <div class="row">
 
             <% ingredients.forEach((ingredient,idx)=>{ %>
@@ -17,7 +17,7 @@ The last ingredient is dealt with individually, possibly due to bad implementati
                                 <span style="padding-left:<%=ingredients[i].tab*(ingredients[i].tab)/2%>em;font-size: <%=2-0.2*ingredients[i].tab%>em;font-weight: <%=600-50*ingredients[i].tab%>;">
                                     <input type="checkbox" id="<%=i%>" class="mx-2 form-check-input">
                                         <label class="form-check-label" for="<%=i%>">
-                                            <%=ingredients[i].item%>
+                                            <img src="<%=ingredients[i].data.image%>" alt=""> <%=ingredients[i].item%>
                                         </label>
                                     </span>
                             </p>
@@ -27,7 +27,7 @@ The last ingredient is dealt with individually, possibly due to bad implementati
                             <span style="padding-left:<%=ingredients[i].tab*(ingredients[i].tab)/2%>em;font-size: <%=2-0.2*ingredients[i].tab%>em;font-weight: <%=600-50*ingredients[i].tab%>;">
                                 <input type="checkbox" id="<%=i%>" class="mx-2 form-check-input">
                                     <label class="form-check-label" for="<%=i%>">
-                                        <%=ingredients[i].item%>
+                                        <img src="<%=ingredients[i].data.image%>" alt=""> <%=ingredients[i].item%>
                                     </label>
                                 </span>
                         </p>
@@ -37,7 +37,7 @@ The last ingredient is dealt with individually, possibly due to bad implementati
                                 <span style="padding-left:<%=ingredients[i+1].tab*(ingredients[i+1].tab)/2%>em;font-size: <%=2-0.2*ingredients[i+1].tab%>em;font-weight: <%=600-50*ingredients[i+1].tab%>;">
                                     <input type="checkbox" id="<%=i+1%>" class="mx-2 form-check-input">
                                         <label class="form-check-label" for="<%=i+1%>">
-                                            <%=ingredients[i+1].item%>
+                                            <img src="<%=ingredients[i].data.image%>" alt=""> <%=ingredients[i+1].item%>
                                         </label>
                                 </span>
                             </p>

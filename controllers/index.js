@@ -52,8 +52,8 @@ module.exports.showResults = async (req,res)=>{
     }
 }
 
- const untradeableIDs = [899995,899996,899997,899998,899999,900000,900001,900002,900003,900004,900005]
-const untradeableIDsObj = {
+//  const untradeableIDs = [899995,899996,899997,899998,899999,900000,900001,900002,900003,900004,900005]
+const untradeableItems = {
     "899995": "Extreme runecrafting (3)",
     "899996": "Extreme invention (3)",
     "899997": "Extreme hunter (3)",
@@ -68,60 +68,71 @@ const untradeableIDsObj = {
 }
 
 module.exports.test = async (req,res)=>{
-    //
+    const name = req.query.name;
+    const number = parseInt(req.query.number);
+    try
+    {
+        const potion = await getItemByName(name);
+        const ingredients = getIngredients(potion);
+        let finalPrice = 0;
+        req.session.data = []
+        for(const ingredient of ingredients)
+        {
+            if(!untradeableItems[ingredient.itemID])
+            {
+                console.log(`${ingredient.item} RECIEVED`,`itemID: ${ingredient.itemID}`);
+                const itemInfo = await getItemInfo(ingredient.itemID);
+                // console.log(itemInfo);
+                const data = await parseItemInfo(itemInfo,number);
+                const [image,exactPrice,totalPrice,coinPile] = data
+                if(ingredient.item != name)
+                {
+                    finalPrice+=totalPrice;
+                }
+                ingredient.data = {number,image,exactPrice,totalPrice,coinPile};
+                req.session.data.push(ingredient);
+                console.log(`${ingredient.item} PROCESSED SUCCESSFULLY`);
+            }
+            else
+            {
+                const placeHolderImage = "/images/untradables/Overload (3).webp";
+                const exactPrice = 1;
+                const totalPrice = 1;
+                const coinPile =  "/images/Coins_1000.webp";
+                ingredient.data = {number,image:placeHolderImage,exactPrice,totalPrice,coinPile};
+                req.session.data.push(ingredient);
+            }
+        }
+        req.session.finalPrice = finalPrice;
+        req.session.save();
+        res.render("test",{ingredients,finalPrice,pageTitle:"PotionChain"})
+    }
+    catch(e)
+    {
+        console.log("showResults error",e);
+        throw new ExpressError(e,500);
+    }
+    
+ 
+
+   
+    //comment above this and uncomment below this if you mess up and want to try again
     // const name = "Overload (3)";
     // const number = 1;
+    // let finalPrice = 0 ;
     // req.session.data = [];
     // const potion = await getItemByName(name);
     // const ingredients = getIngredients(potion);
-    // const exactPrice = 1;
-    // const totalPrice = 1;
-    // const coinPile = "/images/Coins_10000.webp";
-    // const finalPrice = 1;
-    // for(const ingredient of ingredients)
-    // {
-    //     if(!untradeableIDs.find(ID => ID===ingredient.itemID)) //case: Tradable item
-    //     {
-    //         console.log("Tradable Item: ",ingredient.item)
-    //         const itemInfo = await getItemInfo(ingredient.itemID);
-    //         console.log(itemInfo)
-    //         const data = await parseItemInfo(itemInfo,number);
-    //         console.log(data);
-    //         const [image,exactPrice,totalPrice,coinPile] = data
-    //         ingredient.data = {number,image,exactPrice,totalPrice,coinPile};
-    //         req.session.data.push(ingredient);
-    //     }
-    //     else    //case: Untradable item
-    //     {
-    //         console.log("Untradable Item: ",ingredient.item)
-    //         const image = `/images/untradables/${untradeableIDsObj[ingredient.itemID]}.webp`
-    //         ingredient.data = {number,image,exactPrice,totalPrice,coinPile}
-    //         req.session.data.push(ingredient);
-    //     }
-    // }
+    // const testNumber = 1
+    // const testImage = "/images/untradables/Extreme_attack_(3).webp"
+    // const testExactPrice = 1
+    // const testTotalPrice = 1 //'tab: 1' ingredient costs will be the price
+    // const testCoinPile = "/images/Coins_1000.webp"
+    // testData = {number:testNumber,image:testImage,exactPrice:testExactPrice,totalPrice:testTotalPrice,coinPile:testCoinPile};
+    // ingredients[0].data = testData;
+    // req.session.data.push(ingredients[0]);
     // console.log(ingredients);
-
-    // req.session.save();
-    // res.render("test",{ingredients,finalPrice,pageTitle:"PotionChain"})
-
-   
-
-    const name = "Overload (3)";
-    const number = 1;
-    let finalPrice = 0 ;
-    req.session.data = [];
-    const potion = await getItemByName(name);
-    const ingredients = getIngredients(potion);
-    const testNumber = 1
-    const testImage = "/images/untradables/Extreme_attack_(3).webp"
-    const testExactPrice = 1
-    const testTotalPrice = 1 //'tab: 1' ingredient costs will be the price
-    const testCoinPile = "/images/Coins_1000.webp"
-    testData = {number:testNumber,image:testImage,exactPrice:testExactPrice,totalPrice:testTotalPrice,coinPile:testCoinPile};
-    ingredients[0].data = testData;
-    req.session.data.push(ingredients[0]);
-    console.log(ingredients);
-    const outerLoop = 0;
-    res.render("test",{ingredients,outerLoop,pageTitle:"PotionChain"})
+    // const outerLoop = 0;
+    // res.render("test",{ingredients,outerLoop,pageTitle:"PotionChain"})
    
 }
