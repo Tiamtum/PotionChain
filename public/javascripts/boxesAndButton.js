@@ -39,8 +39,13 @@ checkBoxes.forEach(checkBox => {
 })
 
 button.addEventListener("click",()=>{
-    const checkBoxes = document.querySelectorAll("input[type='checkbox']")
+    // const checkBoxes = document.querySelectorAll("input[type='checkbox']")
     checkBoxes.forEach(checkBox =>{
+        if(checkBox.checked)
+        {
+            const label = document.querySelector(`label[for='${checkBox.id}']`);
+            label.classList.toggle("text-muted");
+        }
         checkBox.checked=false;
     })
     checkedBoxes=0;

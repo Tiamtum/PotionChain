@@ -4,45 +4,51 @@
 this process again at the newfound ingredient of tab 1. Repeat until no more ingredients. 
 The last ingredient is dealt with individually, possibly due to bad implementation.-->
 
-<h1 class="text-center"><%=ingredients[0].item%></h1>
-<% ingredients.forEach((ingredient,idx)=>{ %>  
-    <% if(ingredient.tab===1){ %> 
-    <div style="display:inline-flex;flex-direction: column;" class="m-3">
-        <%for(let i=idx; i<ingredients.length-1; i++ ){%>
-            <%if(ingredients[i+1].tab===1){%>
-                <p>
-                    <span style="padding-left:<%=ingredients[i].tab*(ingredients[i].tab)/2%>em;font-size: <%=2-0.2*ingredients[i].tab%>em;font-weight: <%=800-200*ingredients[i].tab%>;">
-                        <input type="checkbox" id="<%=i%>" class="mx-2 form-check-input">
-                            <label class="form-check-label" for="<%=i%>">
-                                <%=ingredients[i].item%>
-                            </label>
-                        </span>
-                </p>
-                <%break;%>
-            <% } %> 
-            <p>
-                <span style="padding-left:<%=ingredients[i].tab*(ingredients[i].tab)/2%>em;font-size: <%=2-0.2*ingredients[i].tab%>em;font-weight: <%=800-200*ingredients[i].tab%>;">
-                    <input type="checkbox" id="<%=i%>" class="mx-2 form-check-input">
-                        <label class="form-check-label" for="<%=i%>">
-                            <%=ingredients[i].item%>
-                        </label>
-                    </span>
-            </p>
-            <% if(i+1===ingredients.length-1){ %>
-                <p>
 
-                    <span style="padding-left:<%=ingredients[i+1].tab*(ingredients[i+1].tab)/2%>em;font-size: <%=2-0.2*ingredients[i+1].tab%>em;font-weight: <%=800-200*ingredients[i+1].tab%>;">
-                        <input type="checkbox" id="<%=i+1%>" class="mx-2 form-check-input">
-                            <label class="form-check-label" for="<%=i+1%>">    
-                                <%=ingredients[i+1].item%>
-                            </label>
-                    </span>
-                </p> 
-            <% } %> 
-        <% }%>
+    <h1 class="text-center"><%=ingredients[0].item%></h1>
+    <div class="row">
+
+            <% ingredients.forEach((ingredient,idx)=>{ %>
+                <% if(ingredient.tab===1){ %>
+                <div class="col-4 my-2 ">
+                    <%for(let i=idx; i<ingredients.length-1; i++ ){%>
+                        <%if(ingredients[i+1].tab===1){%>
+                            <p>
+                                <span style="padding-left:<%=ingredients[i].tab*(ingredients[i].tab)/2%>em;font-size: <%=2-0.2*ingredients[i].tab%>em;font-weight: <%=600-50*ingredients[i].tab%>;">
+                                    <input type="checkbox" id="<%=i%>" class="mx-2 form-check-input">
+                                        <label class="form-check-label" for="<%=i%>">
+                                            <%=ingredients[i].item%>
+                                        </label>
+                                    </span>
+                            </p>
+                            <%break;%>
+                        <% } %>
+                        <p>
+                            <span style="padding-left:<%=ingredients[i].tab*(ingredients[i].tab)/2%>em;font-size: <%=2-0.2*ingredients[i].tab%>em;font-weight: <%=600-50*ingredients[i].tab%>;">
+                                <input type="checkbox" id="<%=i%>" class="mx-2 form-check-input">
+                                    <label class="form-check-label" for="<%=i%>">
+                                        <%=ingredients[i].item%>
+                                    </label>
+                                </span>
+                        </p>
+                        <% if(i+1===ingredients.length-1){ %>
+                            <p>
+            
+                                <span style="padding-left:<%=ingredients[i+1].tab*(ingredients[i+1].tab)/2%>em;font-size: <%=2-0.2*ingredients[i+1].tab%>em;font-weight: <%=600-50*ingredients[i+1].tab%>;">
+                                    <input type="checkbox" id="<%=i+1%>" class="mx-2 form-check-input">
+                                        <label class="form-check-label" for="<%=i+1%>">
+                                            <%=ingredients[i+1].item%>
+                                        </label>
+                                </span>
+                            </p>
+                        <% } %>
+                    <% }%>
+                </div>
+                <% } %>
+            <% }) %>
+
     </div>
-    <% } %> 
-<% }) %> 
+
 <div class="my-3 d-flex flex-row-reverse">
     <button class="btn btn-primary" id="uncheck">Uncheck all</button>
 </div>
