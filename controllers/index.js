@@ -95,11 +95,11 @@ module.exports.test = async (req,res)=>{
             }
             else
             {
-                const placeHolderImage = "/images/untradables/Overload (3).webp";
+                const image = `/images/untradables/${ingredient.item}.webp`;
                 const exactPrice = 1;
                 const totalPrice = 1;
                 const coinPile =  "/images/Coins_1000.webp";
-                ingredient.data = {number,image:placeHolderImage,exactPrice,totalPrice,coinPile};
+                ingredient.data = {number,image,exactPrice,totalPrice,coinPile};
                 req.session.data.push(ingredient);
             }
         }
