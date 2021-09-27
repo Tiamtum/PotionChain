@@ -66,7 +66,11 @@ const untradeableItems = {
     "900004": "Extreme magic (3) ",
     "900005": "Overload (3)"
 }
-
+//TODO:
+//Add (4) dose support
+//Add multiple of each ingreident support
+//Add different recipies support
+//Eliminate redudency in DB queries (e.g. vials/vials of water)
 module.exports.test = async (req,res)=>{
     console.log(req.query);
     const name = req.query.name;

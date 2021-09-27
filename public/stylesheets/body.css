@@ -4,7 +4,7 @@ body{
     /* background: linear-gradient(45deg,#CAD7E7,#d4d1e7) fixed; */
     background: linear-gradient(45deg, #B7B7A4,#A5A58D) fixed;
     /* color:rgb(42, 68, 93); */
-    color:#4e5243
+    color:#4e5243;
 }
 a{
     /* color:#7561f8; */
@@ -60,10 +60,15 @@ nav.navbar {
     background: linear-gradient(45deg, #B7B7A4,#A5A58D) fixed;
 }
   /* change navbar-toggler inside lines color (stroke) */
-  .navbar-light span.navbar-toggler-icon {
+.navbar-light span.navbar-toggler-icon {
     color: #4e5243;
 }
   /* change hamburger button border color */
-  button.navbar-toggler.navbar-toggler-right {
+button.navbar-toggler.navbar-toggler-right {
     border-color: #4e5243;
 }
+
+nav.navbar p.mx-3.pt-3.fs-1{
+    user-select: none;
+}
+

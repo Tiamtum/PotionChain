@@ -52,25 +52,26 @@ The last ingredient is dealt with individually, possibly due to bad implementati
             <% }) %>
         <% }else if(displaySetting==="essential"){ %>
 
-            <div class="col-6 offset-3">       
+            <div class="col-xl-12 col-sm-12 d-flex flex-column align-items-center">       
                     <%ingredients.slice(1).forEach((ingredient,i)=>{%>    
-                        <p>
                             <span style="font-size: 1.7em;">
-                                <input type="checkbox" id="<%=i%>" class="form-check-input">
+                                <input type="checkbox" id="<%=i%>" class="d-none d-md-inline-block form-check-input">
                                     <label class="form-check-label" for="<%=i%>">
-                                        <%=ingredient.data.number%> &times; <img src="<%=ingredient.data.image%>"> <%=ingredient.item%> <img src="<%=ingredient.data.coinPile%>" data-bs-toggle="tooltip" title="<%=ingredient.data.totalPrice%>gp">
+                                        <%=ingredient.data.number%> &times; <img src="<%=ingredient.data.image%>"> <%=ingredient.item%> <img src="<%=ingredient.data.coinPile%>" class="d-none d-sm-inline" data-bs-toggle="tooltip" title="<%=ingredient.data.totalPrice%>gp">
                                     </label>
                             </span>
-                        </p>
                     <%})%>
             </div>
+            
         <% }else{ %>
 
             <p>Error</p>    
         <% } %>  
 
     </div>
-
+<div class="d-flex justify-content-center my-3">
+    <a class="btn btn-success" href="/">Search for a new potion</a>
+</div>
 <script src="/javascripts/boxesAndButton.js"></script>
 <script>
 const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
