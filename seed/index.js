@@ -234,6 +234,7 @@ const primitiveIngredients =
     "23191": "Potion flask",
     "28253": "Wine of Guthix",
     "28256": "Wine of Saradomin",
+    "32843": "Crystal flask",
     "32947": "Harmony moss",
     "34159": "Searing ashes",
     "37975": "Grimy bloodweed",
@@ -413,7 +414,20 @@ const nonPrimitiveIngredients =
     "49002": "Super cooking potion (3)",
     "49123": "Ground wyvern bones",
     "50853": "Archaeology potion (3)",
-    "50861": "Spirit attraction potion (3)"
+    "50861": "Spirit attraction potion (3)",
+
+    "899995": "Extreme runecrafting (3)",
+    "899996": "Extreme invention (3)",
+    "899997": "Extreme hunter (3)",
+    "899998": "Extreme divination (3)",
+    "899999": "Extreme cooking potion (3)",
+    "900000": "Extreme attack (3)",
+    "900001": "Extreme strength (3)",
+    "900002": "Extreme defence (3)",
+    "900003": "Extreme ranging (3)",
+    "900004": "Extreme magic (3)",
+    "900005": "Overload (3)"
+
 }
 
 mongoose.connect(dbUrl)
@@ -453,7 +467,10 @@ const seedDB = async ()=>{
 const addRequires = async (potion,requires) =>
 {
     const items = []
-    console.log(requires);
+    if(potion==="Overload (3)")
+    {
+        console.log(potion,requires);
+    }
     for(const material of requires)
     {
         const item = await HerbloreItem.findOne({name:material});
@@ -463,6 +480,7 @@ const addRequires = async (potion,requires) =>
     {
         await HerbloreItem.findOneAndUpdate({name:potion},{$push:{requires:item}});
     }
+    console.log(potion,"added");
 }
 //TODO:
 //Handle multiple of each ingredient if needed
@@ -511,6 +529,7 @@ seedDB().then(()=>{
     addRequires("Clean arbuck",["Grimy arbuck"])
     addRequires("Primal extract",["Primal fruit pulp","Vial"])
 
+    addRequires("Guam potion (unf)",["Clean guam","Vial of water"]);
     addRequires("Marrentill potion (unf)",["Clean marrentill","Vial of water"])
     addRequires("Tarromin potion (unf)",["Clean tarromin","Vial of water"])
     addRequires("Harralander potion (unf)",["Clean harralander","Vial of water"])
@@ -533,18 +552,27 @@ seedDB().then(()=>{
 
     addRequires("Attack potion (3)",["Guam potion (unf)","Eye of newt"])
     addRequires("Super attack (3)",["Irit potion (unf)","Eye of newt"])
+    addRequires("Extreme attack (3)",["Super attack (3)","Clean avantoe"])
 
     addRequires("Strength potion (3)",["Tarromin potion (unf)", "Limpwurt root"])
     addRequires("Super strength (3)",["Kwuarm potion (unf)","Limpwurt root"])
+    addRequires("Extreme strength (3)",["Super strength (3)","Clean dwarf weed"])
 
     addRequires("Defence potion (3)",["Marrentill potion (unf)","Bear fur"])
     addRequires("Super defence (3)",["Cadantine potion (unf)","White berries"])
+    addRequires("Extreme defence (3)",["Super defence (3)","Clean lantadyme"])
+
 
     addRequires("Ranging potion (3)",["Guam potion (unf)","Redberries"])
     addRequires("Super ranging potion (3)",["Dwarf weed potion (unf)","Wine of Zamorak"])
+    addRequires("Extreme ranging (3)",["Super ranging potion (3)","Grenwall spikes"])
+
 
     //addRequires("Magic potion (3)",["Tarromin potion (unf)","Black bead"]) //note: need to consider alternative recipies
     addRequires("Super magic potion (3)",["Lantadyme potion (unf)","Potato cactus"])
+    addRequires("Extreme magic (3)",["Super magic potion (3)","Ground mud runes"]);
+
+    addRequires("Overload (3)",["Extreme attack (3)","Extreme strength (3)","Extreme defence (3)","Extreme ranging (3)","Extreme magic (3)","Clean torstol"])
 
     addRequires("Antipoison (3)",["Marrentill potion (unf)","Unicorn horn dust"])
     addRequires("Super antipoison (3)",["Irit potion (unf)","Unicorn horn dust"])
@@ -636,7 +664,6 @@ seedDB().then(()=>{
 
     addRequires("Juju woodcutting potion (3)",["Samaden potion (unf)","Oily vine"])
     addRequires("Perfect juju woodcutting potion (3)",["Harmony moss","Juju woodcutting potion (3)"])
-
 });
 
 
