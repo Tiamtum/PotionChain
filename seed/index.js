@@ -234,6 +234,7 @@ const primitiveIngredients =
     "23191": "Potion flask",
     "28253": "Wine of Guthix",
     "28256": "Wine of Saradomin",
+    "32843": "Crystal flask",
     "32947": "Harmony moss",
     "34159": "Searing ashes",
     "37975": "Grimy bloodweed",
@@ -528,6 +529,7 @@ seedDB().then(()=>{
     addRequires("Clean arbuck",["Grimy arbuck"])
     addRequires("Primal extract",["Primal fruit pulp","Vial"])
 
+    addRequires("Guam potion (unf)",["Clean guam","Vial of water"]);
     addRequires("Marrentill potion (unf)",["Clean marrentill","Vial of water"])
     addRequires("Tarromin potion (unf)",["Clean tarromin","Vial of water"])
     addRequires("Harralander potion (unf)",["Clean harralander","Vial of water"])

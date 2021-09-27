@@ -68,44 +68,96 @@ const untradeableItems = {
 }
 
 module.exports.test = async (req,res)=>{
+    console.log(req.query);
     const name = req.query.name;
     const number = parseInt(req.query.number);
+    const display = req.query.display;
     try
     {
         const potion = await getItemByName(name);
-        const ingredients = getIngredients(potion);
+        // const ingredients = getIngredients(potion);
         let finalPrice = 0;
         req.session.data = []
-        for(const ingredient of ingredients)
+        if(display === "full")
         {
-            if(!untradeableItems[ingredient.itemID])
+            const ingredients = getIngredients(potion);
+            for(const ingredient of ingredients)
             {
-                console.log(`${ingredient.item} RECIEVED`,`itemID: ${ingredient.itemID}`);
-                const itemInfo = await getItemInfo(ingredient.itemID);
-                // console.log(itemInfo);
-                const data = await parseItemInfo(itemInfo,number);
-                const [image,exactPrice,totalPrice,coinPile] = data
-                if(ingredient.item != name)
+                if(!untradeableItems[ingredient.itemID])
                 {
-                    finalPrice+=totalPrice;
+                    console.log(`${ingredient.item} RECIEVED`,`itemID: ${ingredient.itemID}`);
+                    const itemInfo = await getItemInfo(ingredient.itemID);
+                    // console.log(itemInfo);
+                    const data = await parseItemInfo(itemInfo,number);
+                    const [image,exactPrice,totalPrice,coinPile] = data
+                    if(ingredient.item != name)
+                    {
+                        finalPrice+=totalPrice;
+                    }
+                    ingredient.data = {number,image,exactPrice,totalPrice,coinPile};
+                    req.session.data.push(ingredient);
+                    console.log(`${ingredient.item} PROCESSED SUCCESSFULLY`);
                 }
-                ingredient.data = {number,image,exactPrice,totalPrice,coinPile};
-                req.session.data.push(ingredient);
-                console.log(`${ingredient.item} PROCESSED SUCCESSFULLY`);
+                else
+                {
+                    const image = `/images/untradables/${ingredient.item}.webp`;
+                    const exactPrice = 1;
+                    const totalPrice = 1;
+                    const coinPile =  "/images/Coins_1000.webp";
+                    ingredient.data = {number,image,exactPrice,totalPrice,coinPile};
+                    req.session.data.push(ingredient);
+                }
             }
-            else
-            {
-                const image = `/images/untradables/${ingredient.item}.webp`;
-                const exactPrice = 1;
-                const totalPrice = 1;
-                const coinPile =  "/images/Coins_1000.webp";
-                ingredient.data = {number,image,exactPrice,totalPrice,coinPile};
-                req.session.data.push(ingredient);
-            }
+            console.log(ingredients);
+            req.session.finalPrice = finalPrice;
+            req.session.displaySetting = display;
+            req.session.save();
+            res.render("test",{ingredients,finalPrice,"displaySetting":display,pageTitle:"PotionChain"})
         }
-        req.session.finalPrice = finalPrice;
-        req.session.save();
-        res.render("test",{ingredients,finalPrice,pageTitle:"PotionChain"})
+        else if(display === "essential")
+        {
+            const ingredients = getIngredients(potion).filter(ingredient => ingredient.tab === 0 || ingredient.tab === 1);
+            console.log(ingredients);
+            for(const ingredient of ingredients)
+            {            
+                    if(!untradeableItems[ingredient.itemID])
+                    {
+                        const itemInfo = await getItemInfo(ingredient.itemID);
+                        // console.log(itemInfo);
+                        const data = await parseItemInfo(itemInfo,number);
+                        const [image,exactPrice,totalPrice,coinPile] = data
+                        if(ingredient.item != name)
+                        {
+                            finalPrice+=totalPrice;
+                        }
+                        ingredient.data = {number,image,exactPrice,totalPrice,coinPile};
+                        req.session.data.push(ingredient);
+                        console.log(`${ingredient.item} RECIEVED`,`itemID: ${ingredient.itemID}`);
+                    }
+                    else
+                    {
+                        const image = `/images/untradables/${ingredient.item}.webp`;
+                        const exactPrice = 1;
+                        const totalPrice = 1;
+                        const coinPile =  "/images/Coins_1000.webp";
+                        ingredient.data = {number,image,exactPrice,totalPrice,coinPile};
+                        req.session.data.push(ingredient);
+                    }
+            }
+            console.log(ingredients);
+            req.session.finalPrice = finalPrice;
+            req.session.displaySetting = display;
+            req.session.save();
+            res.render("test",{ingredients,finalPrice,"displaySetting":display,pageTitle:"PotionChain"})
+        }
+        else
+        {
+            throw new ExpressError("Invalid display option.", 400);
+        }
+        // console.log("after",ingredients);
+        // req.session.finalPrice = finalPrice;
+        // req.session.save();
+        // res.render("test",{ingredients,finalPrice,pageTitle:"PotionChain"})
     }
     catch(e)
     {

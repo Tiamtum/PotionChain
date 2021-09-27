@@ -1,3 +1,69 @@
 body{
-    font-family: 'Roboto Mono', monospace;
+    /* font-family: 'Roboto Mono', monospace; */
+    font-family: 'Saira', sans-serif;
+    /* background: linear-gradient(45deg,#CAD7E7,#d4d1e7) fixed; */
+    background: linear-gradient(45deg, #B7B7A4,#A5A58D) fixed;
+    /* color:rgb(42, 68, 93); */
+    color:#4e5243
+}
+a{
+    /* color:#7561f8; */
+    color: #4e5243;
+    text-decoration: none;
+}
+a:hover{
+    /* color:#7996bb; */
+    color:#b8bbae;
+}
+
+input[type="checkbox"]{
+    background-color:#959b87 ;
+}
+input[type="text"]{
+    color:#4e5243;
+    background-color:#959b87 ;
+    border:none;
+}
+input[type="text"]:enabled{
+    color:#4e5243;
+    background-color:#959b87 ;
+    border:none;    
+}
+input[type="number"]{
+    color:#4e5243;
+    background-color:#959b87 ;
+    border:none;    
+}
+input[type="number"]:enabled{
+    color:#4e5243;
+    background-color:#959b87 ;
+    border:none;    
+}
+input[type="radio"]{
+    background-color:#b7bea6 ;  
+}
+
+.input-group-text{
+    color: #4e5243;
+    background-color:#cfcfba;
+    border:none;
+
+}
+
+::selection{
+    color: #FFE8D6;
+    background-color: #bebeb2;
+}
+
+/* change navbar background */
+nav.navbar {
+    background: linear-gradient(45deg, #B7B7A4,#A5A58D) fixed;
+}
+  /* change navbar-toggler inside lines color (stroke) */
+  .navbar-light span.navbar-toggler-icon {
+    color: #4e5243;
+}
+  /* change hamburger button border color */
+  button.navbar-toggler.navbar-toggler-right {
+    border-color: #4e5243;
 }
