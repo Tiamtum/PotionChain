@@ -54,6 +54,7 @@ module.exports.showResults = async (req,res)=>{
 
 //  const untradeableIDs = [899995,899996,899997,899998,899999,900000,900001,900002,900003,900004,900005]
 const untradeableItems = {
+    "1526": "Clean snake weed",
     "899995": "Extreme runecrafting (3)",
     "899996": "Extreme invention (3)",
     "899997": "Extreme hunter (3)",
@@ -64,7 +65,8 @@ const untradeableItems = {
     "900002": "Extreme defence (3) ",
     "900003": "Extreme ranging (3) ",
     "900004": "Extreme magic (3) ",
-    "900005": "Overload (3)"
+    "900005": "Overload (3)",
+    "900006": "Overload (1)"
 }
 //TODO:
 //Add (4) dose support
@@ -82,25 +84,65 @@ module.exports.test = async (req,res)=>{
         // const ingredients = getIngredients(potion);
         let finalPrice = 0;
         req.session.data = []
+        const duplicates = []
         if(display === "full")
         {
             const ingredients = getIngredients(potion);
+            console.log(ingredients);
+            if(ingredients.some(ingredient => ingredient.item === "Vial of water"))
+            {
+
+                const vial = await getItemByName("Vial");
+
+                const vialInfo = await getItemInfo(vial.itemID);
+                const vialData = await parseItemInfo(vialInfo,number);
+                console.log(`${vial.name} RECIEVED`,`itemID: ${vial.itemID}`);
+
+
+                const vialOfWater = await getItemByName("Vial of water");
+
+                const vialOfWaterInfo = await getItemInfo(vialOfWater.itemID);
+                const vialOfWaterData = await parseItemInfo(vialOfWaterInfo,number);
+                console.log(`${vialOfWater.name} RECIEVED`,`itemID: ${vialOfWater.itemID}`);
+
+                duplicates.push(vialData,vialOfWaterData);
+
+            }
             for(const ingredient of ingredients)
             {
                 if(!untradeableItems[ingredient.itemID])
                 {
-                    console.log(`${ingredient.item} RECIEVED`,`itemID: ${ingredient.itemID}`);
-                    const itemInfo = await getItemInfo(ingredient.itemID);
-                    // console.log(itemInfo);
-                    const data = await parseItemInfo(itemInfo,number);
-                    const [image,exactPrice,totalPrice,coinPile] = data
-                    if(ingredient.item != name)
+                    if(ingredient.item === "Vial of water")
                     {
-                        finalPrice+=totalPrice;
+                        const [vialImage,vialExactPrice,vialTotalPrice,vialCoinPile] = duplicates[0];
+                        ingredient.data = {number,image:vialImage,exactPrice:vialExactPrice,totalPrice:vialTotalPrice,coinPile:vialCoinPile};
+                        req.session.data.push(ingredient);
+                        console.log(`pushing Vial of water from duplicates[0]...`);
+                        continue;
                     }
-                    ingredient.data = {number,image,exactPrice,totalPrice,coinPile};
-                    req.session.data.push(ingredient);
-                    console.log(`${ingredient.item} PROCESSED SUCCESSFULLY`);
+                    else if(ingredient.item === "Vial")
+                    {
+                        const [vialOfWaterImage,vialOfWaterExactPrice,vialOfWaterTotalPrice,vialOfWaterCoinPile] = duplicates[1];
+                        ingredient.data = {number,image:vialOfWaterImage,exactPrice:vialOfWaterExactPrice,totalPrice:vialOfWaterTotalPrice,coinPile:vialOfWaterCoinPile};
+                        req.session.data.push(ingredient);
+                        console.log(`pushing Vial from duplicates[1]...`);
+                        continue;
+                    }
+                    else
+                    {
+                        const itemInfo = await getItemInfo(ingredient.itemID);
+                        // console.log(itemInfo);
+                        const data = await parseItemInfo(itemInfo,number);
+                        const [image,exactPrice,totalPrice,coinPile] = data
+                        if(ingredient.item != name)
+                        {
+                            finalPrice+=totalPrice;
+                        }
+                        ingredient.data = {number,image,exactPrice,totalPrice,coinPile};
+                        req.session.data.push(ingredient);
+                        console.log(`${ingredient.item} RECIEVED`,`itemID: ${ingredient.itemID}`);
+                    }
+
                 }
                 else
                 {
@@ -112,7 +154,7 @@ module.exports.test = async (req,res)=>{
                     req.session.data.push(ingredient);
                 }
             }
-            console.log(ingredients);
+            // console.log(ingredients);
             req.session.finalPrice = finalPrice;
             req.session.displaySetting = display;
             req.session.save();

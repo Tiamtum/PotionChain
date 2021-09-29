@@ -91,25 +91,19 @@ const fourDoses =
     "2430": "Restore potion (4)",
     "2432": "Defence potion (4)",
     "2434": "Prayer potion (4)",
-    "2436": "Super attack (4)",
+
     "2438": "Fishing potion (4)",
-    "2440": "Super strength (4)",
-    "2442": "Super defence (4)",
-    "2444": "Super ranging potion (4)",
-    "2448": "Super antipoison (4)",
-    "3008": "Energy potion (4)",
-    "3016": "Super energy (4)",
-    "3024": "Super restore (4)",
+    
     "3032": "Agility potion (4)",
-    "3040": "Super magic potion (4)",
+    
     "9739": "Combat potion (4)",
     "9998": "Hunter potion (4)",
     "10909": "Mixture - step 1 (4)",
     "10917": "Mixture - step 2 (4)",
-    "12140": "Summoning potion (4)",
+    
     "14838": "Crafting potion (4)",
     "14846": "Fletching potion (4)",
-    "15328": "Super prayer (4)",
+    
     "20003": "Juju mining potion (4)",
     "20007": "Juju cooking potion (4)",
     "20011": "Juju farming potion (4)",
@@ -128,7 +122,7 @@ const fourDoses =
     "32799": "Perfect juju prayer potion (4)",
     "32807": "Perfect juju herblore potion (4)",
     "32815": "Perfect juju dungeoneering potion (4)",
-    "37971": "Aggression potion (4)",
+    
     "44045": "Divination potion (4)",
     "44053": "Runecrafting potion (4)",
     "44061": "Invention potion (4)",
@@ -146,6 +140,11 @@ const fourDoses =
 
 const primitiveIngredients = 
 {
+    "149": "Super attack (1)",
+    "161": "Super strength (1)",
+    "167": "Super defence (1)",
+    "173": "Super ranging potion (1)",
+    "185": "Super antipoison (1)",
     "199": "Grimy guam",
     "201": "Grimy marrentill",
     "203": "Grimy tarromin",
@@ -187,6 +186,7 @@ const primitiveIngredients =
     "2970": "Mort myre fungus",
     "3138": "Potato cactus",
     "3325": "Vampyre dust",
+    "3046": "Super magic potion (1)",
     "3049": "Grimy toadflax",
     "3051": "Grimy snapdragon",
     "4698": "Mud rune",
@@ -206,6 +206,7 @@ const primitiveIngredients =
     "11332": "Leaping sturgeon",
     "11525": "Wimpy feather",
     "12109": "Cockatrice egg",
+    "12146": "Summoning potion (1)",
     "12158": "Gold charm",
     "12159": "Green charm",
     "12160": "Crimson charm",
@@ -213,6 +214,7 @@ const primitiveIngredients =
     "12174": "Grimy spirit weed",
     "12539": "Grenwall spikes",
     "14836": "Grimy wergali",
+    "15331": "Super prayer (1)",
     "19972": "Oily vine",
     "19973": "Draconic vine",
     "19975": "Plant teeth",
@@ -237,6 +239,7 @@ const primitiveIngredients =
     "32843": "Crystal flask",
     "32947": "Harmony moss",
     "34159": "Searing ashes",
+    "37965": "Aggression potion (1)",
     "37975": "Grimy bloodweed",
     "39067": "Adrenaline crystal",
     "43973": "Chinchompa residue",
@@ -321,16 +324,25 @@ const nonPrimitiveIngredients =
     "1921": "Bowl of water",
     "1975": "Chocolate dust",
     "2152": "Toad's legs",
+    "2436": "Super attack (4)",
+    "2440": "Super strength (4)",
+    "2442": "Super defence (4)",
+    "2444": "Super ranging potion (4)",
+    "2448": "Super antipoison (4)",
     "2481": "Clean lantadyme",
     "2483": "Lantadyme potion (unf)",
     "2998": "Clean toadflax",
     "3000": "Clean snapdragon",
     "3002": "Toadflax potion (unf)",
     "3004": "Snapdragon potion (unf)",
+    "3008": "Energy potion (4)",
     "3010": "Energy potion (3)",
+    "3016": "Super energy (4)",
     "3018": "Super energy (3)",
+    "3024": "Super restore (4)",
     "3026": "Super restore (3)",
     "3034": "Agility potion (3)",
+    "3040": "Super magic potion (4)",
     "3042": "Super magic potion (3)",
     "4419": "Guthix rest (3)",
     "4456": "Bowl of hot water",
@@ -347,6 +359,7 @@ const nonPrimitiveIngredients =
     "10927": "Sanfew serum (3)",
     "11324": "Roe",
     "11326": "Caviar",
+    "12140": "Summoning potion (4)",
     "12142": "Summoning potion (3)",
     "12172": "Clean spirit weed",
     "12181": "Spirit weed potion (unf)",
@@ -354,6 +367,7 @@ const nonPrimitiveIngredients =
     "14848": "Fletching potion (3)",
     "14854": "Clean wergali",
     "14856": "Wergali potion (unf)",
+    "15328": "Super prayer (4)",
     "15329": "Super prayer (3)",
     "19990": "Clean argway",
     "19989": "Clean erzille",
@@ -396,6 +410,7 @@ const nonPrimitiveIngredients =
     "37953": "Clean bloodweed",
     "37963": "Luck potion",
     "37969": "Aggression potion (3)",
+    "37971": "Aggression potion (4)",
     "37973": "Bloodweed potion (unf)",
     "39820": "Enhanced luck potion",
     "44047": "Divination potion (3)",
@@ -426,7 +441,8 @@ const nonPrimitiveIngredients =
     "900002": "Extreme defence (3)",
     "900003": "Extreme ranging (3)",
     "900004": "Extreme magic (3)",
-    "900005": "Overload (3)"
+    "900005": "Overload (3)",
+    "900006": "Overload (1)"
 
 }
 
@@ -552,27 +568,36 @@ seedDB().then(()=>{
 
     addRequires("Attack potion (3)",["Guam potion (unf)","Eye of newt"])
     addRequires("Super attack (3)",["Irit potion (unf)","Eye of newt"])
+    addRequires("Super attack (4)",["Super attack (3)","Super attack (1)"])
     addRequires("Extreme attack (3)",["Super attack (3)","Clean avantoe"])
 
     addRequires("Strength potion (3)",["Tarromin potion (unf)", "Limpwurt root"])
     addRequires("Super strength (3)",["Kwuarm potion (unf)","Limpwurt root"])
+    addRequires("Super strength (4)",["Super strength (3)","Super strength (1)"])
+
     addRequires("Extreme strength (3)",["Super strength (3)","Clean dwarf weed"])
 
     addRequires("Defence potion (3)",["Marrentill potion (unf)","Bear fur"])
     addRequires("Super defence (3)",["Cadantine potion (unf)","White berries"])
+    addRequires("Super defence (4)",["Super defence (3)","Super defence (1)"])
     addRequires("Extreme defence (3)",["Super defence (3)","Clean lantadyme"])
 
 
     addRequires("Ranging potion (3)",["Guam potion (unf)","Redberries"])
     addRequires("Super ranging potion (3)",["Dwarf weed potion (unf)","Wine of Zamorak"])
+    addRequires("Super ranging potion (4)",["Super ranging potion (3)","Super ranging potion (1)"])
     addRequires("Extreme ranging (3)",["Super ranging potion (3)","Grenwall spikes"])
 
 
     //addRequires("Magic potion (3)",["Tarromin potion (unf)","Black bead"]) //note: need to consider alternative recipies
     addRequires("Super magic potion (3)",["Lantadyme potion (unf)","Potato cactus"])
+    addRequires("Super magic potion (4)",["Super magic potion (3)","Super magic potion (1)"])
     addRequires("Extreme magic (3)",["Super magic potion (3)","Ground mud runes"]);
 
     addRequires("Overload (3)",["Extreme attack (3)","Extreme strength (3)","Extreme defence (3)","Extreme ranging (3)","Extreme magic (3)","Clean torstol"])
+    addRequires("Overload (4)",["Overload (3)","Overload (1)"])
+
+    addRequires("Supreme overload potion (6)",["Overload (4)"])
 
     addRequires("Antipoison (3)",["Marrentill potion (unf)","Unicorn horn dust"])
     addRequires("Super antipoison (3)",["Irit potion (unf)","Unicorn horn dust"])
