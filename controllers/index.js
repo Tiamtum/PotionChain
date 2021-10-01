@@ -66,13 +66,43 @@ const untradeableItems = {
     "900003": "Extreme ranging (3) ",
     "900004": "Extreme magic (3) ",
     "900005": "Overload (3)",
-    "900006": "Overload (1)"
+    "900006": "Overload (1)",
+    "900007": "Supreme overload potion (6)",
+    "900008": "Overload (4)",
+
 }
 //TODO:
 //Add (4) dose support
 //Add multiple of each ingreident support
 //Add different recipies support
 //Eliminate redudency in DB queries (e.g. vials/vials of water)
+
+
+const checkForRepetition = async (name,number,ingredients) =>{
+    
+    console.log(ingredients);
+    const duplicates = {}
+    if(ingredients.some(ingredient => ingredient.item === "Vial of water"))
+    {
+        
+        const vial = await getItemByName("Vial");
+        const vialInfo = await getItemInfo(vial.itemID);
+        const vialData = await parseItemInfo(vialInfo,number);
+        console.log(`${vial.name} RECIEVED`,`itemID: ${vial.itemID}`);
+
+
+        const vialOfWater = await getItemByName("Vial of water");
+        const vialOfWaterInfo = await getItemInfo(vialOfWater.itemID);
+        const vialOfWaterData = await parseItemInfo(vialOfWaterInfo,number);
+        console.log(`${vialOfWater.name} RECIEVED`,`itemID: ${vialOfWater.itemID}`);
+
+        duplicates["Vial"] = vialData;
+        duplicates["Vial of water"] = vialOfWaterData;  
+    }
+    return duplicates;
+    
+}
+
 module.exports.test = async (req,res)=>{
     console.log(req.query);
     const name = req.query.name;
@@ -88,33 +118,18 @@ module.exports.test = async (req,res)=>{
         if(display === "full")
         {
             const ingredients = getIngredients(potion);
-            console.log(ingredients);
-            if(ingredients.some(ingredient => ingredient.item === "Vial of water"))
-            {
-
-                const vial = await getItemByName("Vial");
-
-                const vialInfo = await getItemInfo(vial.itemID);
-                const vialData = await parseItemInfo(vialInfo,number);
-                console.log(`${vial.name} RECIEVED`,`itemID: ${vial.itemID}`);
+            const duplicates = await checkForRepetition(name,number,ingredients);
+            //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in
 
 
-                const vialOfWater = await getItemByName("Vial of water");
 
-                const vialOfWaterInfo = await getItemInfo(vialOfWater.itemID);
-                const vialOfWaterData = await parseItemInfo(vialOfWaterInfo,number);
-                console.log(`${vialOfWater.name} RECIEVED`,`itemID: ${vialOfWater.itemID}`);
-
-                duplicates.push(vialData,vialOfWaterData);
-
-            }
             for(const ingredient of ingredients)
             {
                 if(!untradeableItems[ingredient.itemID])
                 {
                     if(ingredient.item === "Vial of water")
                     {
-                        const [vialImage,vialExactPrice,vialTotalPrice,vialCoinPile] = duplicates[0];
+                        const [vialImage,vialExactPrice,vialTotalPrice,vialCoinPile] = duplicates["Vial of water"];
                         ingredient.data = {number,image:vialImage,exactPrice:vialExactPrice,totalPrice:vialTotalPrice,coinPile:vialCoinPile};
                         req.session.data.push(ingredient);
                         console.log(`pushing Vial of water from duplicates[0]...`);
@@ -122,7 +137,7 @@ module.exports.test = async (req,res)=>{
                     }
                     else if(ingredient.item === "Vial")
                     {
-                        const [vialOfWaterImage,vialOfWaterExactPrice,vialOfWaterTotalPrice,vialOfWaterCoinPile] = duplicates[1];
+                        const [vialOfWaterImage,vialOfWaterExactPrice,vialOfWaterTotalPrice,vialOfWaterCoinPile] = duplicates["Vial"];
                         ingredient.data = {number,image:vialOfWaterImage,exactPrice:vialOfWaterExactPrice,totalPrice:vialOfWaterTotalPrice,coinPile:vialOfWaterCoinPile};
                         req.session.data.push(ingredient);
                         console.log(`pushing Vial from duplicates[1]...`);
