@@ -4,7 +4,11 @@ const HerbloreItem = require("../model/herbloreitem");
 
 async function getItemByName(name)
 {
-    return await HerbloreItem.findOne({name:name})
+    try
+    {
+        return await HerbloreItem.findOne({name:name})
+    }
+    catch(e){console.log(`getItemByName error with ${name}`);}
 }
 
 function getIngredients(data,tab=0,itemAndTab=[])
@@ -31,12 +35,18 @@ function getIngredients(data,tab=0,itemAndTab=[])
 
 async function getItemInfo(itemID)
 {
+    console.log("getItemInfo itemID:",itemID);
+    try{
     return Promise.all(
         [
             await grandexchange.getItem(parseInt(itemID)),
             await grandexchange.getItemGraph(parseInt(itemID))
         ]
-    )    
+    )
+    }
+    catch(e){
+        console.log(`getItemInfo error with itemID=${itemID}: `,e);
+    }    
 }
 
 function getCoinPile(totalPrice)
@@ -55,11 +65,30 @@ function getCoinPile(totalPrice)
 
 async function parseItemInfo(itemInfo,number)
 {
-    const image = itemInfo[0].icons.default
-    const exactPrice = itemInfo[1].daily[Object.keys(itemInfo[1].daily)[Object.keys(itemInfo[1].daily).length-1]] //access the value of the last key in daily
-    const totalPrice = exactPrice*number;
-    const coinPile = getCoinPile(totalPrice);
-    return [image,exactPrice,totalPrice,coinPile];
+    try{
+        const image = itemInfo[0].icons.default
+        //exactPrice fails sometimes on account of the daily key being undefined for some unknown reason
+        if(itemInfo[1].daily[Object.keys(itemInfo[1].daily)[Object.keys(itemInfo[1].daily).length-1]]===undefined)
+        {
+            const exactPrice = NaN;
+            const totalPrice = NaN;
+            const coinPile = getCoinPile(1);
+            return [image,exactPrice,totalPrice,coinPile];
+        }
+        else
+        {
+            const exactPrice = itemInfo[1].daily[Object.keys(itemInfo[1].daily)[Object.keys(itemInfo[1].daily).length-1]] //access the value of the last key in daily
+            const totalPrice = exactPrice*number;
+            const coinPile = getCoinPile(totalPrice);
+            return [image,exactPrice,totalPrice,coinPile];
+        }
+    }
+    catch(e){
+        console.log(`parseItemInfo error with itemInfo:${itemInfo}, number:${number}`)
+        const errorImage = "/images/error.png";
+        const errorPrice = 0;
+        return [errorImage,errorPrice,errorPrice,errorImage];
+    }
 }
 
 module.exports = {getItemByName,getIngredients,getItemInfo,getCoinPile,parseItemInfo};

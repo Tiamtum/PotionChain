@@ -78,56 +78,67 @@ const untradeableItems = {
 //Eliminate redudency in DB queries (e.g. vials/vials of water)
 
 const getDuplicate = async (name,number) => {
-        const duplicate = await getItemByName(name);
-        const duplicateInfo = await getItemInfo(duplicate.itemID);
-        const duplicateData = await parseItemInfo(duplicateInfo,number);
-        console.log(`${duplicate.name} RECIEVED in getDuplicate`,`itemID: ${duplicate.itemID}`);
-        return duplicateData;
-    
+    try
+    {   
+            console.log(name);
+            const duplicate = await getItemByName(name);
+            // console.log(duplicate);
+            const duplicateInfo = await getItemInfo(duplicate.itemID);
+            const duplicateData = await parseItemInfo(duplicateInfo,number);
+            console.log(`${duplicate.name} RECIEVED in getDuplicate`,`itemID: ${duplicate.itemID}`);
+            return duplicateData;
+    }
+    catch(e){console.log(`getDuplicate error with ${name},${number}: `, e)}
 }
 
-const checkForRepetition = async (potion,name,number,ingredients) =>{
+const manageRepitions = async (potion,name,number,ingredients) =>{
     
-    console.log(ingredients);
-    const duplicates = {}
-    if(name === "Overload (3)")
-    {      
-        const vial = await getDuplicate("Vial");
-        const vialOfWater = await getDuplicate("Vial of water")
-        duplicates["Vial"] = vial;
-        duplicates["Vial of water"] = vialOfWater;  
-    }
-    if(name === "Supreme overload potion (6)")
+    // console.log(ingredients);
+    try
     {
-        const vial = await getDuplicate("Vial",false);
-        const vialOfWater = await getDuplicate("Vial of water",number);
-        const superAttack = await getDuplicate("Super attack (3)",number);
-        const superStrength = await getDuplicate("Super strength (3)",number);      
-        const superDefence = await getDuplicate("Super defence (3)",number);      
-        const superRangingPotion = await getDuplicate("Super ranging potion (3)",number);      
-        const superMagicPotion = await getDuplicate("Super magic potion (3)",number);  
-        
-        duplicates["Vial"] = vial;
-        duplicates["Vial of water"] = vialOfWater;  
-        duplicates["Super attack (3)"] = superAttack;
-        duplicates["Super strength (3)"] = superStrength;
-        duplicates["Super defence (3)"] = superDefence;
-        duplicates["Super ranging potion (3)"] = superRangingPotion;
-        duplicates["Super magic potion (3)"] = superMagicPotion;
-
-        console.log("contents of const superAttack: ",superAttack);
+        const duplicates = {}
+        if(name === "Overload (3)")
+        {      
+            const vial = await getDuplicate("Vial");
+            const vialOfWater = await getDuplicate("Vial of water")
+            duplicates["Vial"] = vial;
+            duplicates["Vial of water"] = vialOfWater;  
+        }
+        if(name === "Supreme overload potion (6)")
+        {
+            const vial = await getDuplicate("Vial",number);
+            const vialOfWater = await getDuplicate("Vial of water",number);
+            duplicates["Vial"] = vial;
+            duplicates["Vial of water"] = vialOfWater;  
+            const repeatedIngredients = []
+            const superAttackIngredients = getIngredients(await getItemByName("Super attack (3)"));
+            const superStrengthIngredients = getIngredients(await getItemByName("Super strength (3)"));
+            const superDefenceIngredients = getIngredients(await getItemByName("Super defence (3)"));
+            const superRangingPotionIngredients = getIngredients(await getItemByName("Super ranging potion (3)"));
+            const superMagicPotionIngredients = getIngredients(await getItemByName("Super magic potion (3)"));
+            repeatedIngredients.push(superAttackIngredients,superStrengthIngredients,superDefenceIngredients,superRangingPotionIngredients,superMagicPotionIngredients);
+            const flattened = repeatedIngredients.flat().filter(ingredient => ingredient.item !== "Vial" && ingredient.item !== "Vial of water");
+            console.log("flattened",flattened);
+            for(const ingredient of flattened)
+            {
+                console.log(ingredient);
+                const item = await getDuplicate(ingredient.item,number);
+                duplicates[ingredient.item] = item;
+            }
+            // console.log(duplicates);
+        }
+        return duplicates;
     }
-    return duplicates;
-    
+    catch(e){console.log(`getDuplicate error with ${name},${number}: `, e)}
 }
 
-const pushDuplicate = (duplicates,name,number,ingredient,sessionData) =>
+const pushDuplicate = (duplicates,number,ingredient,sessionData) =>
 {
-    console.log(name);
-    const [image,exactPrice,totalPrice,coinPile] = duplicates[name];
+    // console.log(name);
+    const [image,exactPrice,totalPrice,coinPile] = duplicates[ingredient.item];
     ingredient.data = {number,image,exactPrice,totalPrice,coinPile};
     sessionData.push(ingredient);
-    console.log(`pushing ${name} from duplicates...`);  
+    console.log(`pushing ${ingredient.item} from duplicates...`);  
 }
 
 module.exports.test = async (req,res)=>{
@@ -141,63 +152,48 @@ module.exports.test = async (req,res)=>{
         // const ingredients = getIngredients(potion);
         let finalPrice = 0;
         req.session.data = []
-        const duplicates = []
+        
         let isSupreme = false;
+        let isOverload = false; 
         if(name==="Supreme overload potion (6)")
         {
             isSupreme = true;
         }
+        if(name==="Overload potion (3)")
+        {
+            isOverload = true;
+        }
         if(display === "full")
         {
             const ingredients = getIngredients(potion);
-            const duplicates = await checkForRepetition(potion,name,number,ingredients);
+            const duplicates = await manageRepitions(potion,name,number,ingredients);
             //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in
+            // console.log(typeof(Object.keys(duplicates)[0]),typeof(Object.keys(duplicates)[1]))
+            console.log(duplicates);
+            
 
-
-
+            
             for(const ingredient of ingredients)
             {
                 if(!untradeableItems[ingredient.itemID])
                 {
 
-                        if(ingredient.item === "Vial of water")
+                        // console.log("ingredient: ", ingredient);
+                        // console.log("ingredient.item: ", ingredient.item);
+                        // console.log("duplicates[ingredients.item]: ", duplicates[ingredients.item])
+                        const ingredientName = ingredient.item;
+                        // console.log("duplicates['Super attack (3)']: ", duplicates["Super attack (3)"] );
+                        // console.log(`typeof(test):${typeof(test)}, test:${test}`);
+                        // console.log("duplicates[test]: ", duplicates[test] );
+
+                        if(duplicates[ingredientName])
                         {
-                            await pushDuplicate(duplicates,"Vial of water", number,ingredient,req.session.data);
-                            continue;
-                        }
-                        else if(ingredient.item === "Vial")
-                        {
-                            await pushDuplicate(duplicates,"Vial", number,ingredient,req.session.data);
-                            continue;
-                        }
-                        //TODO: THIS NEEDS TO PUSH ! ALL ! OF THE INGREDIENTS FOR SUPER [SET] (3) AS WELL
-                        else if(isSupreme && ingredient.item === "Super attack (3)")
-                        {
-                            await pushDuplicate(duplicates,"Super attack (3)", number,ingredient,req.session.data);
-                            continue;
-                        }
-                        else if(isSupreme && ingredient.item === "Super strength (3)")
-                        {
-                            await pushDuplicate(duplicates,"Super strength (3)", number,ingredient,req.session.data);
-                            continue;
-                        }
-                        else if(isSupreme && ingredient.item === "Super defence (3)")
-                        {
-                            await pushDuplicate(duplicates,"Super defence (3)", number,ingredient,req.session.data);
-                            continue;
-                        }
-                        else if(isSupreme && ingredient.item === "Super ranging potion (3)")
-                        {
-                            await pushDuplicate(duplicates,"Super ranging potion (3)", number,ingredient,req.session.data);
-                            continue;
-                        }
-                        else if(isSupreme && ingredient.item === "Super magic potion (3)")
-                        {
-                            await pushDuplicate(duplicates,"Super magic potion (3)", number,ingredient,req.session.data);
+                            pushDuplicate(duplicates,number,ingredient,req.session.data);
                             continue;
                         }
                         else
                         {
+                            await new Promise(resolve => setTimeout(resolve, 1000));
                             const itemInfo = await getItemInfo(ingredient.itemID);
                             // console.log(itemInfo);
                             const data = await parseItemInfo(itemInfo,number);
@@ -230,6 +226,7 @@ module.exports.test = async (req,res)=>{
             req.session.save();
             res.render("test",{ingredients,finalPrice,"displaySetting":display,pageTitle:"PotionChain"})
         }
+
         else if(display === "essential")
         {
             const ingredients = getIngredients(potion).filter(ingredient => ingredient.tab === 0 || ingredient.tab === 1);
@@ -274,6 +271,7 @@ module.exports.test = async (req,res)=>{
         // req.session.finalPrice = finalPrice;
         // req.session.save();
         // res.render("test",{ingredients,finalPrice,pageTitle:"PotionChain"})
+
     }
     catch(e)
     {
