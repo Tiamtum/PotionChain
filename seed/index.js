@@ -91,25 +91,19 @@ const fourDoses =
     "2430": "Restore potion (4)",
     "2432": "Defence potion (4)",
     "2434": "Prayer potion (4)",
-    "2436": "Super attack (4)",
+
     "2438": "Fishing potion (4)",
-    "2440": "Super strength (4)",
-    "2442": "Super defence (4)",
-    "2444": "Super ranging potion (4)",
-    "2448": "Super antipoison (4)",
-    "3008": "Energy potion (4)",
-    "3016": "Super energy (4)",
-    "3024": "Super restore (4)",
+    
     "3032": "Agility potion (4)",
-    "3040": "Super magic potion (4)",
+    
     "9739": "Combat potion (4)",
     "9998": "Hunter potion (4)",
     "10909": "Mixture - step 1 (4)",
     "10917": "Mixture - step 2 (4)",
-    "12140": "Summoning potion (4)",
+    
     "14838": "Crafting potion (4)",
     "14846": "Fletching potion (4)",
-    "15328": "Super prayer (4)",
+    
     "20003": "Juju mining potion (4)",
     "20007": "Juju cooking potion (4)",
     "20011": "Juju farming potion (4)",
@@ -128,7 +122,7 @@ const fourDoses =
     "32799": "Perfect juju prayer potion (4)",
     "32807": "Perfect juju herblore potion (4)",
     "32815": "Perfect juju dungeoneering potion (4)",
-    "37971": "Aggression potion (4)",
+    
     "44045": "Divination potion (4)",
     "44053": "Runecrafting potion (4)",
     "44061": "Invention potion (4)",
@@ -146,6 +140,11 @@ const fourDoses =
 
 const primitiveIngredients = 
 {
+    "149": "Super attack (1)",
+    "161": "Super strength (1)",
+    "167": "Super defence (1)",
+    "173": "Super ranging potion (1)",
+    "185": "Super antipoison (1)",
     "199": "Grimy guam",
     "201": "Grimy marrentill",
     "203": "Grimy tarromin",
@@ -187,6 +186,7 @@ const primitiveIngredients =
     "2970": "Mort myre fungus",
     "3138": "Potato cactus",
     "3325": "Vampyre dust",
+    "3046": "Super magic potion (1)",
     "3049": "Grimy toadflax",
     "3051": "Grimy snapdragon",
     "4698": "Mud rune",
@@ -206,6 +206,7 @@ const primitiveIngredients =
     "11332": "Leaping sturgeon",
     "11525": "Wimpy feather",
     "12109": "Cockatrice egg",
+    "12146": "Summoning potion (1)",
     "12158": "Gold charm",
     "12159": "Green charm",
     "12160": "Crimson charm",
@@ -213,6 +214,7 @@ const primitiveIngredients =
     "12174": "Grimy spirit weed",
     "12539": "Grenwall spikes",
     "14836": "Grimy wergali",
+    "15331": "Super prayer (1)",
     "19972": "Oily vine",
     "19973": "Draconic vine",
     "19975": "Plant teeth",
@@ -237,6 +239,7 @@ const primitiveIngredients =
     "32843": "Crystal flask",
     "32947": "Harmony moss",
     "34159": "Searing ashes",
+    "37965": "Aggression potion (1)",
     "37975": "Grimy bloodweed",
     "39067": "Adrenaline crystal",
     "43973": "Chinchompa residue",
@@ -272,6 +275,8 @@ const primitiveIngredients =
     "48966": "Primal fruit pulp",
     "49523": "Aerated sediment",
     "50803": "Timeworn tincture",
+
+    "900006": "Overload (1)",
 }
 
 const nonPrimitiveIngredients = 
@@ -321,16 +326,25 @@ const nonPrimitiveIngredients =
     "1921": "Bowl of water",
     "1975": "Chocolate dust",
     "2152": "Toad's legs",
+    "2436": "Super attack (4)",
+    "2440": "Super strength (4)",
+    "2442": "Super defence (4)",
+    "2444": "Super ranging potion (4)",
+    "2448": "Super antipoison (4)",
     "2481": "Clean lantadyme",
     "2483": "Lantadyme potion (unf)",
     "2998": "Clean toadflax",
     "3000": "Clean snapdragon",
     "3002": "Toadflax potion (unf)",
     "3004": "Snapdragon potion (unf)",
+    "3008": "Energy potion (4)",
     "3010": "Energy potion (3)",
+    "3016": "Super energy (4)",
     "3018": "Super energy (3)",
+    "3024": "Super restore (4)",
     "3026": "Super restore (3)",
     "3034": "Agility potion (3)",
+    "3040": "Super magic potion (4)",
     "3042": "Super magic potion (3)",
     "4419": "Guthix rest (3)",
     "4456": "Bowl of hot water",
@@ -347,6 +361,7 @@ const nonPrimitiveIngredients =
     "10927": "Sanfew serum (3)",
     "11324": "Roe",
     "11326": "Caviar",
+    "12140": "Summoning potion (4)",
     "12142": "Summoning potion (3)",
     "12172": "Clean spirit weed",
     "12181": "Spirit weed potion (unf)",
@@ -354,6 +369,7 @@ const nonPrimitiveIngredients =
     "14848": "Fletching potion (3)",
     "14854": "Clean wergali",
     "14856": "Wergali potion (unf)",
+    "15328": "Super prayer (4)",
     "15329": "Super prayer (3)",
     "19990": "Clean argway",
     "19989": "Clean erzille",
@@ -396,6 +412,7 @@ const nonPrimitiveIngredients =
     "37953": "Clean bloodweed",
     "37963": "Luck potion",
     "37969": "Aggression potion (3)",
+    "37971": "Aggression potion (4)",
     "37973": "Bloodweed potion (unf)",
     "39820": "Enhanced luck potion",
     "44047": "Divination potion (3)",
@@ -426,7 +443,9 @@ const nonPrimitiveIngredients =
     "900002": "Extreme defence (3)",
     "900003": "Extreme ranging (3)",
     "900004": "Extreme magic (3)",
-    "900005": "Overload (3)"
+    "900005": "Overload (3)",
+    "900007": "Supreme overload potion (6)",
+    "900008": "Overload (4)"
 
 }
 
@@ -466,205 +485,230 @@ const seedDB = async ()=>{
 
 const addRequires = async (potion,requires) =>
 {
-    const items = []
-    if(potion==="Overload (3)")
-    {
-        console.log(potion,requires);
+    try{
+        const items = []
+        for(const material of requires)
+        {
+            if(potion==="Supreme overload potion (6)")
+            {
+                console.log("SUPREME MATERIAL: ",material);
+            }
+            const item = await HerbloreItem.findOne({name:material});
+            
+            items.push(item._id);
+        }
+        for(const item of items)
+        {
+            await HerbloreItem.findOneAndUpdate({name:potion},{$push:{requires:item}});
+        }
+        console.log(potion,"added");
     }
-    for(const material of requires)
+    catch(e)
     {
-        const item = await HerbloreItem.findOne({name:material});
-        items.push(item._id);
+        console.log(`Failure at: potion: ${potion}, requires:${requires} \n`,e);
     }
-    for(const item of items)
-    {
-        await HerbloreItem.findOneAndUpdate({name:potion},{$push:{requires:item}});
-    }
-    console.log(potion,"added");
 }
 //TODO:
 //Handle multiple of each ingredient if needed
 //Handle untradable images
 //Handle alternative recipies 
-seedDB().then(()=>{
-    addRequires("Vial of water",["Vial"])
-    addRequires("Juju vial of water",["Juju vial"])
-    addRequires("Bowl of water",["Bowl"])
-    addRequires("Bowl of hot water",["Bowl of water"])
-    addRequires("Toad's legs",["Swamp toad"])
-    addRequires("Unicorn horn dust",["Unicorn horn"])
-    addRequires("Dragon scale dust",["Blue dragon scale"])
-    addRequires("Silver dust",["Silver bar"] )
-    addRequires("Ground mud runes",["Mud rune"])
-    addRequires("Goat horn dust",["Desert goat horn"])
-    addRequires("Kebbit teeth dust",["Kebbit teeth"])
-    addRequires("Roe",["Leaping trout"])
-    addRequires("Caviar",["Leaping sturgeon"])
-    addRequires("Chocolate dust",["Chocolate bar"]);
-    addRequires("Ground wyvern bones",["Wyvern bones"]);
-    addRequires("Swordfish",["Raw swordfish"]);
-    addRequires("Dragonstone",["Uncut dragonstone"])
-    addRequires("Crushed dragonstone",["Dragonstone"])
 
-    addRequires("Clean guam",["Grimy guam"])
-    addRequires("Clean marrentill",["Grimy marrentill"])
-    addRequires("Clean tarromin",["Grimy tarromin"])
-    addRequires("Clean harralander",["Grimy harralander"])
-    addRequires("Clean ranarr",["Grimy ranarr"])
-    addRequires("Clean irit",["Grimy irit"])
-    addRequires("Clean avantoe",["Grimy avantoe"])
-    addRequires("Clean kwuarm",["Grimy kwuarm"])
-    addRequires("Clean cadantine",["Grimy cadantine"])
-    addRequires("Clean dwarf weed",["Grimy dwarf weed"])
-    addRequires("Clean torstol",["Grimy torstol"])
-    addRequires("Clean snake weed",["Grimy snake weed"])
-    addRequires("Clean rogue's purse",["Grimy rogue's purse"])
-    addRequires("Clean lantadyme",["Grimy lantadyme"])
-    addRequires("Clean toadflax",["Grimy toadflax"])
-    addRequires("Clean snapdragon",["Grimy snapdragon"])
-    addRequires("Clean spirit weed",["Grimy spirit weed"])
-    addRequires("Clean wergali",["Grimy wergali"])
-    addRequires("Clean fellstalk",["Grimy fellstalk"])
-    addRequires("Clean bloodweed",["Grimy bloodweed"])
-    addRequires("Clean arbuck",["Grimy arbuck"])
-    addRequires("Primal extract",["Primal fruit pulp","Vial"])
+const addRequiresPromise = async () => {
+    await addRequires("Vial of water",["Vial"])
+    await addRequires("Juju vial of water",["Juju vial"])
+    await addRequires("Bowl of water",["Bowl"])
+    await addRequires("Bowl of hot water",["Bowl of water"])
+    await addRequires("Toad's legs",["Swamp toad"])
+    await addRequires("Unicorn horn dust",["Unicorn horn"])
+    await addRequires("Dragon scale dust",["Blue dragon scale"])
+    await addRequires("Silver dust",["Silver bar"] )
+    await addRequires("Ground mud runes",["Mud rune"])
+    await addRequires("Goat horn dust",["Desert goat horn"])
+    await addRequires("Kebbit teeth dust",["Kebbit teeth"])
+    await addRequires("Roe",["Leaping trout"])
+    await addRequires("Caviar",["Leaping sturgeon"])
+    await addRequires("Chocolate dust",["Chocolate bar"]);
+    await addRequires("Ground wyvern bones",["Wyvern bones"]);
+    await addRequires("Swordfish",["Raw swordfish"]);
+    await addRequires("Dragonstone",["Uncut dragonstone"])
+    await addRequires("Crushed dragonstone",["Dragonstone"])
 
-    addRequires("Guam potion (unf)",["Clean guam","Vial of water"]);
-    addRequires("Marrentill potion (unf)",["Clean marrentill","Vial of water"])
-    addRequires("Tarromin potion (unf)",["Clean tarromin","Vial of water"])
-    addRequires("Harralander potion (unf)",["Clean harralander","Vial of water"])
-    addRequires("Ranarr potion (unf)",["Clean ranarr","Vial of water"])
-    addRequires("Irit potion (unf)",["Clean irit","Vial of water"])
-    addRequires("Avantoe potion (unf)",["Clean avantoe","Vial of water"])
-    addRequires("Kwuarm potion (unf)",["Clean kwuarm","Vial of water"])
-    addRequires("Cadantine potion (unf)",["Clean cadantine","Vial of water"])
-    addRequires("Dwarf weed potion (unf)",["Clean dwarf weed","Vial of water"])
-    addRequires("Torstol potion (unf)",["Clean torstol","Vial of water"])
-    addRequires("Lantadyme potion (unf)",["Clean lantadyme","Vial of water"])
-    addRequires("Toadflax potion (unf)",["Clean toadflax","Vial of water"])
-    addRequires("Snapdragon potion (unf)",["Clean snapdragon","Vial of water"])
-    addRequires("Rogue's purse potion (unf)",["Clean rogue's purse","Vial of water"])
-    addRequires("Spirit weed potion (unf)",["Clean spirit weed","Vial of water"])
-    addRequires("Wergali potion (unf)",["Clean wergali","Vial of water"])
-    addRequires("Fellstalk potion (unf)",["Clean fellstalk","Vial of water"])
-    addRequires("Bloodweed potion (unf)",["Clean bloodweed","Vial of water"])
-    addRequires("Arbuck potion (unf)",["Clean arbuck","Vial of water"])
+    await addRequires("Clean guam",["Grimy guam"])
+    await addRequires("Clean marrentill",["Grimy marrentill"])
+    await addRequires("Clean tarromin",["Grimy tarromin"])
+    await addRequires("Clean harralander",["Grimy harralander"])
+    await addRequires("Clean ranarr",["Grimy ranarr"])
+    await addRequires("Clean irit",["Grimy irit"])
+    await addRequires("Clean avantoe",["Grimy avantoe"])
+    await addRequires("Clean kwuarm",["Grimy kwuarm"])
+    await addRequires("Clean cadantine",["Grimy cadantine"])
+    await addRequires("Clean dwarf weed",["Grimy dwarf weed"])
+    await addRequires("Clean torstol",["Grimy torstol"])
+    await addRequires("Clean snake weed",["Grimy snake weed"])
+    await addRequires("Clean rogue's purse",["Grimy rogue's purse"])
+    await addRequires("Clean lantadyme",["Grimy lantadyme"])
+    await addRequires("Clean toadflax",["Grimy toadflax"])
+    await addRequires("Clean snapdragon",["Grimy snapdragon"])
+    await addRequires("Clean spirit weed",["Grimy spirit weed"])
+    await addRequires("Clean wergali",["Grimy wergali"])
+    await addRequires("Clean fellstalk",["Grimy fellstalk"])
+    await addRequires("Clean bloodweed",["Grimy bloodweed"])
+    await addRequires("Clean arbuck",["Grimy arbuck"])
+    await addRequires("Primal extract",["Primal fruit pulp","Vial"])
 
-    addRequires("Attack potion (3)",["Guam potion (unf)","Eye of newt"])
-    addRequires("Super attack (3)",["Irit potion (unf)","Eye of newt"])
-    addRequires("Extreme attack (3)",["Super attack (3)","Clean avantoe"])
+    await addRequires("Guam potion (unf)",["Clean guam","Vial of water"]);
+    await addRequires("Marrentill potion (unf)",["Clean marrentill","Vial of water"])
+    await addRequires("Tarromin potion (unf)",["Clean tarromin","Vial of water"])
+    await addRequires("Harralander potion (unf)",["Clean harralander","Vial of water"])
+    await addRequires("Ranarr potion (unf)",["Clean ranarr","Vial of water"])
+    await addRequires("Irit potion (unf)",["Clean irit","Vial of water"])
+    await addRequires("Avantoe potion (unf)",["Clean avantoe","Vial of water"])
+    await addRequires("Kwuarm potion (unf)",["Clean kwuarm","Vial of water"])
+    await addRequires("Cadantine potion (unf)",["Clean cadantine","Vial of water"])
+    await addRequires("Dwarf weed potion (unf)",["Clean dwarf weed","Vial of water"])
+    await addRequires("Torstol potion (unf)",["Clean torstol","Vial of water"])
+    await addRequires("Lantadyme potion (unf)",["Clean lantadyme","Vial of water"])
+    await addRequires("Toadflax potion (unf)",["Clean toadflax","Vial of water"])
+    await addRequires("Snapdragon potion (unf)",["Clean snapdragon","Vial of water"])
+    await addRequires("Rogue's purse potion (unf)",["Clean rogue's purse","Vial of water"])
+    await addRequires("Spirit weed potion (unf)",["Clean spirit weed","Vial of water"])
+    await addRequires("Wergali potion (unf)",["Clean wergali","Vial of water"])
+    await addRequires("Fellstalk potion (unf)",["Clean fellstalk","Vial of water"])
+    await addRequires("Bloodweed potion (unf)",["Clean bloodweed","Vial of water"])
+    await addRequires("Arbuck potion (unf)",["Clean arbuck","Vial of water"])
+ 
+    await addRequires("Attack potion (3)",["Guam potion (unf)","Eye of newt"])
+    await addRequires("Super attack (3)",["Irit potion (unf)","Eye of newt"])
+    await addRequires("Super attack (4)",["Super attack (3)","Super attack (1)"])
+    await addRequires("Extreme attack (3)",["Super attack (3)","Clean avantoe"])
 
-    addRequires("Strength potion (3)",["Tarromin potion (unf)", "Limpwurt root"])
-    addRequires("Super strength (3)",["Kwuarm potion (unf)","Limpwurt root"])
-    addRequires("Extreme strength (3)",["Super strength (3)","Clean dwarf weed"])
+    await addRequires("Strength potion (3)",["Tarromin potion (unf)", "Limpwurt root"])
+    await addRequires("Super strength (3)",["Kwuarm potion (unf)","Limpwurt root"])
+    await addRequires("Super strength (4)",["Super strength (3)","Super strength (1)"])
+ 
+    await addRequires("Extreme strength (3)",["Super strength (3)","Clean dwarf weed"])
 
-    addRequires("Defence potion (3)",["Marrentill potion (unf)","Bear fur"])
-    addRequires("Super defence (3)",["Cadantine potion (unf)","White berries"])
-    addRequires("Extreme defence (3)",["Super defence (3)","Clean lantadyme"])
+    await addRequires("Defence potion (3)",["Marrentill potion (unf)","Bear fur"])
+    await addRequires("Super defence (3)",["Cadantine potion (unf)","White berries"])
+    await addRequires("Super defence (4)",["Super defence (3)","Super defence (1)"])
+    await addRequires("Extreme defence (3)",["Super defence (3)","Clean lantadyme"])
+ 
+    await addRequires("Ranging potion (3)",["Guam potion (unf)","Redberries"])
+    await addRequires("Super ranging potion (3)",["Dwarf weed potion (unf)","Wine of Zamorak"])
+    await addRequires("Super ranging potion (4)",["Super ranging potion (3)","Super ranging potion (1)"])
+    await addRequires("Extreme ranging (3)",["Super ranging potion (3)","Grenwall spikes"])
 
+    await //addRequires("Magic potion (3)",["Tarromin potion (unf)","Black bead"]) //note: need to consider alternative recipies
+    await addRequires("Super magic potion (3)",["Lantadyme potion (unf)","Potato cactus"])
+    await addRequires("Super magic potion (4)",["Super magic potion (3)","Super magic potion (1)"])
+    await addRequires("Extreme magic (3)",["Super magic potion (3)","Ground mud runes"]);
+ 
+    await addRequires("Overload (3)",["Extreme attack (3)","Extreme strength (3)","Extreme defence (3)","Extreme ranging (3)","Extreme magic (3)","Clean torstol"])
+    await addRequires("Overload (4)",["Overload (3)","Overload (1)"])
 
-    addRequires("Ranging potion (3)",["Guam potion (unf)","Redberries"])
-    addRequires("Super ranging potion (3)",["Dwarf weed potion (unf)","Wine of Zamorak"])
-    addRequires("Extreme ranging (3)",["Super ranging potion (3)","Grenwall spikes"])
+    await addRequires("Supreme overload potion (6)",["Overload (4)","Super attack (4)","Super strength (4)","Super defence (4)","Super ranging potion (4)","Super magic potion (4)","Crystal flask"])
+ 
+    await addRequires("Antipoison (3)",["Marrentill potion (unf)","Unicorn horn dust"])
+    await addRequires("Super antipoison (3)",["Irit potion (unf)","Unicorn horn dust"])
+ 
+    await addRequires("Energy potion (3)",["Harralander potion (unf)","Chocolate dust"])
+    await addRequires("Super energy (3)",["Avantoe potion (unf)","Mort myre fungus"])
+ 
+    await addRequires("Restore potion (3)",["Harralander potion (unf)","Red spiders' eggs"])
+    await addRequires("Super restore (3)",["Snapdragon potion (unf)","Red spiders' eggs"])
 
+    await addRequires("Prayer potion (3)",["Ranarr potion (unf)","Snape grass"])
+    await addRequires("Super prayer (3)",["Prayer potion (3)","Ground wyvern bones"])
+ 
+    await addRequires("Combat potion (3)",["Harralander potion (unf)","Goat horn dust"])
+    await addRequires("Summoning potion (3)",["Spirit weed potion (unf)","Cockatrice egg"])
+ 
+    await addRequires("Saradomin brew (3)",["Toadflax potion (unf)","Crushed nest"])
+    await addRequires("Super Saradomin brew (3)",["Saradomin brew (3)","Wine of Saradomin"])
+ 
+    await addRequires("Zamorak brew (3)",["Torstol potion (unf)","Jangerberries"])
+    await addRequires("Super Zamorak brew (3)",["Zamorak brew (3)","Wine of Zamorak"])
+ 
+    await addRequires("Guthix rest (3)",["Harralander potion (unf)","Clean marrentill"])
+    await addRequires("Super Guthix rest (3)",["Guthix rest (3)","Wine of Guthix"])
 
-    //addRequires("Magic potion (3)",["Tarromin potion (unf)","Black bead"]) //note: need to consider alternative recipies
-    addRequires("Super magic potion (3)",["Lantadyme potion (unf)","Potato cactus"])
-    addRequires("Extreme magic (3)",["Super magic potion (3)","Ground mud runes"]);
+    await addRequires("Luck potion",["Bloodweed potion (unf)","Crushed dragonstone"])
+    await addRequires("Enhanced luck potion",["Luck potion","Onyx bolt tips"])
+ 
+    await addRequires("Aggression potion (3)",["Bloodweed potion (unf)","Searing ashes"])
+ 
+    await addRequires("Agility potion (3)",["Toadflax potion (unf)","Toad's legs"])
+    await 
+    await addRequires("Archaeology potion (3)",["Avantoe potion (unf)","Aerated sediment"])
 
-    addRequires("Overload (3)",["Extreme attack (3)","Extreme strength (3)","Extreme defence (3)","Extreme ranging (3)","Extreme magic (3)","Clean torstol"])
+    await addRequires("Cooking potion (3)",["Harralander potion (unf)","Swordfish"])
+    await addRequires("Super cooking potion (3)",["Cooking potion (3)","Zygomite fruit"])
+ 
+    await addRequires("Crafting potion (3)",["Wergali potion (unf)","Frog spawn"])
+ 
+    await addRequires("Divination potion (3)",["Spirit weed potion (unf)","Rabbit foot"])
+    await addRequires("Super divination (3)",["Divination potion (3)","Zygomite fruit"])
 
-    addRequires("Antipoison (3)",["Marrentill potion (unf)","Unicorn horn dust"])
-    addRequires("Super antipoison (3)",["Irit potion (unf)","Unicorn horn dust"])
+    await addRequires("Fishing potion (3)",["Avantoe potion (unf)","Snape grass"])
+ 
+    await addRequires("Fletching potion (3)",["Wergali potion (unf)","Wimpy feather"])
+ 
+    await addRequires("Hunter potion (3)",["Avantoe potion (unf)","Kebbit teeth dust"])
+    await addRequires("Super hunter (3)",["Hunter potion (3)","Rabbit teeth"])
+ 
+    await addRequires("Invention potion (3)",["Snapdragon potion (unf)","Chinchompa residue"])
+    await addRequires("Super invention (3)",["Invention potion (3)","Spider fangs"])
+ 
+    await addRequires("Runecrafting potion (3)",["Wergali potion (unf)","Summerdown wool"])
+    await addRequires("Super runecrafting (3)",["Runecrafting potion (3)","Yak milk"])
+ 
+    await addRequires("Spirit attraction potion (3)",["Primal extract","Enhanced luck potion","Timeworn tincture"])
+    await addRequires("Harvest potion (3)",["Primal extract","Clean arbuck","Watermelon"])
+    await // addRequires("Charming potion (3)",["Primal extract","Gold charm","Green charm","Crimson charm","Blue charm","Spark chitin"]) //need to handle x of each ingredient where x>1
 
-    addRequires("Energy potion (3)",["Harralander potion (unf)","Chocolate dust"])
-    addRequires("Super energy (3)",["Avantoe potion (unf)","Mort myre fungus"])
+    await addRequires("Mixture - step 1 (3)",["Super restore (3)","Unicorn horn dust"])
+    await addRequires("Mixture - step 2 (3)",["Mixture - step 1 (3)","Clean snake weed"])
+    await addRequires("Sanfew serum (3)",["Mixture - step 2 (3)","Nail beast nails"])
 
-    addRequires("Restore potion (3)",["Harralander potion (unf)","Red spiders' eggs"])
-    addRequires("Super restore (3)",["Snapdragon potion (unf)","Red spiders' eggs"])
+    await addRequires("Scentless potion (3)",["Argway potion (unf)","Shadow vine"])  
 
-    addRequires("Prayer potion (3)",["Ranarr potion (unf)","Snape grass"])
-    addRequires("Super prayer (3)",["Prayer potion (3)","Ground wyvern bones"])
+    await addRequires("Perfect juju agility potion (3)",["Harmony moss","Scentless potion (3)"]) 
 
-    addRequires("Combat potion (3)",["Harralander potion (unf)","Goat horn dust"])
-    addRequires("Summoning potion (3)",["Spirit weed potion (unf)","Cockatrice egg"])
+    await addRequires("Juju cooking potion (3)",["Shengo potion (unf)","Plant teeth"])
 
-    addRequires("Saradomin brew (3)",["Toadflax potion (unf)","Crushed nest"])
-    addRequires("Super Saradomin brew (3)",["Saradomin brew (3)","Wine of Saradomin"])
+    await addRequires("Perfect juju dungeoneering potion (3)",["Harmony moss","Zamorak's favour (3)"]) 
 
-    addRequires("Zamorak brew (3)",["Torstol potion (unf)","Jangerberries"])
-    addRequires("Super Zamorak brew (3)",["Zamorak brew (3)","Wine of Zamorak"])
+    await addRequires("Juju farming potion (3)",["Ugune potion (unf)","Marble vine"]) 
+    await addRequires("Perfect juju farming potion (3)",["Harmony moss","Juju farming potion (3)"]) 
+ 
+    await addRequires("Juju fishing potion (3)",["Shengo potion (unf)","Aquatic vine"]) 
+ 
+    await addRequires("Perfect juju herblore potion (3)",["Harmony moss","Guthix's gift (3)"]) 
 
-    addRequires("Guthix rest (3)",["Harralander potion (unf)","Clean marrentill"])
-    addRequires("Super Guthix rest (3)",["Guthix rest (3)","Wine of Guthix"])
+    await addRequires("Juju hunter potion (3)",["Erzille potion (unf)","Corrupt vine"])
+ 
+    await addRequires("Juju mining potion (3)",["Samaden potion (unf)","Draconic vine"])
+    await addRequires("Perfect juju mining potion (3)",["Harmony moss","Juju mining potion (3)"])
+ 
+    await addRequires("Perfect juju prayer potion (3)",["Harmony moss","Saradomin's blessing (3)"])
+ 
+    await addRequires("Perfect juju smithing potion (3)",["Harmony moss","Juju hunter potion (3)"])
+ 
+    await addRequires("Juju woodcutting potion (3)",["Samaden potion (unf)","Oily vine"])
+    await addRequires("Perfect juju woodcutting potion (3)",["Harmony moss","Juju woodcutting potion (3)"])
+}
 
-    addRequires("Luck potion",["Bloodweed potion (unf)","Crushed dragonstone"])
-    addRequires("Enhanced luck potion",["Luck potion","Onyx bolt tips"])
+seedDB().
+then(()=>{
+    addRequiresPromise()
+    .then(()=>{
+        console.log("@===================================@")
+        console.log("||Seed complete, database is ready.||")
+        console.log("@===================================@")
+        mongoose.connection.close();
+    })
+})
 
-    addRequires("Aggression potion (3)",["Bloodweed potion (unf)","Searing ashes"])
-
-    addRequires("Agility potion (3)",["Toadflax potion (unf)","Toad's legs"])
-    
-    addRequires("Archaeology potion (3)",["Avantoe potion (unf)","Aerated sediment"])
-
-    addRequires("Cooking potion (3)",["Harralander potion (unf)","Swordfish"])
-    addRequires("Super cooking potion (3)",["Cooking potion (3)","Zygomite fruit"])
-
-    addRequires("Crafting potion (3)",["Wergali potion (unf)","Frog spawn"])
-
-    addRequires("Divination potion (3)",["Spirit weed potion (unf)","Rabbit foot"])
-    addRequires("Super divination (3)",["Divination potion (3)","Zygomite fruit"])
-
-    addRequires("Fishing potion (3)",["Avantoe potion (unf)","Snape grass"])
-
-    addRequires("Fletching potion (3)",["Wergali potion (unf)","Wimpy feather"])
-
-    addRequires("Hunter potion (3)",["Avantoe potion (unf)","Kebbit teeth dust"])
-    addRequires("Super hunter (3)",["Hunter potion (3)","Rabbit teeth"])
-
-    addRequires("Invention potion (3)",["Snapdragon potion (unf)","Chinchompa residue"])
-    addRequires("Super invention (3)",["Invention potion (3)","Spider fangs"])
-
-    addRequires("Runecrafting potion (3)",["Wergali potion (unf)","Summerdown wool"])
-    addRequires("Super runecrafting (3)",["Runecrafting potion (3)","Yak milk"])
-
-
-    addRequires("Spirit attraction potion (3)",["Primal extract","Enhanced luck potion","Timeworn tincture"])
-    addRequires("Harvest potion (3)",["Primal extract","Clean arbuck","Watermelon"])
-    // addRequires("Charming potion (3)",["Primal extract","Gold charm","Green charm","Crimson charm","Blue charm","Spark chitin"]) //need to handle x of each ingredient where x>1
-
-
-    addRequires("Mixture - step 1 (3)",["Super restore (3)","Unicorn horn dust"])
-    addRequires("Mixture - step 2 (3)",["Mixture - step 1 (3)","Clean snake weed"])
-    addRequires("Sanfew serum (3)",["Mixture - step 2 (3)","Nail beast nails"])
-
-    addRequires("Scentless potion (3)",["Argway potion (unf)","Shadow vine"])  
-
-    addRequires("Perfect juju agility potion (3)",["Harmony moss","Scentless potion (3)"]) 
-
-    addRequires("Juju cooking potion (3)",["Shengo potion (unf)","Plant teeth"])
-
-    addRequires("Perfect juju dungeoneering potion (3)",["Harmony moss","Zamorak's favour (3)"]) 
-
-    addRequires("Juju farming potion (3)",["Ugune potion (unf)","Marble vine"]) 
-    addRequires("Perfect juju farming potion (3)",["Harmony moss","Juju farming potion (3)"]) 
-
-    addRequires("Juju fishing potion (3)",["Shengo potion (unf)","Aquatic vine"]) 
-
-    addRequires("Perfect juju herblore potion (3)",["Harmony moss","Guthix's gift (3)"]) 
-
-    addRequires("Juju hunter potion (3)",["Erzille potion (unf)","Corrupt vine"])
-
-    addRequires("Juju mining potion (3)",["Samaden potion (unf)","Draconic vine"])
-    addRequires("Perfect juju mining potion (3)",["Harmony moss","Juju mining potion (3)"])
-
-    addRequires("Perfect juju prayer potion (3)",["Harmony moss","Saradomin's blessing (3)"])
-
-    addRequires("Perfect juju smithing potion (3)",["Harmony moss","Juju hunter potion (3)"])
-
-    addRequires("Juju woodcutting potion (3)",["Samaden potion (unf)","Oily vine"])
-    addRequires("Perfect juju woodcutting potion (3)",["Harmony moss","Juju woodcutting potion (3)"])
-});
 
 
 
