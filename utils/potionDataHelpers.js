@@ -36,13 +36,9 @@ function getIngredients(data,tab=0,itemAndTab=[])
 async function getItemInfo(itemID)
 {
     console.log("getItemInfo itemID:",itemID);
-    try{
-    return Promise.all(
-        [
-            await grandexchange.getItem(parseInt(itemID)),
-            await grandexchange.getItemGraph(parseInt(itemID))
-        ]
-    )
+    try
+    {
+        return await grandexchange.getItemGraph(parseInt(itemID))   
     }
     catch(e){
         console.log(`getItemInfo error with itemID=${itemID}: `,e);
@@ -66,28 +62,15 @@ function getCoinPile(totalPrice)
 async function parseItemInfo(itemInfo,number)
 {
     try{
-        const image = itemInfo[0].icons.default
-        //exactPrice fails sometimes on account of the daily key being undefined for some unknown reason
-        if(itemInfo[1].daily[Object.keys(itemInfo[1].daily)[Object.keys(itemInfo[1].daily).length-1]]===undefined)
-        {
-            const exactPrice = NaN;
-            const totalPrice = NaN;
-            const coinPile = getCoinPile(1);
-            return [image,exactPrice,totalPrice,coinPile];
-        }
-        else
-        {
-            const exactPrice = itemInfo[1].daily[Object.keys(itemInfo[1].daily)[Object.keys(itemInfo[1].daily).length-1]] //access the value of the last key in daily
-            const totalPrice = exactPrice*number;
-            const coinPile = getCoinPile(totalPrice);
-            return [image,exactPrice,totalPrice,coinPile];
-        }
+        const exactPrice = itemInfo.daily[Object.keys(itemInfo.daily)[Object.keys(itemInfo.daily).length-1]] //access the value of the last key in daily
+        const totalPrice = exactPrice*number;
+        const coinPile = getCoinPile(totalPrice);
+        console.log(exactPrice,totalPrice,coinPile)
+        return [exactPrice,totalPrice,coinPile];
     }
     catch(e){
         console.log(`parseItemInfo error with itemInfo:${itemInfo}, number:${number}`)
-        const errorImage = "/images/error.png";
-        const errorPrice = 0;
-        return [errorImage,errorPrice,errorPrice,errorImage];
+
     }
 }
 
@@ -107,6 +90,15 @@ const untradeableItems = {
     "900006": "Overload (1)",
     "900007": "Supreme overload potion (6)",
     "900008": "Overload (4)",
+    "900009": "Elder overload potion (6)",
+    "900010": "Antifire (1)",
+    "900012": "Antifire (3)",
+    "900013": "Antifire (4)",
+    "900014": "Super antifire (1)",
+    "900015": "Super antifire (3)",
+    "900016": "Super antifire (4)",
+    "900017": "Elder overload salve (6)",
+    "900018": "Phoenix feather"
 
 }
 
@@ -114,10 +106,17 @@ const getDuplicate = async (name,number) => {
     try
     {   
         console.log(name);
-        const duplicate = await getItemByName(name);
         await new Promise(resolve => setTimeout(resolve, 1500))
+        let duplicateData = [];
+        const duplicate = await getItemByName(name);
+        duplicateData.push(duplicate.image);
         const duplicateInfo = await getItemInfo(duplicate.itemID);
-        const duplicateData = await parseItemInfo(duplicateInfo,number);
+        duplicateData.push(...await parseItemInfo(duplicateInfo,number));
+        
+        console.log("duplicate, ",duplicate)
+        console.log("duplicateData, ",duplicateData);
+        
+
         console.log(`${duplicate.name} RECIEVED in getDuplicate`,`itemID: ${duplicate.itemID}`);
         return duplicateData;
 
@@ -133,10 +132,11 @@ const manageRepitions = async (potion,name,number,ingredients) =>{
         {      
             const vial = await getDuplicate("Vial");
             const vialOfWater = await getDuplicate("Vial of water")
+            console.log(vial);
             duplicates["Vial"] = vial;
             duplicates["Vial of water"] = vialOfWater;  
         }
-        if(name === "Supreme overload potion (6)")
+        if(name === "Supreme overload potion (6)" || name === "Elder overload potion (6)" || name === "Elder overload salve (6)")
         {
             const vial = await getDuplicate("Vial",number);
             const vialOfWater = await getDuplicate("Vial of water",number);
@@ -153,7 +153,7 @@ const manageRepitions = async (potion,name,number,ingredients) =>{
             console.log("flattened",flattened);
             for(const ingredient of flattened)
             {
-                console.log(ingredient);
+                // console.log(ingredient);
                 const item = await getDuplicate(ingredient.item,number);
                 duplicates[ingredient.item] = item;
             }

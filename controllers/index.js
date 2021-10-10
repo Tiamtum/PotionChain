@@ -42,6 +42,7 @@ module.exports.showResults = async (req,res)=>{
             const duplicates = await manageRepitions(potion,name,number,ingredients);                 
             for(const ingredient of ingredients)
             {
+                // console.log(ingredient)
                 if(!untradeableItems[ingredient.itemID])
                 {
                         const ingredientName = ingredient.item;
@@ -51,15 +52,12 @@ module.exports.showResults = async (req,res)=>{
                             continue;
                         }
                         else
-                        {
+                        {                          
                             await new Promise(resolve => setTimeout(resolve, 1500)) //buffer requests, otherwise will fail
                             const itemInfo = await getItemInfo(ingredient.itemID);
+                            const image = (await getItemByName(ingredient.item)).image;
                             const data = await parseItemInfo(itemInfo,number);
-                            const [image,exactPrice,totalPrice,coinPile] = data
-                            if(ingredient.item != name)
-                            {
-                                finalPrice+=totalPrice;
-                            }
+                            const [exactPrice,totalPrice,coinPile] = data
                             ingredient.data = {number,image,exactPrice,totalPrice,coinPile};
                             req.session.data.push(ingredient);
                             console.log(`${ingredient.item} RECIEVED`,`itemID: ${ingredient.itemID}`);
@@ -91,11 +89,9 @@ module.exports.showResults = async (req,res)=>{
                     {
                         const itemInfo = await getItemInfo(ingredient.itemID);
                         const data = await parseItemInfo(itemInfo,number);
-                        const [image,exactPrice,totalPrice,coinPile] = data
-                        if(ingredient.item != name)
-                        {
-                            finalPrice+=totalPrice;
-                        }
+                        const image = (await getItemByName(ingredient.item)).image;
+                        const [exactPrice,totalPrice,coinPile] = data
+
                         ingredient.data = {number,image,exactPrice,totalPrice,coinPile};
                         req.session.data.push(ingredient);
                         console.log(`${ingredient.item} RECIEVED`,`itemID: ${ingredient.itemID}`);

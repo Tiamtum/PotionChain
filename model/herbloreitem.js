@@ -12,7 +12,11 @@ const herbloreItemSchema = new mongoose.Schema({
     requires:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: "HerbloreItem"
-    }]
+    }],
+    image:{
+        type: String,
+        required: true
+    }
 })
 
 const deepPopulate = function(next){

@@ -3,10 +3,10 @@
 <!-- We stop at each ingredient of tab 1 and then continue iterating ingredients until we find another ingredient of tab 1, then start 
 this process again at the newfound ingredient of tab 1. Repeat until no more ingredients. 
 The last ingredient is dealt with individually, possibly due to bad implementation.-->
+<!-- EJS bug where details is rendered as div on refresh? -->
     <h1 class="text-center"><%=ingredients[0].data.number%> &times; <img src="<%=ingredients[0].data.image%>" alt=""> <%=ingredients[0].item%></h1>
     <div class="my-3 d-flex justify-content-center">
         <button class="btn btn-success" id="uncheck">Uncheck all</button>
-        <p>Display setting: <%=displaySetting%></p>
     </div>
     <div class="row">
         <% if(displaySetting==="full"){ %> 
@@ -42,6 +42,20 @@ The last ingredient is dealt with individually, possibly due to bad implementati
                             </summary>
                         </p>
                     <% }%>
+                    <!-- including two of these if-statements solves the bug of the last ingredient not appearing...
+                    WHY DOES THIS WORK?!!?!?!?!?!?!?!
+                    Seriously need to crawl through this step by step to figure it out. -->
+                    <% if(idx===ingredients.length-1){ %>
+                        <p>
+                            <%console.log(`[Inner Loop] LAST INGREDIENT item=${ingredients[idx].item} tab=${ingredients[idx].tab} idx=${idx}`)%>
+                            <summary style="padding-left:<%=ingredients[idx].tab*(ingredients[idx].tab)/2%>em;font-weight: <%=600-50*ingredients[idx].tab%>;">
+                                <input type="checkbox" id="<%=idx%>" class="d-none d-md-inline-block mx-2 form-check-input">
+                                    <label class="form-check-label" for="<%=idx%>">
+                                        <%=ingredients[idx].data.number%> &times; <img src="<%=ingredients[idx].data.image%>" alt=""> <%=ingredients[idx].item%> <img src="<%=ingredients[idx].data.coinPile%>" alt="" class="d-none d-md-inline" data-bs-toggle="tooltip" title="<%=ingredients[idx].data.totalPrice%>gp">
+                                    </label>
+                            </summary>
+                        </p>
+                    <% } %>
                     <% if(idx+1===ingredients.length-1){ %>
                         <p>
                             <%console.log(`[Inner Loop] LAST INGREDIENT item=${ingredients[idx+1].item} tab=${ingredients[idx+1].tab} idx=${idx+1}`)%>
@@ -53,7 +67,6 @@ The last ingredient is dealt with individually, possibly due to bad implementati
                             </summary>
                         </p>
                     <% } %>
-
                 </details>
                 <% } %>
             <% }) %>

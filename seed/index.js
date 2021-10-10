@@ -140,6 +140,7 @@ const fourDoses =
 
 const primitiveIngredients = 
 {
+    "143": "Prayer potion (1)",
     "149": "Super attack (1)",
     "161": "Super strength (1)",
     "167": "Super defence (1)",
@@ -233,6 +234,7 @@ const primitiveIngredients =
     "19996": "Juju vial",
     "21622": "Morchella mushroom",
     "21626": "Grimy fellstalk",
+    "21636": "Prayer renewal (1)",
     "23191": "Potion flask",
     "28253": "Wine of Guthix",
     "28256": "Wine of Saradomin",
@@ -326,6 +328,7 @@ const nonPrimitiveIngredients =
     "1921": "Bowl of water",
     "1975": "Chocolate dust",
     "2152": "Toad's legs",
+    "2434": "Prayer potion (4)",
     "2436": "Super attack (4)",
     "2440": "Super strength (4)",
     "2442": "Super defence (4)",
@@ -394,6 +397,8 @@ const nonPrimitiveIngredients =
     "20040": "Zamorak's favour (3)",
     "21624": "Clean fellstalk",
     "21628": "Fellstalk potion (unf)",
+    "21630": "Prayer renewal (4)",
+    "21632": "Prayer renewal (3)",
     "27506": "Ranging potion (3)",
     "27514": "Magic potion (3)",
     "28193": "Super Saradomin brew (3)",
@@ -445,9 +450,287 @@ const nonPrimitiveIngredients =
     "900004": "Extreme magic (3)",
     "900005": "Overload (3)",
     "900007": "Supreme overload potion (6)",
-    "900008": "Overload (4)"
+    "900008": "Overload (4)",
+    "900009": "Elder overload potion (6)",
+    "900010": "Antifire (1)",
+    "900012": "Antifire (3)",
+    "900013": "Antifire (4)",
+    "900014": "Super antifire (1)",
+    "900015": "Super antifire (3)",
+    "900016": "Super antifire (4)",
+    "900017": "Elder overload salve (6)",
+    "900018": "Phoenix feather"
 
 }
+
+const imageLinks = [
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=149",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=161",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=167",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=173",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=185",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=199",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=201",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=203",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=205",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=207",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=209",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=211",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=213",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=215",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=217",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=219",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=221",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=223",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=225",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=229",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=231",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=237",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=239",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=243",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=245",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=247",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=371",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=592",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=948",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=1470",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=1472",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=1474",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=1476",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=1631",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=1923",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=1939",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=1951",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=1973",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=2150",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=2355",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=2485",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=2970",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=3046",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=3049",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=3051",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=3138",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=3325",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=4698",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=5982",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=6016",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=6018",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=6693",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=6812",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=9194",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=9735",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=10109",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=10134",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=10937",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=11328",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=11330",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=11332",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=11525",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=12109",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=12146",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=12174",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=12539",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=14836",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=15331",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=19996",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=21622",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=21626",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=23191",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=28253",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=28256",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=32843",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=32947",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=34159",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=37965",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=37975",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=39067",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=43973",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=43975",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=43977",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=43979",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=43981",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=43983",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=43985",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=43987",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=43989",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=43991",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=43993",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=43997",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=48243",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=48575",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=48578",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=48580",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=48582",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=48584",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=48586",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=48711",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=48712",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=48771",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=48773",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=48921",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=48922",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=48923",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=48925",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=48926",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=48960",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=48961",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=48966",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=49523",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=50803",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=91",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=93",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=95",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=97",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=99",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=101",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=103",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=105",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=107",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=109",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=111",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=115",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=121",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=127",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=133",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=139",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=145",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=151",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=157",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=163",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=169",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=175",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=181",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=189",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=227",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=235",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=241",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=249",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=251",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=257",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=261",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=265",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=373",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=1975",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=2436",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=2436",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=2442",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=2481",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=2998",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=3002",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=3010",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=3018",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=3026",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=3042",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=4456",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=6687",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=9736",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=10000",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=10911",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=11324",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=12140",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=12181",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=14848",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=14856",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=19999",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=20001",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=20004",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=20016",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=20024",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=20032",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=21624",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=27506",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=28193",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=32757",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=32773",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=32789",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=32813",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=37914",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=37963",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=37973",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=44047",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=44063",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=44087",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=48211",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=48970",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=48994",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=253",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=255",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=259",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=263",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=267",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=269",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=1615",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=1921",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=2152",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=2440",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=2444",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=2448",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=2483",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=3000",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=3004",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=3008",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=3016",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=3024",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=3034",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=3040",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=4419",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=4840",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=7650",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=9594",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=9741",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=10111",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=10919",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=10927",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=11326",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=12142",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=12172",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=14840",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=14854",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=15328",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=15329",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=19994",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=19998",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=20000",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=20002",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=20008",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=20012",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=20020",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=20028",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=20036",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=20040",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=21628",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=27514",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=28201",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=28209",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=32765",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=32781",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=32797",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=32805",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=35739",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=37953",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=37969",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=37971",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=39820",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=44055",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=44071",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=44079",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=44095",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=48241",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=48962",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=48986",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=49002",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=50853",
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=50861"
+]
+
+const linkIDs = {}
+
+for(const link of imageLinks)
+{
+    linkIDs[link.slice(link.indexOf("?")+4)] = link;
+}
+
+console.log(linkIDs)
 
 mongoose.connect(dbUrl)
     .then(()=>{
@@ -462,21 +745,50 @@ const seedDB = async ()=>{
         await HerbloreItem.deleteMany({});
         for(const itemID in primitiveIngredients)
         {
-            const primitiveIngredient = new HerbloreItem({
-                name:primitiveIngredients[itemID],
-                itemID: itemID,
-                requires:[]
-            })  
-            await primitiveIngredient.save();     
+            if(linkIDs[itemID])
+            {
+                const primitiveIngredient = new HerbloreItem({
+                    name:primitiveIngredients[itemID],
+                    itemID: itemID,
+                    requires:[],
+                    image: linkIDs[itemID]
+                })  
+                await primitiveIngredient.save();  
+            }
+            else
+            {
+                const primitiveIngredient = new HerbloreItem({
+                    name:primitiveIngredients[itemID],
+                    itemID: itemID,
+                    requires:[],
+                    image: "null"
+                })  
+                await primitiveIngredient.save();                  
+            }
+   
         }
         for(const itemID in nonPrimitiveIngredients)
         {
-            const nonPrimitiveIngredient = new HerbloreItem({
-                name:nonPrimitiveIngredients[itemID],
-                itemID: itemID,
-                requires:[]
-            })  
-            await nonPrimitiveIngredient.save();     
+            if(linkIDs[itemID])
+            {
+                const nonPrimitiveIngredient = new HerbloreItem({
+                    name:nonPrimitiveIngredients[itemID],
+                    itemID: itemID,
+                    requires:[],
+                    image: linkIDs[itemID]
+                })  
+                await nonPrimitiveIngredient.save();                    
+            }
+            else
+            {
+                const nonPrimitiveIngredient = new HerbloreItem({
+                    name:nonPrimitiveIngredients[itemID],
+                    itemID: itemID,
+                    requires:[],
+                    image: "null"
+                })  
+                await nonPrimitiveIngredient.save();                      
+            }
         }
     }catch(e){
         console.log("seedPrimitives failed: ",e);
@@ -608,9 +920,22 @@ const addRequiresPromise = async () => {
 
     await addRequires("Supreme overload potion (6)",["Overload (4)","Super attack (4)","Super strength (4)","Super defence (4)","Super ranging potion (4)","Super magic potion (4)","Crystal flask"])
  
+    await addRequires("Antifire (3)",["Lantadyme potion (unf)","Dragon scale dust"])
+    await addRequires("Antifire (4)",["Antifire (3)","Antifire (1)"])
+
+    await addRequires("Super antifire (3)",["Antifire (3)","Phoenix feather"])
+    await addRequires("Super antifire (4)",["Super antifire (3)","Super antifire (1)"])
+
+    await addRequires("Elder overload potion (6)",["Supreme overload potion (6)","Primal extract","Clean fellstalk"])
+
     await addRequires("Antipoison (3)",["Marrentill potion (unf)","Unicorn horn dust"])
     await addRequires("Super antipoison (3)",["Irit potion (unf)","Unicorn horn dust"])
  
+    await addRequires("Prayer renewal (3)",["Fellstalk potion (unf)","Morchella mushroom"])
+    await addRequires("Prayer renewal (4)",["Prayer renewal (3)","Prayer renewal (1)"])
+
+    await addRequires("Elder overload salve (6)",["Elder overload potion (6)","Prayer renewal (4)","Prayer potion (4)","Super antipoison (4)","Antifire (4)","Super antifire (4)"])
+
     await addRequires("Energy potion (3)",["Harralander potion (unf)","Chocolate dust"])
     await addRequires("Super energy (3)",["Avantoe potion (unf)","Mort myre fungus"])
  
