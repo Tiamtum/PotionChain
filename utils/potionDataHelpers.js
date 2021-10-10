@@ -91,4 +91,93 @@ async function parseItemInfo(itemInfo,number)
     }
 }
 
-module.exports = {getItemByName,getIngredients,getItemInfo,getCoinPile,parseItemInfo};
+const untradeableItems = {
+    "1526": "Clean snake weed",
+    "899995": "Extreme runecrafting (3)",
+    "899996": "Extreme invention (3)",
+    "899997": "Extreme hunter (3)",
+    "899998": "Extreme divination (3)",
+    "899999": "Extreme cooking potion (3)",
+    "900000": "Extreme attack (3)",
+    "900001": "Extreme strength (3) ",
+    "900002": "Extreme defence (3) ",
+    "900003": "Extreme ranging (3) ",
+    "900004": "Extreme magic (3) ",
+    "900005": "Overload (3)",
+    "900006": "Overload (1)",
+    "900007": "Supreme overload potion (6)",
+    "900008": "Overload (4)",
+
+}
+
+const getDuplicate = async (name,number) => {
+    try
+    {   
+        console.log(name);
+        const duplicate = await getItemByName(name);
+        await new Promise(resolve => setTimeout(resolve, 1500))
+        const duplicateInfo = await getItemInfo(duplicate.itemID);
+        const duplicateData = await parseItemInfo(duplicateInfo,number);
+        console.log(`${duplicate.name} RECIEVED in getDuplicate`,`itemID: ${duplicate.itemID}`);
+        return duplicateData;
+
+    }
+    catch(e){console.log(`getDuplicate error with ${name},${number}: `, e)}
+}
+
+const manageRepitions = async (potion,name,number,ingredients) =>{
+    try
+    {
+        const duplicates = {}
+        if(name === "Overload (3)")
+        {      
+            const vial = await getDuplicate("Vial");
+            const vialOfWater = await getDuplicate("Vial of water")
+            duplicates["Vial"] = vial;
+            duplicates["Vial of water"] = vialOfWater;  
+        }
+        if(name === "Supreme overload potion (6)")
+        {
+            const vial = await getDuplicate("Vial",number);
+            const vialOfWater = await getDuplicate("Vial of water",number);
+            duplicates["Vial"] = vial;
+            duplicates["Vial of water"] = vialOfWater;  
+            const repeatedIngredients = []
+            const superAttackIngredients = getIngredients(await getItemByName("Super attack (3)"));
+            const superStrengthIngredients = getIngredients(await getItemByName("Super strength (3)"));
+            const superDefenceIngredients = getIngredients(await getItemByName("Super defence (3)"));
+            const superRangingPotionIngredients = getIngredients(await getItemByName("Super ranging potion (3)"));
+            const superMagicPotionIngredients = getIngredients(await getItemByName("Super magic potion (3)"));
+            repeatedIngredients.push(superAttackIngredients,superStrengthIngredients,superDefenceIngredients,superRangingPotionIngredients,superMagicPotionIngredients);
+            const flattened = repeatedIngredients.flat().filter(ingredient => ingredient.item !== "Vial" && ingredient.item !== "Vial of water");
+            console.log("flattened",flattened);
+            for(const ingredient of flattened)
+            {
+                console.log(ingredient);
+                const item = await getDuplicate(ingredient.item,number);
+                duplicates[ingredient.item] = item;
+            }
+        }
+        return duplicates;
+    }
+    catch(e){console.log(`getDuplicate error with ${name},${number}: `, e)}
+}
+
+const pushDuplicate = (duplicates,number,ingredient,sessionData) =>
+{
+    const [image,exactPrice,totalPrice,coinPile] = duplicates[ingredient.item];
+    ingredient.data = {number,image,exactPrice,totalPrice,coinPile};
+    sessionData.push(ingredient);
+    console.log(`pushing ${ingredient.item} from duplicates...`);  
+}
+
+
+module.exports = {getItemByName,
+    getIngredients,
+    getItemInfo,
+    getCoinPile,
+    parseItemInfo,
+    untradeableItems,
+    manageRepitions,
+    pushDuplicate,
+};

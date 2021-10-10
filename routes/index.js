@@ -6,7 +6,7 @@ const {checkPreviousSearch,checkPreviousSearchOnTest} = require("../middleware")
 
 router.route("/")
     .get(index.renderIndex)
-    .post(index.createPotion);
+    .post(index.fetchData);
 
 router.get("/results",checkPreviousSearch,wrapAsync(index.showResults));
 
