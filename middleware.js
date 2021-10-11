@@ -30,7 +30,7 @@ module.exports.checkPreviousSearch = (req,res,next)=>{
                     {
                         console.log("req.session.displaySetting unchanged from full")
                         const ingredients = req.session.data;
-                        res.render("test",{ingredients,finalPrice,"displaySetting":display, pageTitle:"PotionChain"})                       
+                        res.render("results",{ingredients,finalPrice,"displaySetting":display, pageTitle:"PotionChain"})                       
                     }
                 }
                 else if(display === "essential")

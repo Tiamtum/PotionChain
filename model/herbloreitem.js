@@ -16,6 +16,10 @@ const herbloreItemSchema = new mongoose.Schema({
     image:{
         type: String,
         required: true
+    },
+    dailyPrice:{
+        type: Number,
+        required: true
     }
 })
 

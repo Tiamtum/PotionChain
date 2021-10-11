@@ -51,3 +51,7 @@ button.addEventListener("click",()=>{
     checkedBoxes=0;
     button.disabled=true;
 })
+
+
+//TODO: when you click on a parent ingredient, all the children ingredient should also be checked.
+//Idea: suppose a tab3 ingredient was clicked. then, check all boxes up to the next tab3 ingredient, etc.
