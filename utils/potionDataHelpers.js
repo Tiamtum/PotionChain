@@ -1,5 +1,3 @@
-const runescape = require("runescape-api");
-const grandexchange = runescape.grandexchange;
 const HerbloreItem = require("../model/herbloreitem");
 
 async function getItemByName(name)
@@ -33,21 +31,35 @@ function getIngredients(data,tab=0,itemAndTab=[])
     }
 }
 
-async function getItemInfo(itemID)
+function setImage(ingredientData,untradeableItems)
 {
-    console.log("getItemInfo itemID:",itemID);
-    try{
-    return Promise.all(
-        [
-            await grandexchange.getItem(parseInt(itemID)),
-            await grandexchange.getItemGraph(parseInt(itemID))
-        ]
-    )
+    if(!untradeableItems[ingredientData.itemID])
+    {
+        return ingredientData.image;
     }
-    catch(e){
-        console.log(`getItemInfo error with itemID=${itemID}: `,e);
-    }    
+    else
+    {
+        return `/images/untradables/${ingredientData.name}.webp`;
+    }
 }
+
+function setIngredients(potion,display)
+{
+    if(display === "full")
+    {
+        return getIngredients(potion);
+    }
+    else if(display === "essential")
+    {
+        return getIngredients(potion).filter(ingredient => ingredient.tab === 0 || ingredient.tab === 1);
+    }
+    else
+    {
+        throw new ExpressError("Invalid display option.", 400);
+    }
+}
+
+
 
 function getCoinPile(totalPrice)
 {
@@ -63,32 +75,40 @@ function getCoinPile(totalPrice)
     else{return "/images/Coins_10000.webp";}
 }
 
-async function parseItemInfo(itemInfo,number)
-{
-    try{
-        const image = itemInfo[0].icons.default
-        //exactPrice fails sometimes on account of the daily key being undefined for some unknown reason
-        if(itemInfo[1].daily[Object.keys(itemInfo[1].daily)[Object.keys(itemInfo[1].daily).length-1]]===undefined)
-        {
-            const exactPrice = NaN;
-            const totalPrice = NaN;
-            const coinPile = getCoinPile(1);
-            return [image,exactPrice,totalPrice,coinPile];
-        }
-        else
-        {
-            const exactPrice = itemInfo[1].daily[Object.keys(itemInfo[1].daily)[Object.keys(itemInfo[1].daily).length-1]] //access the value of the last key in daily
-            const totalPrice = exactPrice*number;
-            const coinPile = getCoinPile(totalPrice);
-            return [image,exactPrice,totalPrice,coinPile];
-        }
-    }
-    catch(e){
-        console.log(`parseItemInfo error with itemInfo:${itemInfo}, number:${number}`)
-        const errorImage = "/images/error.png";
-        const errorPrice = 0;
-        return [errorImage,errorPrice,errorPrice,errorImage];
-    }
+
+const untradeableItems = {
+    "1526": "Clean snake weed",
+    "899995": "Extreme runecrafting (3)",
+    "899996": "Extreme invention (3)",
+    "899997": "Extreme hunter (3)",
+    "899998": "Extreme divination (3)",
+    "899999": "Extreme cooking potion (3)",
+    "900000": "Extreme attack (3)",
+    "900001": "Extreme strength (3) ",
+    "900002": "Extreme defence (3) ",
+    "900003": "Extreme ranging (3) ",
+    "900004": "Extreme magic (3) ",
+    "900005": "Overload (3)",
+    "900006": "Overload (1)",
+    "900007": "Supreme overload potion (6)",
+    "900008": "Overload (4)",
+    "900009": "Elder overload potion (6)",
+    "900010": "Antifire (1)",
+    "900012": "Antifire (3)",
+    "900013": "Antifire (4)",
+    "900014": "Super antifire (1)",
+    "900015": "Super antifire (3)",
+    "900016": "Super antifire (4)",
+    "900017": "Elder overload salve (6)",
+    "900018": "Phoenix feather"
+
 }
 
-module.exports = {getItemByName,getIngredients,getItemInfo,getCoinPile,parseItemInfo};
+module.exports = {
+    getItemByName,
+    getIngredients,
+    setImage,
+    setIngredients,
+    getCoinPile,
+    untradeableItems,
+};
