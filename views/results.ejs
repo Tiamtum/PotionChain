@@ -60,7 +60,7 @@ The last ingredient is dealt with individually, possibly due to bad implementati
                         <p>
                             <%console.log(`[Inner Loop] LAST INGREDIENT item=${ingredients[idx+1].item} tab=${ingredients[idx+1].tab} idx=${idx+1}`)%>
                             <summary style="padding-left:<%=ingredients[idx+1].tab*1.5%>em;font-weight: <%=600-50*ingredients[idx+1].tab%>;" >
-                                <input type="checkbox" id="<%=idx+1+1%>" class="d-none d-md-inline-block mx-2 form-check-input">
+                                <input type="checkbox" id="<%=idx+1%>" class="d-none d-md-inline-block mx-2 form-check-input">
                                     <label class="form-check-label tab<%=ingredients[idx].tab%>" for="<%=idx+1%>">
                                         <%=ingredients[idx+1].data.number%> &times; <img src="<%=ingredients[idx+1].data.image%>" alt=""> <%=ingredients[idx+1].item%> <img src="<%=ingredients[idx+1].data.coinPile%>" alt="" class="d-none d-md-inline" data-bs-toggle="tooltip" title="<%=ingredients[idx+1].data.totalPrice%>gp">
                                     </label>
