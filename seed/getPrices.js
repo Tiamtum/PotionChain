@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const dbUrl = "mongodb://localhost:27017/PotionChain"
-const HerbloreItem = require("../model/herbloreitem");
-const {getItemInfo} = require("../utils/potionDataHelpers");
+const HerbloreItem = require("../model/herbloreitemNoMiddleware");
 const runescape = require("runescape-api");
 const grandexchange = runescape.grandexchange;
 
@@ -110,12 +109,31 @@ const untradeableItems = [
     900038,
     900039,
     900040,
-    900041
+    900041,
+    900042,
+    900043,
+    900044,
+    900045,
+    900046,
+    900047,
+    900048,
+    900049,
+    900050,
+    900051,
+    900052,
+    900053,
+    900054,
+    900055,
+    900056,
+    900057,
+    900058,
+    900059
 ]
 
 mongoose.connect(dbUrl)
     .then(()=>{
         console.log(`[Mongoose | SUCCESS] - Connection Open @ ${dbUrl}`);
+        fetchPrices();
     })
     .catch((e)=>{
         console.log(`[Mongoose | ERROR] - ${e}`);
@@ -124,16 +142,15 @@ mongoose.connect(dbUrl)
 
 async function fetchPrices()
 {
-    console.log("fetchPrices called")
+    console.log("fetchPrices() called")
     const herbloreItems = await HerbloreItem.find({});
     for(const item of herbloreItems)
     {
-        console.log(item.name)
         try{
             if(!untradeableItems.find(id => id === item.itemID) && item.dailyPrice === 0)
             {
                 console.log(item.name);
-                await new Promise(resolve => setTimeout(resolve, 2000)) 
+                await new Promise(resolve => setTimeout(resolve, 3000)) 
                 const graph = await grandexchange.getItemGraph(parseInt(item.itemID));
                 const exactPrice = graph.daily[Object.keys(graph.daily)[Object.keys(graph.daily).length-1]]
                 console.log(exactPrice)
@@ -150,5 +167,3 @@ async function fetchPrices()
 
 
 }
-
-fetchPrices();
