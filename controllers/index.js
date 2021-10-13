@@ -70,13 +70,16 @@ module.exports.showResults = async (req,res)=>{
         res.render("results",{ingredients,finalPrice,"displaySetting":display,pageTitle:"Potion Chain"}) 
 
     }
-    catch(e)
+    catch(err)
     {
-        console.log("showResults error",e);
-        console.log(e.name);
-        if(e.name === "TypeError")
+        const name = req.query.name;
+        console.log("showResults error",err);
+        console.log("e.name, ",err.name,typeof(err.name));
+        console.log("e.message, ",err.message,typeof(err.message));
+        console.log("err.name === \"TypeError\"", err.name === "TypeError");
+        if(err.name === "TypeError")
         {
-            throw new ExpressError(`Potion not found: ${name}  - check your spelling. Otherwise the potion you have requested may not be supported yet.`,404)
+            throw new ExpressError(`Potion not found: ${name} - check your spelling or copy and paste the potion name from the Supported Potions menu. Otherwise, the potion you have requested may not be supported yet.`,404)
         }
         else
         {
