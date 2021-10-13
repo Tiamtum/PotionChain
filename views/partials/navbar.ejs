@@ -18,7 +18,7 @@
 </nav>
 
 <div class="modal custom fade" id="aboutPotionChain" tabindex="-1" aria-labelledby="aboutPotionChainLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="aboutPotionChainLabel">Potion Chain V.1.0</h5>
@@ -39,7 +39,7 @@
           For example, a vial is primitive but a vial of water is not. However a vial of water is more primitive than an unfinished potion,
           hence it is displayed in a deeper indentation level.
         </p>
-        <ul style="list-style-type:none; padding:0;">
+        <ul style="list-style-type:none; padding:0;" class="border border-dark">
           <li style="background-color: rgb(0,0,0); color:white;">Depth 1 - rgb(0,0,0)</li>
           <li style="background-color: rgb(255, 157, 0); color:white;">Depth 2 - rgb(255, 157, 0)</li>
           <li style="background-color: rgb(13, 58, 13); color:white;">Depth 3 - rgb(13, 58, 13)</li>
@@ -50,9 +50,14 @@
           <li style="background-color: rgb(121, 121, 121); color:white;">Depth 8 - rgb(121, 121, 121)</li>
           <li style="background-color: rgb(255, 252, 252); color:black;">Depth 9 - rgb(255, 252, 252)</li>
         </ul>
+        <h4>Changes in version 1.0: </h4>
+        <ul>
+          <li>Potion Chain deployed to heroku.</li>
+        </ul>
+        <p>View the changelog <a href="/changelog" class="link-primary">here</a>.</p>
       </div>
       <div class="modal-footer">
-          <a href="https://github.com/morganchafe/PotionChain" class="btn btn-primary">Github</a>
+        <a href="https://github.com/morganchafe/PotionChain" class="btn btn-primary">Github</a>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
@@ -60,20 +65,96 @@
 </div>
 
 <div class="modal custom fade" id="supportedPotions" tabindex="-1" aria-labelledby="supportedPotionsLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="supportedPotionsLabel">Supported Potions</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Currently Potion Chain supports searches for the following potions: </p>
+        <p>Currently, Potion Chain supports searches for the following potions: </p>
         <ul>
-
+          <li>Aggression potion (3)</li>
+          <li>Agility potion (3)</li>
+          <li>Antifire (3)</li>
+          <li>Antipoison (3)</li>
+          <li>Archaeology potion (3)</li>
+          <li>Attack potion (3)</li>
+          <li>Charming potion (3)</li>
+          <li>Combat potion (3)</li>
+          <li>Cooking potion (3)</li>
+          <li>Crafting potion (3)</li>
+          <li>Defence potion (3)</li>
+          <li>Divination potion (3)</li>
+          <li>Elder overload potion (6)</li>
+          <li>Elder overload salve (6)</li>
+          <li>Energy potion (3)</li>
+          <li>Enhanced luck potion</li>
+          <li>Extreme attack (3)</li>
+          <li>Extreme defence (3)</li>
+          <li>Extreme magic (3)</li>
+          <li>Extreme ranging (3)</li>
+          <li>Extreme strength (3)</li>
+          <li>Fishing potion (3)</li>
+          <li>Fletching potion (3)</li>
+          <li>Guthix rest (3)</li>
+          <li>Harvest potion (3)</li>
+          <li>Hunter potion (3)</li>
+          <li>Invention potion (3)</li>
+          <li>Juju cooking potion (3)</li>
+          <li>Juju farming potion (3)</li>
+          <li>Juju fishing potion (3)</li>
+          <li>Juju hunter potion (3)</li>
+          <li>Juju mining potion (3)</li>
+          <li>Juju woodcutting potion (3)</li>
+          <li>Luck potion</li>
+          <li>Magic potion (3)</li>
+          <li>Mixture - step 1 (3)</li>
+          <li>Mixture - step 2 (3)</li>
+          <li>Overload (3)</li>
+          <li>Perfect juju agility potion (3)</li>
+          <li>Perfect juju dungeoneering potion (3)</li>
+          <li>Perfect juju farming potion (3)</li>
+          <li>Perfect juju herblore potion (3)</li>
+          <li>Perfect juju mining potion (3)</li>
+          <li>Perfect juju prayer potion (3)</li>
+          <li>Perfect juju smithing potion (3)</li>
+          <li>Perfect juju woodcutting potion (3)</li>
+          <li>Prayer potion (3)</li>
+          <li>Prayer renewal (3)</li>
+          <li>Ranging potion (3)</li>
+          <li>Restore potion (3)</li>
+          <li>Runecrafting potion (3)</li>
+          <li>Sanfew serum (3)</li>
+          <li>Saradomin brew (3)</li>
+          <li>Scentless potion (3)</li>
+          <li>Spirit attraction potion (3)</li>
+          <li>Strength potion (3)</li>
+          <li>Summoning potion (3)</li>
+          <li>Super antifire (3)</li>
+          <li>Super antipoison (3)</li>
+          <li>Super attack (3)</li>
+          <li>Super cooking potion (3)</li>
+          <li>Super defence (3)</li>
+          <li>Super divination (3)</li>
+          <li>Super energy (3)</li>
+          <li>Super Guthix rest (3)</li>
+          <li>Super hunter (3)</li>
+          <li>Super invention (3)</li>
+          <li>Super magic potion (3)</li>
+          <li>Super prayer (3)</li>
+          <li>Super ranging potion (3)</li>
+          <li>Super restore (3)</li>
+          <li>Super runecrafting (3)</li>
+          <li>Super Saradomin brew (3)</li>
+          <li>Super strength (3)</li>
+          <li>Super Zamorak brew (3)</li>
+          <li>Supreme overload potion (6)</li>
+          <li>Zamorak brew (3)</li>
         </ul>
       </div>
       <div class="modal-footer">
-          <p>If a potion you searched for is not supported, contact me through Github and I will see about adding it.</p>
+          <p>If a potion you searched for is not supported, or if there is some error, contact me through Github and I will see about adding it.</p>
           <a href="https://github.com/morganchafe/PotionChain" class="btn btn-primary">Github</a>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
