@@ -19,7 +19,7 @@ for(const link of imageLinks)
     linkIDs[link.slice(link.indexOf("?")+4)] = link;
 }
 
-console.log(linkIDs)
+// console.log(linkIDs)
 
 
 const seedDB = async ()=>{
@@ -252,8 +252,8 @@ const addRequiresPromise = async () => {
     await addRequires("Antipoison++ (4)",["Antipoison++ (unf)","Magic roots"]);
 
     await addRequires("Weapon poison (3)",["Kwuarm potion (unf)","Dragon scale dust"])
-    await addRequires("Weaponpoison+ (3)",["Weapon poison+ (unf)","Red spiders' eggs"]);
-    await addRequires("Weaponpoison++ (3)",["Weapon poison++ (unf)","Poison ivy berries"]);
+    await addRequires("Weapon poison+ (3)",["Weapon poison+ (unf)","Red spiders' eggs"]);
+    await addRequires("Weapon poison++ (3)",["Weapon poison++ (unf)","Poison ivy berries"]);
 
 
  
