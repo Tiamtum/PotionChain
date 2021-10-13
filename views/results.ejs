@@ -4,7 +4,6 @@
 this process again at the newfound ingredient of tab 1. Repeat until no more ingredients. 
 The last ingredient is dealt with individually, possibly due to bad implementation.-->
 <!-- EJS bug where details is rendered as div on refresh? -->
-<%=console.log(ingredients)%>
     <h1 class="text-center"><%=ingredients[0].data.number%> &times; <img src="<%=ingredients[0].data.image%>" alt=""> <%=ingredients[0].item%></h1>
     <div class="my-3 d-flex justify-content-center">
         <button class="btn btn-success" id="uncheck">Uncheck all</button>
@@ -97,7 +96,6 @@ const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-tog
 const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl)
 })
-console.log(tooltipList)
 </script>
 
 <script>
