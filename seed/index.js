@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const dbUrl = "mongodb://localhost:27017/PotionChain"
 const HerbloreItem = require("../model/herbloreitem");
-const {primitiveIngredients,nonPrimitiveIngredients,imageLinks} = require("data.js")
+const {primitiveIngredients,nonPrimitiveIngredients,imageLinks} = require("./data.js")
 
 mongoose.connect(dbUrl)
     .then(()=>{
@@ -153,6 +153,12 @@ const addRequiresPromise = async () => {
     await addRequires("Clean bloodweed",["Grimy bloodweed"])
     await addRequires("Clean arbuck",["Grimy arbuck"])
     await addRequires("Primal extract",["Primal fruit pulp","Vial"])
+    await addRequires("Clean erzille",["Grimy erzille"]);
+    await addRequires("Clean argway",["Grimy argway"]);
+    await addRequires("Clean ugune",["Grimy ugune"]);
+    await addRequires("Clean shengo",["Grimy shengo"]);
+    await addRequires("Clean samaden",["Grimy samaden"]);
+
 
     await addRequires("Guam potion (unf)",["Clean guam","Vial of water"]);
     await addRequires("Marrentill potion (unf)",["Clean marrentill","Vial of water"])
@@ -174,6 +180,11 @@ const addRequiresPromise = async () => {
     await addRequires("Fellstalk potion (unf)",["Clean fellstalk","Vial of water"])
     await addRequires("Bloodweed potion (unf)",["Clean bloodweed","Vial of water"])
     await addRequires("Arbuck potion (unf)",["Clean arbuck","Vial of water"])
+    await addRequires("Erzille potion (unf)",["Clean erzille","Juju vial of water"])
+    await addRequires("Argway potion (unf)",["Clean argway","Juju vial of water"])
+    await addRequires("Ugune potion (unf)",["Clean ugune","Juju vial of water"])
+    await addRequires("Shengo potion (unf)",["Clean shengo","Juju vial of water"])
+    await addRequires("Samaden potion (unf)",["Clean samaden","Juju vial of water"])
  
     await addRequires("Attack potion (3)",["Guam potion (unf)","Eye of newt"])
     await addRequires("Super attack (3)",["Irit potion (unf)","Eye of newt"])
@@ -196,7 +207,7 @@ const addRequiresPromise = async () => {
     await addRequires("Super ranging potion (4)",["Super ranging potion (3)","Super ranging potion (1)"])
     await addRequires("Extreme ranging (3)",["Super ranging potion (3)","Grenwall spikes"])
 
-    await //addRequires("Magic potion (3)",["Tarromin potion (unf)","Black bead"]) //note: need to consider alternative recipies
+    await addRequires("Magic potion (3)",["Tarromin potion (unf)","Black bead"]) //note: need to consider alternative recipies
     await addRequires("Super magic potion (3)",["Lantadyme potion (unf)","Potato cactus"])
     await addRequires("Super magic potion (4)",["Super magic potion (3)","Super magic potion (1)"])
     await addRequires("Extreme magic (3)",["Super magic potion (3)","Ground mud runes"]);
@@ -276,7 +287,7 @@ const addRequiresPromise = async () => {
  
     await addRequires("Spirit attraction potion (3)",["Primal extract","Enhanced luck potion","Timeworn tincture"])
     await addRequires("Harvest potion (3)",["Primal extract","Clean arbuck","Watermelon"])
-    await // addRequires("Charming potion (3)",["Primal extract","Gold charm","Green charm","Crimson charm","Blue charm","Spark chitin"]) //need to handle x of each ingredient where x>1
+    await addRequires("Charming potion (3)",["Primal extract","Gold charm","Green charm","Crimson charm","Blue charm","Spark chitin"]) //need to handle x of each ingredient where x>1
 
     await addRequires("Mixture - step 1 (3)",["Super restore (3)","Unicorn horn dust"])
     await addRequires("Mixture - step 2 (3)",["Mixture - step 1 (3)","Clean snake weed"])
@@ -284,30 +295,30 @@ const addRequiresPromise = async () => {
 
     await addRequires("Scentless potion (3)",["Argway potion (unf)","Shadow vine"])  
 
-    await addRequires("Perfect juju agility potion (3)",["Harmony moss","Scentless potion (3)"]) 
+    await addRequires("Perfect juju agility potion (3)",["Scentless potion (3)","Harmony moss"]) 
 
     await addRequires("Juju cooking potion (3)",["Shengo potion (unf)","Plant teeth"])
 
-    await addRequires("Perfect juju dungeoneering potion (3)",["Harmony moss","Zamorak's favour (3)"]) 
+    await addRequires("Perfect juju dungeoneering potion (3)",["Zamorak's favour (3)","Harmony moss"]) 
 
     await addRequires("Juju farming potion (3)",["Ugune potion (unf)","Marble vine"]) 
-    await addRequires("Perfect juju farming potion (3)",["Harmony moss","Juju farming potion (3)"]) 
+    await addRequires("Perfect juju farming potion (3)",["Juju farming potion (3)","Harmony moss"]) 
  
     await addRequires("Juju fishing potion (3)",["Shengo potion (unf)","Aquatic vine"]) 
  
-    await addRequires("Perfect juju herblore potion (3)",["Harmony moss","Guthix's gift (3)"]) 
+    await addRequires("Perfect juju herblore potion (3)",["Guthix's gift (3)","Harmony moss"]) 
 
     await addRequires("Juju hunter potion (3)",["Erzille potion (unf)","Corrupt vine"])
  
     await addRequires("Juju mining potion (3)",["Samaden potion (unf)","Draconic vine"])
-    await addRequires("Perfect juju mining potion (3)",["Harmony moss","Juju mining potion (3)"])
+    await addRequires("Perfect juju mining potion (3)",["Juju mining potion (3)","Harmony moss"])
  
-    await addRequires("Perfect juju prayer potion (3)",["Harmony moss","Saradomin's blessing (3)"])
+    await addRequires("Perfect juju prayer potion (3)",["Saradomin's blessing (3)","Harmony moss"])
  
-    await addRequires("Perfect juju smithing potion (3)",["Harmony moss","Juju hunter potion (3)"])
+    await addRequires("Perfect juju smithing potion (3)",["Juju hunter potion (3)","Harmony moss"])
  
     await addRequires("Juju woodcutting potion (3)",["Samaden potion (unf)","Oily vine"])
-    await addRequires("Perfect juju woodcutting potion (3)",["Harmony moss","Juju woodcutting potion (3)"])
+    await addRequires("Perfect juju woodcutting potion (3)",["Juju woodcutting potion (3)", "Harmony moss"])
 }
 
 seedDB().
