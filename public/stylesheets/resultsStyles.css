@@ -2,6 +2,10 @@ details {
     list-style-type:none;
 }
 
+.row,h1,#uncheck,#newSearch{
+    animation: fadeIn 0.3s ease-in; 
+}
+
 .text-muted{
     text-decoration: line-through;
 }
@@ -41,4 +45,9 @@ details {
 .tab9{
     border-bottom: 3.5px solid rgb(255, 252, 252);
     padding-bottom:0.2rem;
+}
+
+@keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
 }

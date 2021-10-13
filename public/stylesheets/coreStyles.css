@@ -51,6 +51,11 @@ input[type="radio"]{
 }
 
 #mainInputs{
+    margin-top: 3rem;
+    animation: fadeIn 0.3s ease-in;
+}
+#shorthands{
+    animation: fadeIn 0.3s ease-in; 
 }
 
 .shorthand {
@@ -125,3 +130,8 @@ nav.navbar p.mx-3.pt-3.fs-1{
 .modal .custom .depth9{
     background-color: 3.5px solid rgb(255, 252, 252);
 } */
+
+@keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
