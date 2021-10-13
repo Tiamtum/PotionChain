@@ -1,6 +1,6 @@
 :root{
     --background-color:  #4e5243;
-    --anchor-hover: #b8bbae;
+    --anchor-hover: #bcbdbb;
     --input-background-color:  #959b87;
     --radio-background-color: #b7bea6;
     --label-background-color: #cfcfba;
@@ -51,8 +51,19 @@ input[type="radio"]{
 }
 
 #mainInputs{
-    height: 75vh;
-    margin-top: 20vh;
+}
+
+.shorthand {
+    list-style-type:none;
+}
+.shorthand-label{
+    font-weight:bold;
+}
+.shorthand-item{
+    margin-left: 1.5rem;
+}
+.nested-shorthand-item{
+    margin-left:3rem;
 }
 
 .input-group-text{
