@@ -118,5 +118,3 @@ button.addEventListener("click",()=>{
     checkedBoxes=0;
     button.disabled=true;
 })
-
-
