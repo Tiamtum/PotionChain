@@ -2,17 +2,17 @@
 
 <div class="row d-flex justify-content-center">
     <div class="col-lg-6 col-sm-12">
-        <form action="/results" method="GET" class="validated-form" novalidate>
+        <form action="/results" method="GET" class="validated-form" id="mainInputs" novalidate>
             <div class="input-group input-group-lg mb-3">
                 <span class="input-group-text" id="potionInput">Potion</span>
-                <input type="text" class="form-control" name="name" placeholder="Enter potion name (E.g. &quot;Elder Overload&quot;)" aria-label="Enter potion name (E.g. \'Elder Overload\')" aria-describedby="potionInput" required>
+                <input type="text" class="form-control" name="name" placeholder="E.g. &quot;Elder overload&quot;" aria-label="(E.g. \'Elder Overload\')" aria-describedby="potionInput" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
             </div>
             <div class="input-group input-group-lg mb-3">
                 <span class="input-group-text" id="potionQuantity">Quantity</span>
-                <input type="number" name="number" min="1" max="2147483647" class="form-control" placeholder="How many potions? (Number between 0 and 2,147,483,647)" aria-label="Number of Potions" aria-describedby="potionQuantity" required>
+                <input type="number" name="number" min="1" max="2147483647" class="form-control" placeholder="Number between 0 and 2,147,483,647" aria-label="Number of Potions" aria-describedby="potionQuantity" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>

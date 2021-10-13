@@ -1,0 +1,86 @@
+:root{
+    --background-color:  #4e5243;
+    --anchor-hover: #b8bbae;
+    --input-background-color:  #959b87;
+    --radio-background-color: #b7bea6;
+    --label-background-color: #cfcfba;
+    --selection-font-color: #ffe8d6;
+    --selection-background-color: #bebeb2;
+    --gradient-start: #b7b7a4;
+    --gradient-end: #a5a58d;
+}
+
+body{
+    font-family: 'Saira', sans-serif;
+    background: linear-gradient(45deg, var(--gradient-start),var(--gradient-end)) fixed;
+    color: var(--background-color);
+}
+a{
+    color: var(--background-color);
+    text-decoration: none;
+}
+a:hover{
+    color: var(--anchor-hover);
+}
+
+input[type="checkbox"]{
+    background-color: var(--input-background-color);
+}
+input[type="text"]{
+    color: var(--background-color);
+    background-color: var(--input-background-color);
+    border:none;
+}
+input[type="text"]:enabled{
+    color: var(--background-color);
+    background-color:var(--input-background-color);
+    border:none;    
+}
+input[type="number"]{
+    color:var(--background-color);
+    background-color:var(--input-background-color);
+    border:none;    
+}
+input[type="number"]:enabled{
+    color: var(--background-color);
+    background-color: var(--input-background-color);
+    border:none;    
+}
+input[type="radio"]{
+    background-color: var(--radio-background-color) ;  
+}
+
+#mainInputs{
+    height: 75vh;
+    margin-top: 20vh;
+}
+
+.input-group-text{
+    color:  var(--background-color);
+    background-color: var(--label-background-color);
+    border:none;
+
+}
+
+::selection{
+    color: var(--selection-font-color);
+    background-color: var(--selection-background-color);
+}
+
+/* change navbar background */
+nav.navbar {
+    background: linear-gradient(45deg, var(--gradient-start),var(--gradient-end)) fixed;
+}
+  /* change navbar-toggler inside lines color (stroke) */
+.navbar-light span.navbar-toggler-icon {
+    color:  var(--background-color);
+}
+  /* change hamburger button border color */
+button.navbar-toggler.navbar-toggler-right {
+    border-color:  var(--background-color);
+}
+
+nav.navbar p.mx-3.pt-3.fs-1{
+    user-select: none;
+}
+
