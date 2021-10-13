@@ -1,4 +1,5 @@
 const {getCoinPile} = require("./utils/potionDataHelpers");
+const ExpressError = require("./utils/ExpressError");
 
 module.exports.checkPreviousSearch = (req,res,next)=>{
     const name = req.query.name;
@@ -11,8 +12,14 @@ module.exports.checkPreviousSearch = (req,res,next)=>{
         next();
     }
     else
+    {
+        try
         {
             console.log("ELSE CONDITION, req.session.data exists")
+            if(req.session.data.length===0) //fixes weird bug triggered by using browser back-button 
+            {
+                return next();
+            }
             if(name === req.session.data[0].item && number === req.session.data[0].data.number)
             {
                 console.log("same name, same number")
@@ -39,20 +46,39 @@ module.exports.checkPreviousSearch = (req,res,next)=>{
                     const ingredients = req.session.data.filter(ingredient => ingredient.tab === 0 || ingredient.tab === 1);
                     res.render("results",{ingredients,finalPrice,"displaySetting":display, pageTitle:"PotionChain"})
                 }
-        }
-        else if(name === req.session.data[0].item && number !== req.session.data[0].data.number)
-        {
-            console.log("==same name, different number==")           
-            if(display === "full")
+            }
+            else if(name === req.session.data[0].item && number !== req.session.data[0].data.number)
             {
-                if(req.session.displaySetting === "essential")
+                console.log("==same name, different number==")           
+                if(display === "full")
                 {
-                    delete req.session.data;
-                    next();                   
+                    if(req.session.displaySetting === "essential")
+                    {
+                        delete req.session.data;
+                        next();                   
+                    }
+                    else
+                    {
+                        const ingredients = req.session.data;
+                        let finalPrice = 0 ;
+                        for(const ingredient of ingredients )
+                        {
+                            ingredient.data.number = number;
+                            ingredient.data.totalPrice = number * ingredient.data.exactPrice;
+                            ingredient.data.coinPile = getCoinPile(ingredient.data.totalPrice);
+                            if(ingredient.item != name)
+                            {
+                                finalPrice+=ingredient.data.totalPrice;
+                            }
+                        }
+                        req.session.finalPrice = finalPrice;
+                        req.session.save();
+                        res.render("results",{ingredients,finalPrice,"displaySetting":display, pageTitle:"PotionChain"})
+                    }
                 }
-                else
+                else if(display === "essential")
                 {
-                    const ingredients = req.session.data;
+                    const ingredients = req.session.data.filter(ingredient => ingredient.tab === 0 || ingredient.tab === 1);
                     let finalPrice = 0 ;
                     for(const ingredient of ingredients )
                     {
@@ -69,33 +95,21 @@ module.exports.checkPreviousSearch = (req,res,next)=>{
                     res.render("results",{ingredients,finalPrice,"displaySetting":display, pageTitle:"PotionChain"})
                 }
             }
-            else if(display === "essential")
+            else
             {
-                const ingredients = req.session.data.filter(ingredient => ingredient.tab === 0 || ingredient.tab === 1);
-                let finalPrice = 0 ;
-                for(const ingredient of ingredients )
-                {
-                    ingredient.data.number = number;
-                    ingredient.data.totalPrice = number * ingredient.data.exactPrice;
-                    ingredient.data.coinPile = getCoinPile(ingredient.data.totalPrice);
-                    if(ingredient.item != name)
-                    {
-                        finalPrice+=ingredient.data.totalPrice;
-                    }
-                }
-                req.session.finalPrice = finalPrice;
-                req.session.save();
-                res.render("results",{ingredients,finalPrice,"displaySetting":display, pageTitle:"PotionChain"})
-            }
+                console.log("==different name==")
+                delete req.session.data;
+                console.log(req.session);
+                console.log("querying db...");
+                next();
+            }    
         }
-        else
+        catch(e)
         {
-            console.log("==different name==")
-            delete req.session.data;
-            console.log(req.session);
-            console.log("querying db...");
-            next();
-        }     
+            console.log("middleware error: ",e);
+            throw new ExpressError("Something broke in the middleware",500);
+        }
+ 
     }
     
 }
