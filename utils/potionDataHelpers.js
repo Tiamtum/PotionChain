@@ -150,7 +150,26 @@ const untradeableItems = {
     "900038": "Antipoison++ (unf)",
     "900039": "Weapon poison+ (unf)",
     "900040": "Weapon poison++ (unf)",
-    "900041": "Cave nightshade"
+    "900041": "Cave nightshade",
+    "900041":"Aggroverload (6)",
+    "900042":"Brightfire potion (6)",
+    "900043":"Extreme battlemage's potion (6)",
+    "900044":"Extreme brawler's potion (6)",
+    "900045":"Extreme sharpshooter's potion (6)",
+    "900046":"Extreme warmaster's potion (6)",
+    "900047":"Holy aggroverload (6)",
+    "900048":"Holy overload potion (6)",
+    "900049":"Overload salve (6)",
+    "900050":"Perfect plus potion (6)",
+    "900051":"Replenishment potion (6)",
+    "900052":"Searing overload potion (6)",
+    "900053":"Supreme attack potion (6)",
+    "900054":"Supreme defence potion (6)",
+    "900055":"Supreme magic potion (6)",
+    "900056":"Supreme overload salve (6)",
+    "900057":"Supreme ranging potion (6)",
+    "900058":"Supreme strength potion (6)",
+    "900059":"Wyrmfire potion (6)"
 
 }
 
