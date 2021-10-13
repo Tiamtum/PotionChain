@@ -18,26 +18,24 @@
 </nav>
 
 <div class="modal custom fade" id="aboutPotionChain" tabindex="-1" aria-labelledby="aboutPotionChainLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="aboutPotionChainLabel">Potion Chain V.1.0</h5>
+        <h5 class="modal-title" id="aboutPotionChainLabel">Welcome to Potion Chain V.1.0 !</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>A supply chain visualizer for potions in RuneScape 3.</p>
+        <p>Potion Chain is a supply chain visualizer for potions in RuneScape 3.</p>
         <p>
-          Simply type in the potion you want to make and the quantity. Essential display will show only the core ingredients required
-          to make the potion, while full display will show <em>everything</em> down to the empty vials/flasks.
+          Simply type in the potion you want to make and the quantity. <strong>Essential display</strong> will show only the core ingredients required
+          to make the potion - that is, those ingredients which when combined create the potion in question - while <strong>full display</strong> will show everything that all ingredients require down to the empty vials/flasks.
         </p> 
         <p>
           On full display there are various colored bars to help with showing the depth level. An ingredient's depth level depends on how dependent it is on other ingredients.
-          The deeper in the list it is the more <em>primitive</em> the ingredient. An ingredient is primitive if it can not be made by means of other 
-          herblore ingredients.
+          An ingredient is said to be <em>primitive</em> if no other ingredients combine to create it (e.g. vials, flasks, eye of newt, etc.).
         </p>
         <p>
-          For example, a vial is primitive but a vial of water is not. However a vial of water is more primitive than an unfinished potion,
-          hence it is displayed in a deeper indentation level.
+          Therefore primitive ingredients are located in the deepest/rightmost indentation levels, while other non-primitive ingredients (i.e. those which require some other ingredient(s) to be created) are in the shallower/leftmost levels.
         </p>
         <ul style="list-style-type:none; padding:0;" class="border border-dark">
           <li style="background-color: rgb(0,0,0); color:white;">Depth 1 - rgb(0,0,0)</li>
@@ -65,7 +63,7 @@
 </div>
 
 <div class="modal custom fade" id="supportedPotions" tabindex="-1" aria-labelledby="supportedPotionsLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="supportedPotionsLabel">Supported Potions</h5>
@@ -74,12 +72,18 @@
       <div class="modal-body">
         <p>Currently, Potion Chain supports searches for the following potions: </p>
         <ul>
+          <li>Adrenaline potion (3)</li>
+          <li>Adrenaline renewal potion (4)</li>
           <li>Aggression potion (3)</li>
+          <li>Aggroverload (6)</li>
           <li>Agility potion (3)</li>
           <li>Antifire (3)</li>
           <li>Antipoison (3)</li>
+          <li>Antipoison+ (4)</li>
+          <li>Antipoison++ (4)</li>
           <li>Archaeology potion (3)</li>
           <li>Attack potion (3)</li>
+          <li>Brightfire potion (6)</li>
           <li>Charming potion (3)</li>
           <li>Combat potion (3)</li>
           <li>Cooking potion (3)</li>
@@ -91,14 +95,25 @@
           <li>Energy potion (3)</li>
           <li>Enhanced luck potion</li>
           <li>Extreme attack (3)</li>
+          <li>Extreme battlemage's potion (6)</li>
+          <li>Extreme brawler's potion (6)</li>
           <li>Extreme defence (3)</li>
           <li>Extreme magic (3)</li>
           <li>Extreme ranging (3)</li>
+          <li>Extreme sharpshooter's potion (6)</li>
           <li>Extreme strength (3)</li>
+          <li>Extreme warmaster's potion (6)</li>
           <li>Fishing potion (3)</li>
           <li>Fletching potion (3)</li>
+          <li>Grand attack potion (6)</li>
+          <li>Grand defence potion (6)</li>
+          <li>Grand magic potion (6)</li>
+          <li>Grand ranging potion (6)</li>
+          <li>Grand strength potion (6)</li>
           <li>Guthix rest (3)</li>
           <li>Harvest potion (3)</li>
+          <li>Holy aggroverload (6)</li>
+          <li>Holy overload potion (6)</li>
           <li>Hunter potion (3)</li>
           <li>Invention potion (3)</li>
           <li>Juju cooking potion (3)</li>
@@ -112,6 +127,7 @@
           <li>Mixture - step 1 (3)</li>
           <li>Mixture - step 2 (3)</li>
           <li>Overload (3)</li>
+          <li>Overload salve (6)</li>
           <li>Perfect juju agility potion (3)</li>
           <li>Perfect juju dungeoneering potion (3)</li>
           <li>Perfect juju farming potion (3)</li>
@@ -120,17 +136,22 @@
           <li>Perfect juju prayer potion (3)</li>
           <li>Perfect juju smithing potion (3)</li>
           <li>Perfect juju woodcutting potion (3)</li>
+          <li>Perfect plus potion (6)</li>
           <li>Prayer potion (3)</li>
           <li>Prayer renewal (3)</li>
           <li>Ranging potion (3)</li>
+          <li>Replenishment potion (6)</li>
           <li>Restore potion (3)</li>
           <li>Runecrafting potion (3)</li>
           <li>Sanfew serum (3)</li>
           <li>Saradomin brew (3)</li>
           <li>Scentless potion (3)</li>
+          <li>Searing overload potion (6)</li>
           <li>Spirit attraction potion (3)</li>
+          <li>Spiritual prayer potion (6)</li>
           <li>Strength potion (3)</li>
           <li>Summoning potion (3)</li>
+          <li>Super adrenaline potion (3)</li>
           <li>Super antifire (3)</li>
           <li>Super antipoison (3)</li>
           <li>Super attack (3)</li>
@@ -142,14 +163,27 @@
           <li>Super hunter (3)</li>
           <li>Super invention (3)</li>
           <li>Super magic potion (3)</li>
+          <li>Super melee potion (6)</li>
           <li>Super prayer (3)</li>
+          <li>Super prayer renewal potion (6)</li>
           <li>Super ranging potion (3)</li>
           <li>Super restore (3)</li>
           <li>Super runecrafting (3)</li>
           <li>Super Saradomin brew (3)</li>
           <li>Super strength (3)</li>
+          <li>Super warmaster's potion (6)</li>
           <li>Super Zamorak brew (3)</li>
+          <li>Supreme attack potion (6)</li>
+          <li>Supreme defence potion (6)</li>
+          <li>Supreme magic potion (6)</li>
           <li>Supreme overload potion (6)</li>
+          <li>Supreme overload salve (6)</li>
+          <li>Supreme ranging potion (6)</li>
+          <li>Supreme strength potion (6)</li>
+          <li>Weapon poison (3)</li>
+          <li>Weapon poison+ (3)</li>
+          <li>Weapon poison++ (3)</li>
+          <li>Wyrmfire potion (6)</li>
           <li>Zamorak brew (3)</li>
         </ul>
       </div>
