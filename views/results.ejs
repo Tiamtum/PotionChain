@@ -74,7 +74,7 @@ The last ingredient is dealt with individually, possibly due to bad implementati
                 <div class="col-xl-12 col-sm-12 d-flex flex-column align-items-center">       
                     <%ingredients.slice(1).forEach((ingredient,i)=>{%>    
                         <span style="font-size: 1.7em;">
-                            <input type="checkbox" id="<%=i%>" class="d-none d-md-inline-block form-check-input">
+                            <input type="checkbox" id="<%=i%>" class="d-none essential d-md-inline-block form-check-input">
                                 <label class="form-check-label" for="<%=i%>">
                                     <%=ingredient.data.number%> &times; <img src="<%=ingredient.data.image%>"> <%=ingredient.item%> <img src="<%=ingredient.data.coinPile%>" class="d-none d-sm-inline" data-bs-toggle="tooltip" title="<%=ingredient.data.totalPrice%>gp">
                                 </label>

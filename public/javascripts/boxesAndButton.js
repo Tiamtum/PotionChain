@@ -16,7 +16,17 @@ function setButtonState(checkedBoxes)
 
 function getTabDepth(checkBox)
 {
-    return parseInt(checkBox.nextElementSibling.classList[1].slice(3));
+    const tabDepthRaw = checkBox.nextElementSibling.classList[1];
+    if(tabDepthRaw!==undefined)
+    {
+        const tabDepthInt =  parseInt(tabDepthRaw.slice(3));
+        return tabDepthInt;
+    }
+    else
+    {
+        return false;
+    }
+    
 }
 
 checkBoxes.forEach((checkBox,idx) => {   
@@ -29,30 +39,36 @@ checkBoxes.forEach((checkBox,idx) => {
         {
             //TODO: when you click on a parent ingredient, all the children ingredient should also be checked.
             //Idea: suppose a tab3 ingredient was clicked. then, check all boxes up to the next tab3 ingredient, etc.  
-            const tabDepth = getTabDepth(checkBox);
-            console.log("tabDepth = ", tabDepth);
-            for(let i = idx; i<checkBoxes.length-1; i++)
-            {
-                const depth = getTabDepth(checkBoxes[i+1]);
-                console.log("depth: ",depth)
-                if(depth !== tabDepth)
+            let tabDepth = getTabDepth(checkBox);
+            if(tabDepth)
+            {            
+                console.log("tabDepth = ", tabDepth);
+                for(let i = idx; i<checkBoxes.length-1; i++)
                 {
-                    console.log("depth !== tabDepth", depth !== tabDepth)
-                    const label = document.querySelector(`label[for='${checkBoxes[i+1].id}']`);
-                    console.log("label.innerText",label.innerText );                  
+                    const depth = getTabDepth(checkBoxes[i+1]);
+                    console.log("depth: ",depth)
+                    if(checkBoxes[i+1].checked === true)
+                    {
+                        break;
+                    }
+                    if(depth > tabDepth)
+                    {
+                        console.log("depth !== tabDepth", depth !== tabDepth)
+                        const label = document.querySelector(`label[for='${checkBoxes[i+1].id}']`);
+                        console.log("label.innerText",label.innerText );                  
 
-                    checkBoxes[i+1].checked = true;
-                    label.classList.toggle("text-muted");
-                    checkedBoxes+=1;
-                    setButtonState(checkedBoxes)
+                        checkBoxes[i+1].checked = true;
+                        label.classList.toggle("text-muted");
+                        checkedBoxes+=1;
+                        setButtonState(checkedBoxes)
 
-                }
-                else
-                {
-                    break;
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
             }
-            
 
             const label = document.querySelector(`label[for='${checkBox.id}']`);
             label.classList.toggle("text-muted");
