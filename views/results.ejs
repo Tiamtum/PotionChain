@@ -4,7 +4,6 @@
 this process again at the newfound ingredient of tab 1. Repeat until no more ingredients. 
 The last ingredient is dealt with individually, possibly due to bad implementation.-->
 <!-- EJS bug where details is rendered as div on refresh? -->
-<%=console.log(ingredients)%>
     <h1 class="text-center"><%=ingredients[0].data.number%> &times; <img src="<%=ingredients[0].data.image%>" alt=""> <%=ingredients[0].item%></h1>
     <div class="my-3 d-flex justify-content-center">
         <button class="btn btn-success" id="uncheck">Uncheck all</button>
@@ -51,7 +50,7 @@ The last ingredient is dealt with individually, possibly due to bad implementati
                             <%console.log(`[Inner Loop] LAST INGREDIENT item=${ingredients[idx].item} tab=${ingredients[idx].tab} idx=${idx}`)%>
                             <summary style="padding-left:<%=ingredients[idx].tab*1.5%>em;font-weight: <%=600-50*ingredients[idx].tab%>;" >
                                 <input type="checkbox" id="<%=idx%>" class="d-none d-md-inline-block mx-2 form-check-input">
-                                    <label class="form-check-label tab<%=ingredients[i].tab%>" for="<%=idx%>">
+                                    <label class="form-check-label tab<%=ingredients[idx].tab%>" for="<%=idx%>">
                                         <%=ingredients[idx].data.number%> &times; <img src="<%=ingredients[idx].data.image%>" alt=""> <%=ingredients[idx].item%> <img src="<%=ingredients[idx].data.coinPile%>" alt="" class="d-none d-md-inline" data-bs-toggle="tooltip" title="<%=ingredients[idx].data.totalPrice%>gp">
                                     </label>
                             </summary>
@@ -61,8 +60,8 @@ The last ingredient is dealt with individually, possibly due to bad implementati
                         <p>
                             <%console.log(`[Inner Loop] LAST INGREDIENT item=${ingredients[idx+1].item} tab=${ingredients[idx+1].tab} idx=${idx+1}`)%>
                             <summary style="padding-left:<%=ingredients[idx+1].tab*1.5%>em;font-weight: <%=600-50*ingredients[idx+1].tab%>;" >
-                                <input type="checkbox" id="<%=idx+1+1%>" class="d-none d-md-inline-block mx-2 form-check-input">
-                                    <label class="form-check-label tab<%=ingredients[i].tab%>" for="<%=idx+1%>">
+                                <input type="checkbox" id="<%=idx+1%>" class="d-none d-md-inline-block mx-2 form-check-input">
+                                    <label class="form-check-label tab<%=ingredients[idx].tab%>" for="<%=idx+1%>">
                                         <%=ingredients[idx+1].data.number%> &times; <img src="<%=ingredients[idx+1].data.image%>" alt=""> <%=ingredients[idx+1].item%> <img src="<%=ingredients[idx+1].data.coinPile%>" alt="" class="d-none d-md-inline" data-bs-toggle="tooltip" title="<%=ingredients[idx+1].data.totalPrice%>gp">
                                     </label>
                             </summary>
@@ -75,7 +74,7 @@ The last ingredient is dealt with individually, possibly due to bad implementati
                 <div class="col-xl-12 col-sm-12 d-flex flex-column align-items-center">       
                     <%ingredients.slice(1).forEach((ingredient,i)=>{%>    
                         <span style="font-size: 1.7em;">
-                            <input type="checkbox" id="<%=i%>" class="d-none d-md-inline-block form-check-input">
+                            <input type="checkbox" id="<%=i%>" class="d-none essential d-md-inline-block form-check-input">
                                 <label class="form-check-label" for="<%=i%>">
                                     <%=ingredient.data.number%> &times; <img src="<%=ingredient.data.image%>"> <%=ingredient.item%> <img src="<%=ingredient.data.coinPile%>" class="d-none d-sm-inline" data-bs-toggle="tooltip" title="<%=ingredient.data.totalPrice%>gp">
                                 </label>
@@ -91,14 +90,7 @@ The last ingredient is dealt with individually, possibly due to bad implementati
     <a class="btn btn-success" href="/">Search for a new potion</a>
 </div>
 <script src="/javascripts/boxesAndButton.js"></script>
-
-<script>
-const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-  return new bootstrap.Tooltip(tooltipTriggerEl)
-})
-console.log(tooltipList)
-</script>
+<script src="/javascripts/bootstrapTooltips.js"></script>
 
 <script>
     

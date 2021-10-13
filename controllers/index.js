@@ -12,23 +12,43 @@ const {
     setIngredients,
     setImage,
     untradeableItems,
+    shortHandNames,
     getCoinPile
 } = require("../utils/potionDataHelpers");
 
 module.exports.renderIndex = async (req,res)=>{
     console.log("renderIndex Called")
     console.log(req.session);
-    res.render("index",{pageTitle:"PotionChain"}) ;
+    res.render("index",{pageTitle:"Potion Chain"});
+}
+
+module.exports.renderChangelog = (req,res)=>{
+    res.render("changelog",{pageTitle:"Potion Chain"})
+}
+
+async function parseName(rawName)
+{
+    const lowercaseName = rawName.toLowerCase().trim().replace(/\s+/g, " ");
+    console.log(lowercaseName);
+    if(shortHandNames[lowercaseName])
+    {
+        return shortHandNames[lowercaseName]
+    }
+    else
+    {
+        return rawName.trim().replace(/\s+/g, " ");
+    };
+    
 }
 
 module.exports.showResults = async (req,res)=>{  
-    console.log(req.query);
-    const name = req.query.name;
-    const number = parseInt(req.query.number);
-    const display = req.query.display;
-    let finalPrice = 0;
+    console.log("req.query", req.query);
     try
     {
+        const name = await parseName(req.query.name.trim());
+        const number = parseInt(req.query.number);
+        const display = req.query.display;
+        let finalPrice = 0;
         const potion = await getItemByName(name);
         req.session.data = [];
         const ingredients =  setIngredients(potion,display);
@@ -47,12 +67,20 @@ module.exports.showResults = async (req,res)=>{
         req.session.finalPrice = finalPrice;
         req.session.displaySetting = display;
         req.session.save();
-        res.render("results",{ingredients,finalPrice,"displaySetting":display,pageTitle:"PotionChain"}) 
+        res.render("results",{ingredients,finalPrice,"displaySetting":display,pageTitle:"Potion Chain"}) 
 
     }
     catch(e)
     {
         console.log("showResults error",e);
-        throw new ExpressError(e,500);
+        console.log(e.name);
+        if(e.name === "TypeError")
+        {
+            throw new ExpressError(`Potion not found: ${name}  - check your spelling. Otherwise the potion you have requested may not be supported yet.`,404)
+        }
+        else
+        {
+            throw new ExpressError(e,500);
+        }
     }
 }

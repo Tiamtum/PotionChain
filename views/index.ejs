@@ -1,18 +1,25 @@
 <% layout("layouts/boilerplate") -%>
-
 <div class="row d-flex justify-content-center">
     <div class="col-lg-6 col-sm-12">
-        <form action="/results" method="GET" class="validated-form" novalidate>
+        <form action="/results" method="GET" class="validated-form" id="mainInputs" novalidate>
             <div class="input-group input-group-lg mb-3">
                 <span class="input-group-text" id="potionInput">Potion</span>
-                <input type="text" class="form-control" name="name" placeholder="Enter potion name (E.g. &quot;Elder Overload&quot;)" aria-label="Enter potion name (E.g. \'Elder Overload\')" aria-describedby="potionInput" required>
+                <input type="text" class="form-control" name="name" placeholder="E.g. &quot;Elder overload salve (6)&quot;" aria-label="(E.g. \'Elder overload salve (6)\')" aria-describedby="potionInput" required
+                <%if(false){%>
+                    value=""
+                <% } %>     
+                >
                 <div class="valid-feedback">
                     Looks good!
                 </div>
             </div>
             <div class="input-group input-group-lg mb-3">
                 <span class="input-group-text" id="potionQuantity">Quantity</span>
-                <input type="number" name="number" min="1" max="2147483647" class="form-control" placeholder="How many potions? (Number between 0 and 2,147,483,647)" aria-label="Number of Potions" aria-describedby="potionQuantity" required>
+                <input type="number" name="number" min="1" max="2147483647" class="form-control" placeholder="Number between 0 and 2,147,483,647" aria-label="Number of Potions" aria-describedby="potionQuantity" required
+                <%if(false){%>
+                    value="NaN"
+                <% } %>                  
+                >
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -20,7 +27,7 @@
             <div class="d-flex justify-content-around">
                 <div>
                     <input class="form-check-input" type="radio" name="display" id="optionEssential" value="essential" checked>
-                    <label class="form-check-label" for="optionEssential" data-bs-toggle="tooltip" data-bs-placement="bottom"  title="Display only the primary ingredients.">
+                    <label class="form-check-label" for="optionEssential" data-bs-toggle="tooltip" data-bs-placement="bottom"  title="Display only the core ingredients.">
                         Essential display
                     </label>
                 </div>
@@ -37,44 +44,119 @@
                 </button>
             </div>
         </form>
+        <h3 class="lead fs-3 mt-5">Come here often?</h3>
+        <p>Here are some abbreviated search terms for common potions you can use:</p>
+        <details class="shorthand mb-2">
+            <summary class="shorthand-label">Supers</summary>
+            <details class="shorthand mb-2">
+                <summary class="shorthand-label shorthand-item">Super attack (3)</summary>
+                <summary class="nested-shorthand-item">sa</summary>
+                <summary class="nested-shorthand-item">supa</summary>
+                <summary class="nested-shorthand-item">supatt</summary>
+                <summary class="nested-shorthand-item">super attack</summary>
+            </details>
+            <details class="shorthand mb-2">
+                <summary class="shorthand-label shorthand-item">Super strength (3)</summary>
+                <summary class="nested-shorthand-item ">ss</summary>
+                <summary class="nested-shorthand-item">sups</summary>
+                <summary class="nested-shorthand-item">supstr</summary>
+                <summary class="nested-shorthand-item">super strength</summary>
+            </details>
+            <details class="shorthand mb-2">
+                <summary class="shorthand-label shorthand-item">Super defence (3)</summary>
+                <summary class="nested-shorthand-item">sd</summary>
+                <summary class="nested-shorthand-item">supd</summary>
+                <summary class="nested-shorthand-item">supdef</summary>
+                <summary class="nested-shorthand-item">super defence</summary>
+            </details>
+            <details class="shorthand mb-2">
+                <summary class="shorthand-label shorthand-item">Super ranging potion (3)</summary>
+                <summary class="nested-shorthand-item">sr</summary>
+                <summary class="nested-shorthand-item">supr</summary>
+                <summary class="nested-shorthand-item">suprng</summary>
+                <summary class="nested-shorthand-item">super ranging</summary>
+            </details>
+            <details class="shorthand mb-2">
+                <summary class="shorthand-label shorthand-item">Super magic potion (3)</summary>
+                <summary class="nested-shorthand-item">sm</summary>
+                <summary class="nested-shorthand-item">supm</summary>
+                <summary class="nested-shorthand-item">supmag</summary>
+                <summary class="nested-shorthand-item">super magic</summary>
+            </details>
+        </details>
+        <details class="shorthand mb-2">
+            <summary class="shorthand-label">Extremes</summary>
+            <details class="shorthand mb-2">
+                <summary class="shorthand-label shorthand-item">Extreme attack (3)</summary>
+                <summary class="nested-shorthand-item">ea</summary>
+                <summary class="nested-shorthand-item">exatt</summary>
+                <summary class="nested-shorthand-item">exremea</summary>
+                <summary class="nested-shorthand-item">extreme attack</summary>
+            </details>
+            <details class="shorthand mb-2">
+                <summary class="shorthand-label shorthand-item">Extreme strength (3)</summary>
+                <summary class="nested-shorthand-item ">es</summary>
+                <summary class="nested-shorthand-item">exstr</summary>
+                <summary class="nested-shorthand-item">exremes</summary>
+                <summary class="nested-shorthand-item">extreme strength</summary>
+            </details>
+            <details class="shorthand mb-2">
+                <summary class="shorthand-label shorthand-item">Extreme defence (3)</summary>
+                <summary class="nested-shorthand-item">ed</summary>
+                <summary class="nested-shorthand-item">exdef</summary>
+                <summary class="nested-shorthand-item">extremed</summary>
+                <summary class="nested-shorthand-item">extreme defence</summary>
+            </details>
+            <details class="shorthand mb-2">
+                <summary class="shorthand-label shorthand-item">Extreme ranging potion (3)</summary>
+                <summary class="nested-shorthand-item">er</summary>
+                <summary class="nested-shorthand-item">exrng</summary>
+                <summary class="nested-shorthand-item">extremer</summary>
+                <summary class="nested-shorthand-item">extreme ranging</summary>
+            </details>
+            <details class="shorthand mb-2">
+                <summary class="shorthand-label shorthand-item">Extreme magic potion (3)</summary>
+                <summary class="nested-shorthand-item">em</summary>
+                <summary class="nested-shorthand-item">exmag</summary>
+                <summary class="nested-shorthand-item">extremem</summary>
+                <summary class="nested-shorthand-item">extreme magic</summary>
+            </details>
+        </details>
+        <details>
+            <summary class="shorthand-label">Overloads</summary>
+            <details class="shorthand mb-2">
+                <summary class="shorthand-label shorthand-item">Overload (3)</summary>
+                <summary class="nested-shorthand-item">ovl</summary>
+                <summary class="nested-shorthand-item">overload</summary>
+            </details>
+            <details class="shorthand mb-2">
+                <summary class="shorthand-label shorthand-item">Supreme overload potion (6)</summary>
+                <summary class="nested-shorthand-item">sovl</summary>
+                <summary class="nested-shorthand-item">supovl</summary>
+                <summary class="nested-shorthand-item">supreme ovl</summary>
+                <summary class="nested-shorthand-item">supreme overload</summary>
+            </details>
+            <details class="shorthand mb-2">
+                <summary class="shorthand-label shorthand-item">Elder overload potion (6)</summary>
+                <summary class="nested-shorthand-item">eovl</summary>
+                <sumamry class="nested-shorthand-item">elder</sumamry>
+                <summary class="nested-shorthand-item">elderovl</summary>
+                <summary class="nested-shorthand-item">elder ovl</summary>
+                <summary class="nested-shorthand-item">elder overload</summary>
+            </details>
+            <details class="shorthand mb-2">
+                <summary class="shorthand-label shorthand-item">Elder overload salve (6)</summary>
+                <summary class="nested-shorthand-item">eos</summary>
+                <summary class="nested-shorthand-item">esalve</summary>
+                <summary class="nested-shorthand-item">eldersalve</summary>
+                <summary class="nested-shorthand-item">elder salve</summary>
+                <summary class="nested-shorthand-item">elder overload salve</summary>
+            </details>
+        </details>
+        
     </div>
 </div>
 
 <script src="/javascripts/validateForms.js"></script>
-
-<script>
-    const button = document.querySelector("#submitButton");
-    const spinner = document.querySelector("#spinner");
-
-    const submitText = document.createElement("span");
-    submitText.id = "submitText";
-    submitText.append(document.createTextNode("Submit"));
-    button.appendChild(submitText);
-
-    const loadingText = document.createElement("span");
-    loadingText.id = "loadingText";
-    loadingText.append(document.createTextNode("Querying Database, please wait..."))
-    
-    const buttonSpan = document.querySelector("#submitText");
-    const potionInput = document.querySelector("input[type='text']");
-    const numberInput = document.querySelector("input[type='number']");
-
-    button.addEventListener("click",()=>
-    {
-        if(!potionInput.matches(".form-control:invalid") && !numberInput.matches(".form-control:invalid"))
-        {
-            spinner.hidden = false;
-            button.disabled = true;
-            button.replaceChild(loadingText,submitText);  
-        }
-    })
-
-</script>
-
-<script>
-    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-    const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-      return new bootstrap.Tooltip(tooltipTriggerEl)
-    })
-    console.log(tooltipList)
-</script>
+<script src="/javascripts/submitSpinner.js"></script>
+<script src="/javascripts/bootstrapTooltips.js"></script>
