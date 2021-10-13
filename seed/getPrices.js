@@ -63,6 +63,7 @@ const untradeableItems = [
     20000,
     20001,
     20002,
+    32270,
     49123,
     899995,
     899996,
@@ -86,7 +87,30 @@ const untradeableItems = [
     900015,
     900016,
     900017,
-    900018
+    900018,
+    900019,
+    900020,
+    900021,
+    900022,
+    900023,
+    900024,
+    900025,
+    900026,
+    900027,
+    900028,
+    900029,
+    900030,
+    900031,
+    900032,
+    900033,
+    900034,
+    900035,
+    900036,
+    900037,
+    900038,
+    900039,
+    900040,
+    900041
 ]
 
 mongoose.connect(dbUrl)
@@ -100,15 +124,16 @@ mongoose.connect(dbUrl)
 
 async function fetchPrices()
 {
-    
+    console.log("fetchPrices called")
     const herbloreItems = await HerbloreItem.find({});
     for(const item of herbloreItems)
     {
+        console.log(item.name)
         try{
             if(!untradeableItems.find(id => id === item.itemID) && item.dailyPrice === 0)
             {
                 console.log(item.name);
-                await new Promise(resolve => setTimeout(resolve, 2500)) 
+                await new Promise(resolve => setTimeout(resolve, 2000)) 
                 const graph = await grandexchange.getItemGraph(parseInt(item.itemID));
                 const exactPrice = graph.daily[Object.keys(graph.daily)[Object.keys(graph.daily).length-1]]
                 console.log(exactPrice)

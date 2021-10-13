@@ -87,12 +87,7 @@ const addRequires = async (potion,requires) =>
         const items = []
         for(const material of requires)
         {
-            if(potion==="Supreme overload potion (6)")
-            {
-                console.log("SUPREME MATERIAL: ",material);
-            }
-            const item = await HerbloreItem.findOne({name:material});
-            
+            const item = await HerbloreItem.findOne({name:material}); 
             items.push(item._id);
         }
         for(const item of items)
@@ -130,6 +125,10 @@ const addRequiresPromise = async () => {
     await addRequires("Swordfish",["Raw swordfish"]);
     await addRequires("Dragonstone",["Uncut dragonstone"])
     await addRequires("Crushed dragonstone",["Dragonstone"])
+    await addRequires("Primal extract",["Primal fruit pulp","Vial"])
+    await addRequires("Adrenaline crystal",["Primal extract","Inert adrenaline crystal","Spark chitin"])
+    await addRequires("Coconut (open)",["Coconut"]);
+    await addRequires("Coconut milk", ["Coconut (open)","Vial"] )
 
     await addRequires("Clean guam",["Grimy guam"])
     await addRequires("Clean marrentill",["Grimy marrentill"])
@@ -152,13 +151,12 @@ const addRequiresPromise = async () => {
     await addRequires("Clean fellstalk",["Grimy fellstalk"])
     await addRequires("Clean bloodweed",["Grimy bloodweed"])
     await addRequires("Clean arbuck",["Grimy arbuck"])
-    await addRequires("Primal extract",["Primal fruit pulp","Vial"])
+    
     await addRequires("Clean erzille",["Grimy erzille"]);
     await addRequires("Clean argway",["Grimy argway"]);
     await addRequires("Clean ugune",["Grimy ugune"]);
     await addRequires("Clean shengo",["Grimy shengo"]);
     await addRequires("Clean samaden",["Grimy samaden"]);
-
 
     await addRequires("Guam potion (unf)",["Clean guam","Vial of water"]);
     await addRequires("Marrentill potion (unf)",["Clean marrentill","Vial of water"])
@@ -185,33 +183,55 @@ const addRequiresPromise = async () => {
     await addRequires("Ugune potion (unf)",["Clean ugune","Juju vial of water"])
     await addRequires("Shengo potion (unf)",["Clean shengo","Juju vial of water"])
     await addRequires("Samaden potion (unf)",["Clean samaden","Juju vial of water"])
+
+    await addRequires("Antipoison+ (unf)",["Coconut milk","Clean toadflax"]);
+    await addRequires("Antipoison++ (unf)",["Coconut milk","Clean irit"]);
+    await addRequires("Weapon poison+ (unf)",["Coconut milk","Cactus spine"]);
+    await addRequires("Weapon poison++ (unf)",["Coconut milk","Cave nightshade"]);
+
+
+
+    
  
     await addRequires("Attack potion (3)",["Guam potion (unf)","Eye of newt"])
+    await addRequires("Attack potion (4)",["Attack potion (3)","Attack potion (1)"])
     await addRequires("Super attack (3)",["Irit potion (unf)","Eye of newt"])
     await addRequires("Super attack (4)",["Super attack (3)","Super attack (1)"])
     await addRequires("Extreme attack (3)",["Super attack (3)","Clean avantoe"])
+    await addRequires("Extreme attack (4)",["Extreme attack (3)","Extreme attack (1)"])
+
 
     await addRequires("Strength potion (3)",["Tarromin potion (unf)", "Limpwurt root"])
+    await addRequires("Strength potion (4)",["Strength potion (3)", "Strength potion (1)"])
     await addRequires("Super strength (3)",["Kwuarm potion (unf)","Limpwurt root"])
     await addRequires("Super strength (4)",["Super strength (3)","Super strength (1)"])
- 
     await addRequires("Extreme strength (3)",["Super strength (3)","Clean dwarf weed"])
+    await addRequires("Extreme strength (4)",["Extreme strength (3)","Extreme strength (1)"])
+
 
     await addRequires("Defence potion (3)",["Marrentill potion (unf)","Bear fur"])
+    await addRequires("Defence potion (4)",["Defence potion (3)","Defence potion (1)"])
     await addRequires("Super defence (3)",["Cadantine potion (unf)","White berries"])
     await addRequires("Super defence (4)",["Super defence (3)","Super defence (1)"])
     await addRequires("Extreme defence (3)",["Super defence (3)","Clean lantadyme"])
- 
+    await addRequires("Extreme defence (4)",["Extreme defence (3)","Extreme defence (1)"])
+
     await addRequires("Ranging potion (3)",["Guam potion (unf)","Redberries"])
+    await addRequires("Ranging potion (4)",["Ranging potion (3)","Ranging potion (1)"])
     await addRequires("Super ranging potion (3)",["Dwarf weed potion (unf)","Wine of Zamorak"])
     await addRequires("Super ranging potion (4)",["Super ranging potion (3)","Super ranging potion (1)"])
     await addRequires("Extreme ranging (3)",["Super ranging potion (3)","Grenwall spikes"])
+    await addRequires("Extreme ranging (4)",["Extreme ranging (3)","Extreme ranging (1)"])
 
     await addRequires("Magic potion (3)",["Tarromin potion (unf)","Black bead"]) //note: need to consider alternative recipies
+    await addRequires("Magic potion (4)",["Magic potion (3)","Magic potion (1)"])
     await addRequires("Super magic potion (3)",["Lantadyme potion (unf)","Potato cactus"])
     await addRequires("Super magic potion (4)",["Super magic potion (3)","Super magic potion (1)"])
     await addRequires("Extreme magic (3)",["Super magic potion (3)","Ground mud runes"]);
- 
+    await addRequires("Extreme magic (4)",["Extreme magic (3)","Extreme magic (1)"]);
+
+
+
     await addRequires("Overload (3)",["Extreme attack (3)","Extreme strength (3)","Extreme defence (3)","Extreme ranging (3)","Extreme magic (3)","Clean torstol"])
     await addRequires("Overload (4)",["Overload (3)","Overload (1)"])
 
@@ -228,17 +248,64 @@ const addRequiresPromise = async () => {
     await addRequires("Antipoison (3)",["Marrentill potion (unf)","Unicorn horn dust"])
     await addRequires("Super antipoison (3)",["Irit potion (unf)","Unicorn horn dust"])
     await addRequires("Super antipoison (4)",["Super antipoison (3)","Super antipoison (1)"])
+    await addRequires("Antipoison+ (4)",["Antipoison+ (unf)","Yew roots"]);
+    await addRequires("Antipoison++ (4)",["Antipoison++ (unf)","Magic roots"]);
+
+    await addRequires("Weapon poison (3)",["Kwuarm potion (unf)","Dragon scale dust"])
+    await addRequires("Weaponpoison+ (3)",["Weapon poison+ (unf)","Red spiders' eggs"]);
+    await addRequires("Weaponpoison++ (3)",["Weapon poison++ (unf)","Poison ivy berries"]);
+
+
  
     await addRequires("Prayer renewal (3)",["Fellstalk potion (unf)","Morchella mushroom"])
     await addRequires("Prayer renewal (4)",["Prayer renewal (3)","Prayer renewal (1)"])
 
     await addRequires("Elder overload salve (6)",["Elder overload potion (6)","Prayer renewal (4)","Prayer potion (4)","Super antipoison (4)","Antifire (4)","Super antifire (4)"])
 
+    await addRequires("Aggroverload (6)",["Overload (4)","Aggression potion (4)","Clean arbuck","Crystal flask"])
+    await addRequires("Brightfire potion (6)",["Super antifire (4)","Prayer renewal (4)","Crystal flask"])
+    await addRequires("Extreme battlemage's potion (6)",["Extreme defence (4)","Extreme magic (4)" ,"Crystal flask"])
+    await addRequires("Extreme brawler's potion (6)",["Extreme attack (4)","Extreme strength (4)","Extreme defence (4)" ,"Crystal flask"])
+    await addRequires("Extreme sharpshooter's potion (6)",["Extreme defence (4)","Extreme ranging (4)","Crystal flask"])
+    await addRequires("Extreme warmaster's potion (6)",["Extreme attack (4)","Extreme strength (4)","Extreme defence (4)","Extreme ranging (4)","Extreme magic (4)","Crystal flask"])
+    await addRequires("Grand attack potion (6)",["Attack potion (4)","Super attack (4)","Crystal flask"])
+    await addRequires("Grand defence potion (6)",["Defence potion (4)","Super defence (4)" ,"Crystal flask"])
+    await addRequires("Grand magic potion (6)",["Magic potion (4)","Super magic potion (4)","Crystal flask"])
+    await addRequires("Grand ranging potion (6)",["Ranging potion (4)","Super ranging potion (4)","Crystal flask"])
+    await addRequires("Grand strength potion (6)",["Strength potion (4)","Super strength (4)","Crystal flask"])
+    await addRequires("Holy aggroverload (6)",["Aggression potion (4)","Prayer renewal (4)","Spider venom","Crystal flask"])
+    await addRequires("Holy overload potion (6)",["Overload (4)","Prayer renewal (4)","Crystal flask"])
+    await addRequires("Overload salve (6)",["Overload (4)","Prayer renewal (4)","Prayer potion (4)","Super antipoison (4)","Antifire (4)","Super antifire (4)" ,"Crystal flask"])
+    await addRequires("Perfect plus potion (6)",["Overload (4)","Harmony moss","Crystal tree blossom" ,"Crystal flask"])
+    await addRequires("Replenishment potion (6)",["Adrenaline potion (4)","Super restore (4)","Crystal flask"])
+    await addRequires("Searing overload potion (6)",["Overload (4)","Super antifire (4)","Crystal flask"])
+    await addRequires("Spiritual prayer potion (6)",["Summoning potion (4)","Prayer potion (4)","Primal extract","Crystal flask"])
+    await addRequires("Super melee potion (6)",["Super attack (4)","Super strength (4)","Super defence (4)"  ,"Crystal flask"])
+    await addRequires("Super prayer renewal potion (6)",["Prayer potion (4)","Prayer renewal (4)"  ,"Crystal flask"])
+    await addRequires("Super warmaster's potion (6)",["Super attack (4)","Super strength (4)","Super defence (4)","Super ranging potion (4)","Super magic potion (4)"  ,"Crystal flask"])
+    await addRequires("Supreme attack potion (6)",["Super attack (4)","Extreme attack (4)"  ,"Crystal flask"])
+    await addRequires("Supreme defence potion (6)",["Super defence (4)","Extreme defence (4)"  ,"Crystal flask"])
+    await addRequires("Supreme magic potion (6)",["Super magic potion (4)","Extreme magic (4)"  ,"Crystal flask"])
+    await addRequires("Supreme overload salve (6)",["Supreme overload potion (6)","Prayer renewal (4)","Prayer potion (4)","Super antipoison (4)","Antifire (4)","Super antifire (4)","Crystal flask"])
+    await addRequires("Supreme ranging potion (6)",["Super ranging potion (4)","Extreme ranging (4)"  ,"Crystal flask"])
+    await addRequires("Supreme strength potion (6)",["Super strength (4)","Extreme strength (4)"  ,"Crystal flask"])
+    await addRequires("Wyrmfire potion (6)",["Antifire (4)","Super antifire (4)"  ,"Crystal flask"])
+
     await addRequires("Energy potion (3)",["Harralander potion (unf)","Chocolate dust"])
     await addRequires("Super energy (3)",["Avantoe potion (unf)","Mort myre fungus"])
  
     await addRequires("Restore potion (3)",["Harralander potion (unf)","Red spiders' eggs"])
     await addRequires("Super restore (3)",["Snapdragon potion (unf)","Red spiders' eggs"])
+    await addRequires("Super restore (4)",["Super restore (4)","Super restore (1)"])
+
+    await addRequires("Adrenaline potion (3)",["Super energy (3)","Papaya fruit"])
+    await addRequires("Adrenaline potion (4)",["Adrenaline potion (3)","Adrenaline potion (1)"])
+
+    await addRequires("Super adrenaline potion (3)",["Adrenaline potion (3)","Adrenaline crystal"])
+    await addRequires("Super adrenaline potion (4)",["Super adrenaline potion (3)","Super adrenaline potion (1)"])
+
+
+    await addRequires("Adrenaline renewal potion (4)",["Super adrenaline potion (4)","Primal extract","Bottled dinosaur roar","Clean arbuck" ,"Crystal flask"]) //multiple recipes
 
     await addRequires("Prayer potion (3)",["Ranarr potion (unf)","Snape grass"])
     await addRequires("Prayer potion (4)",["Prayer potion (3)","Prayer potion (1)"]);
@@ -246,6 +313,8 @@ const addRequiresPromise = async () => {
  
     await addRequires("Combat potion (3)",["Harralander potion (unf)","Goat horn dust"])
     await addRequires("Summoning potion (3)",["Spirit weed potion (unf)","Cockatrice egg"])
+    await addRequires("Summoning potion (4)",["Summoning potion (3)","Summoning potion (1)"])
+
  
     await addRequires("Saradomin brew (3)",["Toadflax potion (unf)","Crushed nest"])
     await addRequires("Super Saradomin brew (3)",["Saradomin brew (3)","Wine of Saradomin"])
@@ -259,7 +328,8 @@ const addRequiresPromise = async () => {
     await addRequires("Luck potion",["Bloodweed potion (unf)","Crushed dragonstone"])
     await addRequires("Enhanced luck potion",["Luck potion","Onyx bolt tips"])
  
-    await addRequires("Aggression potion (3)",["Bloodweed potion (unf)","Searing ashes"])
+    await addRequires("Aggression potion (3)",["Bloodweed potion (unf)","Searing ashes"]);
+    await addRequires("Aggression potion (4)",["Aggression potion (3)","Aggression potion (1)"])
  
     await addRequires("Agility potion (3)",["Toadflax potion (unf)","Toad's legs"])
     await addRequires("Archaeology potion (3)",["Avantoe potion (unf)","Aerated sediment"])
@@ -325,9 +395,9 @@ seedDB().
 then(()=>{
     addRequiresPromise()
     .then(()=>{
-        console.log("@===================================@")
-        console.log("||Seed complete, database is ready.||")
-        console.log("@===================================@")
+        console.log("@==============================================@")
+        console.log("||Seed complete, database is ready for prices.||")
+        console.log("@==============================================@")
         mongoose.connection.close();
     })
 })
