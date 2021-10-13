@@ -84,3 +84,33 @@ nav.navbar p.mx-3.pt-3.fs-1{
     user-select: none;
 }
 
+
+/* modal styles currently inline, not sure why classes wont go through. */
+
+/* .modal .custom .depth1{
+    background-color: 3.5px solid rgb(0, 0, 0);
+}
+.modal .custom .depth2{
+    background-color: 3.5px solid rgb(255, 157, 0);
+}
+.modal .custom .depth3{
+    background-color: 3.5px solid rgb(13, 58, 13);
+}
+.modal .custom .depth4{
+    background-color: 3.5px solid rgb(160, 151, 71);
+}
+.modal .custom .depth5{
+    background-color: 3.5px solid rgb(110, 32, 1);
+}
+.modal .custom .depth6{
+    background-color: 3.5px solid rgb(95, 16, 53);
+}
+.modal .custom .depth7{
+    background-color: 3.5px solid rgb(6, 144, 144);
+}
+.modal .custom .depth8{
+    background-color: 3.5px solid rgb(121, 121, 121);
+}
+.modal .custom .depth9{
+    background-color: 3.5px solid rgb(255, 252, 252);
+} */

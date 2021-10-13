@@ -16,7 +16,7 @@
   </div>
 </nav>
 
-<div class="modal fade" id="aboutPotionChain" tabindex="-1" aria-labelledby="aboutPotionChainLabel" aria-hidden="true">
+<div class="modal custom fade" id="aboutPotionChain" tabindex="-1" aria-labelledby="aboutPotionChainLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
@@ -25,6 +25,30 @@
       </div>
       <div class="modal-body">
         <p>A supply chain visualizer for potions in RuneScape 3.</p>
+        <p>
+          Simply type in the potion you want to make and the quantity. Essential display will show only the core ingredients required
+          to make the potion, while full display will show <em>everything</em> down to the empty vials/flasks.
+        </p> 
+        <p>
+          On full display there are various colored bars to help with showing the depth level. An ingredient's depth level depends on how dependent it is on other ingredients.
+          The deeper in the list it is the more <em>primitive</em> the ingredient. An ingredient is primitive if it can not be made by means of other 
+          herblore ingredients.
+        </p>
+        <p>
+          For example, a vial is primitive but a vial of water is not. However a vial of water is more primitive than an unfinished potion,
+          hence it is displayed in a deeper indentation level.
+        </p>
+        <ul style="list-style-type:none; padding:0;">
+          <li style="background-color: rgb(0,0,0); color:white;">Depth 1 - rgb(0,0,0)</li>
+          <li style="background-color: rgb(255, 157, 0); color:white;">Depth 2 - rgb(255, 157, 0)</li>
+          <li style="background-color: rgb(13, 58, 13); color:white;">Depth 3 - rgb(13, 58, 13)</li>
+          <li style="background-color: rgb(160, 151, 71); color:white;">Depth 4 - rgb(160, 151, 71)</li>
+          <li style="background-color: rgb(110, 32, 1); color:white;">Depth 5 - rgb(110, 32, 1)</li>
+          <li style="background-color: rgb(95, 16, 53); color:white;">Depth 6 - rgb(95, 16, 53)</li>
+          <li style="background-color: rgb(6, 144, 144); color:white;">Depth 7 - rgb(6, 144, 144)</li>
+          <li style="background-color: rgb(121, 121, 121); color:white;">Depth 8 - rgb(121, 121, 121)</li>
+          <li style="background-color: rgb(255, 252, 252); color:black;">Depth 9 - rgb(255, 252, 252)</li>
+        </ul>
       </div>
       <div class="modal-footer">
           <a href="https://github.com/morganchafe/PotionChain" class="btn btn-primary">Github</a>
