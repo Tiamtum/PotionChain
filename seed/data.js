@@ -405,6 +405,7 @@ const nonPrimitiveIngredients =
 
 
 const imageLinks = [
+    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=143",
     "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=149",
     "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=161",
     "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=167",
