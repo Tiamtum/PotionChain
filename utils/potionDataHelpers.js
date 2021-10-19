@@ -75,6 +75,86 @@ function getCoinPile(totalPrice)
     else{return "/images/Coins_10000.webp";}
 }
 
+function parseName(rawName)
+{
+    const lowercaseName = rawName.toLowerCase().trim().replace(/\s+/g, " ");
+    console.log(lowercaseName);
+    if(shortHandNames[lowercaseName])
+    {
+        return shortHandNames[lowercaseName]
+    }
+    else
+    {
+        return rawName.trim().replace(/\s+/g, " ");
+    };
+    
+}
+
+function parsePrice(price)
+/*
+Make this more generic later.
+*/
+{
+    const priceString = Math.abs(price).toString();
+    console.log(priceString)
+    const psLength = priceString.length;
+    if(psLength < 4)
+    {
+        return priceString;
+    }
+    const MILLION = 7;
+    const BILLION = 10;
+    const TRILLION = 13;
+    if(psLength < MILLION)
+    {
+        return priceString.slice(0,psLength-3)+","+priceString.slice(psLength-3);
+    }
+    else if(psLength >= MILLION && psLength < BILLION )
+    {
+        return priceString.slice(0,psLength-6)+","+priceString.slice(psLength-6,psLength-3) + "," + priceString.slice(psLength-3);
+    }
+    else if(psLength >= BILLION && psLength < TRILLION)
+    {
+        return priceString.slice(0,psLength-9)+","+priceString.slice(psLength-9,psLength-6) + "," + priceString.slice(psLength-6,psLength-3)+ "," + priceString.slice(psLength-3);
+    }
+    else
+    {
+        return priceString;
+    }
+}
+
+function getFinalPrice(ingredients,display)
+{
+    if(display === "essential")
+    {
+        let finalPrice = 0;
+        for(const ingredient of ingredients)
+        {
+            console.log(ingredient);
+            if(!untradeableItems[ingredient.itemID])
+            {
+                finalPrice += ingredient.data.totalPrice.value;
+            }
+        }
+        console.log("finalPrice",finalPrice);
+        const parsedPrice = parsePrice(finalPrice);
+        const finalPriceCoinPile = getCoinPile(finalPrice);
+        console.log(parsePrice(finalPrice))
+        return {value:finalPrice,"string":parsedPrice,"coinPile":finalPriceCoinPile};
+    }
+    else if(display === "full")
+    {
+        return 1;
+    }
+    else
+    {
+        throw new ExpressError("Invalid display option",500);
+    }
+}
+
+
+
+
 
 const untradeableItems = {
     "1526": "Clean snake weed",
@@ -254,6 +334,9 @@ module.exports = {
     setImage,
     setIngredients,
     getCoinPile,
+    parseName,
+    parsePrice,
+    getFinalPrice,
     untradeableItems,
     shortHandNames,
 };

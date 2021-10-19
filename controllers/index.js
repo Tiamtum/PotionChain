@@ -13,7 +13,10 @@ const {
     setImage,
     untradeableItems,
     shortHandNames,
-    getCoinPile
+    getCoinPile,
+    parseName,
+    parsePrice,
+    getFinalPrice,
 } = require("../utils/potionDataHelpers");
 
 module.exports.renderIndex = async (req,res)=>{
@@ -26,21 +29,6 @@ module.exports.renderChangelog = (req,res)=>{
     res.render("changelog",{pageTitle:"Potion Chain"})
 }
 
-async function parseName(rawName)
-{
-    const lowercaseName = rawName.toLowerCase().trim().replace(/\s+/g, " ");
-    console.log(lowercaseName);
-    if(shortHandNames[lowercaseName])
-    {
-        return shortHandNames[lowercaseName]
-    }
-    else
-    {
-        return rawName.trim().replace(/\s+/g, " ");
-    };
-    
-}
-
 module.exports.showResults = async (req,res)=>{  
     console.log("req.query", req.query);
     try
@@ -48,7 +36,6 @@ module.exports.showResults = async (req,res)=>{
         const name = await parseName(req.query.name.trim());
         const number = parseInt(req.query.number);
         const display = req.query.display;
-        let finalPrice = 0;
         const potion = await getItemByName(name);
         req.session.data = [];
         const ingredients =  setIngredients(potion,display);
@@ -58,24 +45,48 @@ module.exports.showResults = async (req,res)=>{
             const ingredientData = await getItemByName(ingredient.item);
             const image = setImage(ingredientData,untradeableItems);
             const exactPrice = ingredientData.dailyPrice;
-            const totalPrice = exactPrice*number;
-            const coinPile = getCoinPile(totalPrice);
+            // const totalPrice = exactPrice*number;
+            // const totalPriceParsed = parsePrice(totalPrice);
+            const totalPrice = {"value":exactPrice*number,"string":parsePrice(exactPrice*number)}
+            const coinPile = getCoinPile(totalPrice.value);
             ingredient.data = {number,image,exactPrice,totalPrice,coinPile};
             req.session.data.push(ingredient);
             console.log(`${ingredient.item} RECIEVED`,`itemID: ${ingredient.itemID}`);
         }
-        req.session.finalPrice = finalPrice;
+        
+        
+        // const finalPrice = getFinalPrice(ingredients,display);
+        // console.log("finalPrice",finalPrice);
+        let totals = 0 ;
+        for(let i = 1; i<ingredients.length; i++)
+        {
+            totals += ingredients[i].data.totalPrice.value 
+        }
+        // const cost = ingredients[0].data.totalPrice.value - totals;
+        // const priceToMake = {"value":totals,"string":parsePrice(totals),"coinPile":getCoinPile(totals)}
+        // const profit = {"value":cost, "string":parsePrice(cost),"coinPile":getCoinPile(cost)};
+
+        const costData = 
+        {
+            "profit" : {"value":ingredients[0].data.totalPrice.value - totals, "string":parsePrice(ingredients[0].data.totalPrice.value - totals),"coinPile":getCoinPile(ingredients[0].data.totalPrice.value - totals)},
+            "priceToMake" : {"value":totals,"string":parsePrice(totals),"coinPile":getCoinPile(totals)}
+        }
+
+        // req.session.profit = profit;
+        // req.session.finalPrice = finalPrice;
+        req.session.costData = costData;
         req.session.displaySetting = display;
         req.session.save();
-        res.render("results",{ingredients,finalPrice,"displaySetting":display,pageTitle:"Potion Chain"}) 
+        console.log(ingredients);
+        res.render("results",{ingredients,costData,"displaySetting":display,pageTitle:"Potion Chain"}) 
 
     }
     catch(err)
     {
         const name = req.query.name;
         console.log("showResults error",err);
-        console.log("e.name, ",err.name,typeof(err.name));
-        console.log("e.message, ",err.message,typeof(err.message));
+        console.log("err.name, ",err.name,typeof(err.name));
+        console.log("err.message, ",err.message,typeof(err.message));
         console.log("err.name === \"TypeError\"", err.name === "TypeError");
         if(err.name === "TypeError")
         {
@@ -83,7 +94,7 @@ module.exports.showResults = async (req,res)=>{
         }
         else
         {
-            throw new ExpressError(e,500);
+            throw new ExpressError(err,500);
         }
     }
 }
