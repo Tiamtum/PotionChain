@@ -1,6 +1,5 @@
 :root{
     --font-color:  #ffffff;
-    /* --anchor-hover: #2a3123; */
     --selection-font-color: #000;
     --selection-background-color: #93958c;
     --gradient-start: rgba(0,0,0,0.65);
@@ -18,6 +17,15 @@ body{
 }
 a{
     text-decoration: none;
+}
+.logo{
+    color: var(--font-color);
+    margin:0;
+    padding:0;
+    display: flex;
+}
+.logo:hover{
+    color: var(--font-color);
 }
 #mainInputs{
     margin-top: 3rem;
@@ -55,9 +63,7 @@ nav.navbar {
 button.navbar-toggler.navbar-toggler-right {
     border-color:  var(--background-color);
 }
-nav.navbar p.mx-3.pt-3.fs-1{
-    user-select: none;
-}
+
 
 @keyframes fadeIn {
     0% {opacity:0;}
