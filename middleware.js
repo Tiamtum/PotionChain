@@ -3,11 +3,11 @@ const ExpressError = require("./utils/ExpressError");
 
 module.exports.checkPreviousSearch = (req,res,next)=>{
     const name = parseName(req.query.name);
-    console.log("NAME: ", name);
+    // console.log("NAME: ", name);
     const number = parseInt(req.query.number);
     const display = req.query.display
-    console.log(display);
-    console.log("req.session.displaySetting:",req.session.displaySetting);
+    // console.log(display);
+    // console.log("req.session.displaySetting:",req.session.displaySetting);
     if(Object.keys(req.session).find(key => key==="data")===undefined)
     {
         next();

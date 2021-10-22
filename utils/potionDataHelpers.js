@@ -78,7 +78,7 @@ function getCoinPile(totalPrice)
 function parseName(rawName)
 {
     const lowercaseName = rawName.toLowerCase().trim().replace(/\s+/g, " ");
-    console.log(lowercaseName);
+    // console.log(lowercaseName);
     if(shortHandNames[lowercaseName])
     {
         return shortHandNames[lowercaseName]
@@ -96,7 +96,7 @@ Make this more generic later.
 */
 {
     const priceString = Math.abs(price).toString();
-    console.log(priceString)
+    // console.log(priceString)
     const psLength = priceString.length;
     if(psLength < 4)
     {
@@ -130,16 +130,16 @@ function getFinalPrice(ingredients,display)
         let finalPrice = 0;
         for(const ingredient of ingredients)
         {
-            console.log(ingredient);
+            // console.log(ingredient);
             if(!untradeableItems[ingredient.itemID])
             {
                 finalPrice += ingredient.data.totalPrice.value;
             }
         }
-        console.log("finalPrice",finalPrice);
+        // console.log("finalPrice",finalPrice);
         const parsedPrice = parsePrice(finalPrice);
         const finalPriceCoinPile = getCoinPile(finalPrice);
-        console.log(parsePrice(finalPrice))
+        // console.log(parsePrice(finalPrice))
         return {value:finalPrice,"string":parsedPrice,"coinPile":finalPriceCoinPile};
     }
     else if(display === "full")
