@@ -10,16 +10,16 @@ The last ingredient is dealt with individually, possibly due to bad implementati
     </div>
     <div class="row">
         <% if(displaySetting==="full"){ %> 
-            <%console.log(`INGREDIENTS LENGTH=${ingredients.length}`)%>
+
             <% ingredients.forEach((ingredient,idx)=>{ %>
-                <%console.log(`[Outer Loop] item=${ingredient.item} tab=${ingredient.tab},idx=${idx}`)%>
+
                 
                 <% if(ingredient.tab===1){ %>
                     <details class="col-xl-6 my-2">
-                        <%console.log(`[Inner Loop]idx=${idx}; ingredients.length-1:${ingredients.length-1} ,idx===ingredients.length-1 = ${idx===ingredients.length-1}`)%>
+                        
                         
                     <%for(let i=idx; i<ingredients.length-1; i++ ){%>
-                        <%console.log(`[Inner Loop] item=${ingredients[i].item} tab=${ingredients[i].tab} idx=${idx} i=${i}`)%>
+                        
                         <%if(ingredients[i+1].tab===1){%>
                             <p>
                                 <summary style="padding-left:<%=ingredients[i].tab*1.5%>em;font-weight: <%=600-50*ingredients[i].tab%>;" > 
@@ -29,11 +29,11 @@ The last ingredient is dealt with individually, possibly due to bad implementati
                                         </label>
                                 </summary>
                             </p>
-                            <%console.log(`[Inner Loop] BREAKING AT,item=${ingredients[i].item} tab=${ingredients[i].tab} idx=${idx} i=${i}`)%>
+                            
                             <%break;%>
                         <% }%>
                         <p>
-                            <%console.log(`[Inner Loop] ADDING TO PAGE item=${ingredients[i].item} tab=${ingredients[i].tab} idx=${idx} i=${i}`)%>
+                            
                             <summary style="padding-left:<%=ingredients[i].tab*1.5%>em;font-weight: <%=600-50*ingredients[i].tab%>;" >
                                 <input type="checkbox" id="<%=i%>" class="d-none d-md-inline-block mx-2 form-check-input">
                                     <label class="form-check-label tab<%=ingredients[i].tab%>" for="<%=i%>">
@@ -47,7 +47,7 @@ The last ingredient is dealt with individually, possibly due to bad implementati
                     Seriously need to crawl through this step by step to figure it out. -->
                     <% if(idx===ingredients.length-1){ %>
                         <p>
-                            <%console.log(`[Inner Loop] LAST INGREDIENT item=${ingredients[idx].item} tab=${ingredients[idx].tab} idx=${idx}`)%>
+                            
                             <summary style="padding-left:<%=ingredients[idx].tab*1.5%>em;font-weight: <%=600-50*ingredients[idx].tab%>;" >
                                 <input type="checkbox" id="<%=idx%>" class="d-none d-md-inline-block mx-2 form-check-input">
                                     <label class="form-check-label tab<%=ingredients[idx].tab%>" for="<%=idx%>">
@@ -58,7 +58,7 @@ The last ingredient is dealt with individually, possibly due to bad implementati
                     <% } %>
                     <% if(idx+1===ingredients.length-1){ %>
                         <p>
-                            <%console.log(`[Inner Loop] LAST INGREDIENT item=${ingredients[idx+1].item} tab=${ingredients[idx+1].tab} idx=${idx+1}`)%>
+
                             <summary style="padding-left:<%=ingredients[idx+1].tab*1.5%>em;font-weight: <%=600-50*ingredients[idx+1].tab%>;" >
                                 <input type="checkbox" id="<%=idx+1%>" class="d-none d-md-inline-block mx-2 form-check-input">
                                     <label class="form-check-label tab<%=ingredients[idx].tab%>" for="<%=idx+1%>">
@@ -70,6 +70,16 @@ The last ingredient is dealt with individually, possibly due to bad implementati
                 </details>
                 <% } %>
             <% }) %>
+            <div class="col-xl-12 col-sm-12 d-flex flex-column align-items-center" >
+                <p class="mt-4 fs-4">Price to make: <%=costData.priceToMake.string%> <img src="<%=costData.priceToMake.coinPile%>" data-bs-toggle="tooltip" title="<%=costData.priceToMake.string%>gp"></p>
+                <%if(costData.profit.value <0){%>
+                <p class="fs-4">Resale: <span class="text-danger">-<%=costData.profit.string%></span> <img src="<%=costData.profit.coinPile%>" data-bs-toggle="tooltip" title="<%=costData.profit.string%>gp"></p>
+                <% }else if(costData.profit.value === 0){ %>
+                    <p class="fs-4">Resale: <span><%=costData.profit.string%></span></p>
+                <% }else{ %>
+                <p class="fs-4">Resale: <span class="text-success"><%=costData.profit.string%></span> <img src="<%=costData.profit.coinPile%>" data-bs-toggle="tooltip" title="<%=costData.profit.string%>gp"></p>
+                <% } %>
+            </div>
         <% }else if(displaySetting === "essential"){ %> 
                 <div class="col-xl-12 col-sm-12 d-flex flex-column align-items-center">       
                     <%ingredients.slice(1).forEach((ingredient,i)=>{%>    
