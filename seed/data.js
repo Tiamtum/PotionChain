@@ -369,7 +369,7 @@ const nonPrimitiveIngredients =
     "900029": "Adrenaline potion (3)",
     "900030": "Adrenaline potion (4)",
     "900032": "Enhanced replenishment potion",
-    "900033": "Adrenaline renewal potion (3)",
+    "900033": "Adrenaline renewal potion (4)",
     "900035": "Super adrenaline potion (3)",
     "900036": "Super adrenaline potion (4)",
     "900037": "Antipoison+ (unf)",
@@ -513,7 +513,7 @@ const imageLinks = [
     "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=48922",
     "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=48923",
     "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=48925",
-    "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=48926",
+    "https://secure.runescape.com/m=itemdb_rs/1639998136005_obj_sprite.gif?id=48926",
     "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=48960",
     "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=48961",
     "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=48966",
@@ -694,6 +694,7 @@ const imageLinks = [
     "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=5935",
     "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=5974",
     "https://secure.runescape.com/m=itemdb_rs/1633359006234_obj_sprite.gif?id=5976",
+    "https://secure.runescape.com/m=itemdb_rs/1639998136005_obj_sprite.gif?id=5972"
 ]
 
 const fullFlasks = 

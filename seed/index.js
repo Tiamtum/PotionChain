@@ -305,7 +305,7 @@ const addRequiresPromise = async () => {
     await addRequires("Super adrenaline potion (4)",["Super adrenaline potion (3)","Super adrenaline potion (1)"])
 
 
-    await addRequires("Adrenaline renewal potion (4)",["Super adrenaline potion (4)","Primal extract","Bottled dinosaur roar","Clean arbuck" ,"Crystal flask"]) //multiple recipes
+    await addRequires("Adrenaline renewal potion (4)",["Super adrenaline potion (3)","Primal extract","Bottled dinosaur roar","Clean arbuck" ,"Crystal flask"]) //multiple recipes
 
     await addRequires("Prayer potion (3)",["Ranarr potion (unf)","Snape grass"])
     await addRequires("Prayer potion (4)",["Prayer potion (3)","Prayer potion (1)"]);
