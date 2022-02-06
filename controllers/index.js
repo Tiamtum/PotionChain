@@ -12,11 +12,9 @@ const {
     setIngredients,
     setImage,
     untradeableItems,
-    shortHandNames,
     getCoinPile,
     parseName,
-    parsePrice,
-    getFinalPrice,
+    parsePrice
 } = require("../utils/potionDataHelpers");
 
 module.exports.renderIndex = async (req,res)=>{
@@ -44,78 +42,19 @@ module.exports.showResults = async (req,res)=>{
             const ingredientData = await getItemByName(ingredient.item);
             const image = setImage(ingredientData,untradeableItems);
             const exactPrice = ingredientData.dailyPrice;
-            // const totalPrice = exactPrice*number;
-            // const totalPriceParsed = parsePrice(totalPrice);
             const totalPrice = {"value":exactPrice*number,"string":parsePrice(exactPrice*number)}
             const coinPile = getCoinPile(totalPrice.value);
             ingredient.data = {number,image,exactPrice,totalPrice,coinPile};
             req.session.data.push(ingredient);
-            // console.log(`${ingredient.item} RECIEVED`,`itemID: ${ingredient.itemID}`);
         }
         
         let totals = 0 ;
-        console.log("ingredients.length=",ingredients.length)
-        // for(let i = 1; i<ingredients.length; i++)
-        // {
-        //     if(ingredients[i].tab === 1 && ingredients[i].data.totalPrice.value !== 0)
-        //     {
-        //         console.log("ADDING",ingredients[i].item,"'s price to total");
-        //         totals += ingredients[i].data.totalPrice.value 
-        //     }
-        //     else if(ingredients[i].tab === 1 && ingredients[i].data.totalPrice.value === 0)
-        //     {
-        //         // console.log(ingredients[i].item," is value 0");
-        //         for(let j = i; j<ingredients.length; j++)
-        //         {
-        //             // console.log("let j = i; j<ingredients.length; j++")
-        //             if(ingredients[j+1].tab === 1)
-        //             {
-        //                 // totals += ingredients[j].data.totalPrice.value;
-        //                 console.log("break reached on item: ",ingredients[j].item )
-        //                 break;
-        //             }
-        //             else
-        //             {
-        //                 if(ingredients[j].tab === 2)
-        //                 {
-        //                     console.log("ADDING ",ingredients[j].item,"'s price to total");
-        //                     totals += ingredients[j].data.totalPrice.value;
-        //                 }
-        //             }
-        //         }
-        //     }
-
-            // if(ingredients[i].tab === 1 && ingredients[i].data.totalPrice.value === 0 )
-            // {
-            //     for(let j = i; j<ingredients.length; j++)
-            //     {
-            //         // console.log("let j = i; j<ingredients.length; j++")
-            //         if(ingredients[j+1].tab === 1)
-            //         {
-            //             // totals += ingredients[j].data.totalPrice.value;
-            //             console.log("break reached on item: ",ingredients[j].item )
-            //             break;
-            //         }
-            //         else
-            //         {
-            //             if(ingredients[j].tab === 2)
-            //             {
-            //                 totals += ingredients[j].data.totalPrice.value;
-            //             }
-            //         }
-            //     }
-            // }
-        //}
-        console.log("totals = ",totals)
-        console.log(ingredients[0].item,ingredients[0].data.totalPrice)
         const costData = 
         {
             "profit" : {"value":ingredients[0].data.totalPrice.value - totals, "string":parsePrice(ingredients[0].data.totalPrice.value - totals),"coinPile":getCoinPile(ingredients[0].data.totalPrice.value - totals)},
             "priceToMake" : {"value":totals,"string":parsePrice(totals),"coinPile":getCoinPile(totals)}
         }
-        console.log("costData",costData);
-        // console.log(ingredients);
-        console.log(ingredients[1].item,ingredients[1].data.totalPrice)
+
 
         req.session.costData = costData;
         req.session.displaySetting = display;
