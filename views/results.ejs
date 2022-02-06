@@ -4,7 +4,7 @@
 this process again at the newfound ingredient of tab 1. Repeat until no more ingredients. 
 The last ingredient is dealt with individually, possibly due to bad implementation.-->
 <!-- EJS bug where details is rendered as div on refresh? -->
-    <h1 class="text-center"><%=ingredients[0].data.number%> &times; <img src="<%=ingredients[0].data.image%>" alt=""> <%=ingredients[0].item%> <img src="<%=ingredients[0].data.coinPile%>" alt="" class="d-none d-md-inline" data-bs-toggle="tooltip" title="GE Price: <%=ingredients[0].data.totalPrice.string%>gp"></h1>
+    <h1 class="text-center"><%=ingredients[0].data.number%> &times; <img src="<%=ingredients[0].data.image%>" alt=""> <%=ingredients[0].item%></h1>
     <div class="my-3 d-flex justify-content-center">
         <button class="btn btn-success" id="uncheck">Uncheck all</button>
     </div>
@@ -25,7 +25,7 @@ The last ingredient is dealt with individually, possibly due to bad implementati
                                 <summary style="padding-left:<%=ingredients[i].tab*1.5%>em;font-weight: <%=600-50*ingredients[i].tab%>;" > 
                                     <input type="checkbox" id="<%=i%>" class="d-none d-md-inline-block d-md-inline mx-2 form-check-input">
                                         <label class="form-check-label tab<%=ingredients[i].tab%>" for="<%=i%>">
-                                            <%=ingredients[i].data.number%> &times; <img src="<%=ingredients[i].data.image%>" alt=""> <%=ingredients[i].item%> <img src="<%=ingredients[i].data.coinPile%>" alt="" class="d-none d-md-inline" data-bs-toggle="tooltip" title="GE Price: <%=ingredients[i].data.totalPrice.string%>gp">
+                                            <%=ingredients[i].data.number%> &times; <img src="<%=ingredients[i].data.image%>" alt=""> <%=ingredients[i].item%> 
                                         </label>
                                 </summary>
                             </p>
@@ -37,7 +37,7 @@ The last ingredient is dealt with individually, possibly due to bad implementati
                             <summary style="padding-left:<%=ingredients[i].tab*1.5%>em;font-weight: <%=600-50*ingredients[i].tab%>;" >
                                 <input type="checkbox" id="<%=i%>" class="d-none d-md-inline-block mx-2 form-check-input">
                                     <label class="form-check-label tab<%=ingredients[i].tab%>" for="<%=i%>">
-                                        <%=ingredients[i].data.number%> &times; <img src="<%=ingredients[i].data.image%>" alt=""> <%=ingredients[i].item%> <img src="<%=ingredients[i].data.coinPile%>" alt="" class="d-none d-md-inline" data-bs-toggle="tooltip" title="GE Price: <%=ingredients[i].data.totalPrice.string%>gp" >
+                                        <%=ingredients[i].data.number%> &times; <img src="<%=ingredients[i].data.image%>" alt=""> <%=ingredients[i].item%> 
                                     </label>
                             </summary>
                         </p>
@@ -51,7 +51,7 @@ The last ingredient is dealt with individually, possibly due to bad implementati
                             <summary style="padding-left:<%=ingredients[idx].tab*1.5%>em;font-weight: <%=600-50*ingredients[idx].tab%>;" >
                                 <input type="checkbox" id="<%=idx%>" class="d-none d-md-inline-block mx-2 form-check-input">
                                     <label class="form-check-label tab<%=ingredients[idx].tab%>" for="<%=idx%>">
-                                        <%=ingredients[idx].data.number%> &times; <img src="<%=ingredients[idx].data.image%>" alt=""> <%=ingredients[idx].item%> <img src="<%=ingredients[idx].data.coinPile%>" alt="" class="d-none d-md-inline" data-bs-toggle="tooltip" title="GE Price: <%=ingredients[idx].data.totalPrice.string%>gp">
+                                        <%=ingredients[idx].data.number%> &times; <img src="<%=ingredients[idx].data.image%>" alt=""> <%=ingredients[idx].item%> 
                                     </label>
                             </summary>
                         </p>
@@ -62,7 +62,7 @@ The last ingredient is dealt with individually, possibly due to bad implementati
                             <summary style="padding-left:<%=ingredients[idx+1].tab*1.5%>em;font-weight: <%=600-50*ingredients[idx+1].tab%>;" >
                                 <input type="checkbox" id="<%=idx+1%>" class="d-none d-md-inline-block mx-2 form-check-input">
                                     <label class="form-check-label tab<%=ingredients[idx].tab%>" for="<%=idx+1%>">
-                                        <%=ingredients[idx+1].data.number%> &times; <img src="<%=ingredients[idx+1].data.image%>" alt=""> <%=ingredients[idx+1].item%> <img src="<%=ingredients[idx+1].data.coinPile%>" alt="" class="d-none d-md-inline" data-bs-toggle="tooltip" title="GE Price: <%=ingredients[idx+1].data.totalPrice.string%>gp">
+                                        <%=ingredients[idx+1].data.number%> &times; <img src="<%=ingredients[idx+1].data.image%>" alt=""> <%=ingredients[idx+1].item%> 
                                     </label>
                             </summary>
                         </p>
@@ -70,7 +70,7 @@ The last ingredient is dealt with individually, possibly due to bad implementati
                 </details>
                 <% } %>
             <% }) %>
-            <div class="col-xl-12 col-sm-12 d-flex flex-column align-items-center" >
+            <!-- <div class="col-xl-12 col-sm-12 d-flex flex-column align-items-center" >
                 <p class="mt-4 fs-4">Price to make: <%=costData.priceToMake.string%> <img src="<%=costData.priceToMake.coinPile%>" data-bs-toggle="tooltip" title="<%=costData.priceToMake.string%>gp"></p>
                 <%if(costData.profit.value <0){%>
                 <p class="fs-4">Resale: <span class="text-danger">-<%=costData.profit.string%></span> <img src="<%=costData.profit.coinPile%>" data-bs-toggle="tooltip" title="<%=costData.profit.string%>gp"></p>
@@ -79,25 +79,25 @@ The last ingredient is dealt with individually, possibly due to bad implementati
                 <% }else{ %>
                 <p class="fs-4">Resale: <span class="text-success"><%=costData.profit.string%></span> <img src="<%=costData.profit.coinPile%>" data-bs-toggle="tooltip" title="<%=costData.profit.string%>gp"></p>
                 <% } %>
-            </div>
+            </div> -->
         <% }else if(displaySetting === "essential"){ %> 
                 <div class="col-xl-12 col-sm-12 d-flex flex-column align-items-center">       
                     <%ingredients.slice(1).forEach((ingredient,i)=>{%>    
                         <span style="font-size: 1.7em;">
                             <input type="checkbox" id="<%=i%>" class="d-none essential d-md-inline-block form-check-input">
                                 <label class="form-check-label" for="<%=i%>">
-                                    <%=ingredient.data.number%> &times; <img src="<%=ingredient.data.image%>"> <%=ingredient.item%> <img src="<%=ingredient.data.coinPile%>" class="d-none d-sm-inline" data-bs-toggle="tooltip" title="GE Price: <%=ingredient.data.totalPrice.string%>gp">
+                                    <%=ingredient.data.number%> &times; <img src="<%=ingredient.data.image%>"> <%=ingredient.item%> 
                                 </label>
                         </span>
                     <%})%>
-                    <p class="mt-4 fs-4">Price to make: <%=costData.priceToMake.string%> <img src="<%=costData.priceToMake.coinPile%>" data-bs-toggle="tooltip" title="<%=costData.priceToMake.string%>gp"></p>
+                    <!-- <p class="mt-4 fs-4">Price to make: <%=costData.priceToMake.string%> <img src="<%=costData.priceToMake.coinPile%>" data-bs-toggle="tooltip" title="<%=costData.priceToMake.string%>gp"></p>
                     <%if(costData.profit.value <0){%>
                     <p class="fs-4">Resale: <span class="text-danger">-<%=costData.profit.string%></span> <img src="<%=costData.profit.coinPile%>" data-bs-toggle="tooltip" title="<%=costData.profit.string%>gp"></p>
                     <% }else if(costData.profit.value === 0){ %>
                         <p class="fs-4">Resale: <span><%=costData.profit.string%></span></p>
                     <% }else{ %>
                     <p class="fs-4">Resale: <span class="text-success"><%=costData.profit.string%></span> <img src="<%=costData.profit.coinPile%>" data-bs-toggle="tooltip" title="<%=costData.profit.string%>gp"></p>
-                    <% } %> 
+                    <% } %>  -->
                 </div>
         <% }else{ %>
             <p>Error</p>    
