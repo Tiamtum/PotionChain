@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const dbUrl = "mongodb://localhost:27017/PotionChain"
-const HerbloreItem = require("../model/herbloreitem");
-const {getItemInfo} = require("../utils/potionDataHelpers");
+const HerbloreItem = require("../model/herbloreitemNoMiddleware");
 const runescape = require("runescape-api");
 const grandexchange = runescape.grandexchange;
 
@@ -63,6 +62,7 @@ const untradeableItems = [
     20000,
     20001,
     20002,
+    32270,
     49123,
     899995,
     899996,
@@ -86,12 +86,54 @@ const untradeableItems = [
     900015,
     900016,
     900017,
-    900018
+    900018,
+    900019,
+    900020,
+    900021,
+    900022,
+    900023,
+    900024,
+    900025,
+    900026,
+    900027,
+    900028,
+    900029,
+    900030,
+    900031,
+    900032,
+    900033,
+    900034,
+    900035,
+    900036,
+    900037,
+    900038,
+    900039,
+    900040,
+    900041,
+    900042,
+    900043,
+    900044,
+    900045,
+    900046,
+    900047,
+    900048,
+    900049,
+    900050,
+    900051,
+    900052,
+    900053,
+    900054,
+    900055,
+    900056,
+    900057,
+    900058,
+    900059
 ]
 
 mongoose.connect(dbUrl)
     .then(()=>{
         console.log(`[Mongoose | SUCCESS] - Connection Open @ ${dbUrl}`);
+        fetchPrices();
     })
     .catch((e)=>{
         console.log(`[Mongoose | ERROR] - ${e}`);
@@ -100,7 +142,7 @@ mongoose.connect(dbUrl)
 
 async function fetchPrices()
 {
-    
+    console.log("fetchPrices() called")
     const herbloreItems = await HerbloreItem.find({});
     for(const item of herbloreItems)
     {
@@ -108,7 +150,7 @@ async function fetchPrices()
             if(!untradeableItems.find(id => id === item.itemID) && item.dailyPrice === 0)
             {
                 console.log(item.name);
-                await new Promise(resolve => setTimeout(resolve, 2500)) 
+                await new Promise(resolve => setTimeout(resolve, 3000)) 
                 const graph = await grandexchange.getItemGraph(parseInt(item.itemID));
                 const exactPrice = graph.daily[Object.keys(graph.daily)[Object.keys(graph.daily).length-1]]
                 console.log(exactPrice)
@@ -125,5 +167,3 @@ async function fetchPrices()
 
 
 }
-
-fetchPrices();

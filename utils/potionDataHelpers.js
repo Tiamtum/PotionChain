@@ -75,6 +75,86 @@ function getCoinPile(totalPrice)
     else{return "/images/Coins_10000.webp";}
 }
 
+function parseName(rawName)
+{
+    const lowercaseName = rawName.toLowerCase().trim().replace(/\s+/g, " ");
+    // console.log(lowercaseName);
+    if(shortHandNames[lowercaseName])
+    {
+        return shortHandNames[lowercaseName]
+    }
+    else
+    {
+        return rawName.trim().replace(/\s+/g, " ");
+    };
+    
+}
+
+function parsePrice(price)
+/*
+Make this more generic later.
+*/
+{
+    const priceString = Math.abs(price).toString();
+    // console.log(priceString)
+    const psLength = priceString.length;
+    if(psLength < 4)
+    {
+        return priceString;
+    }
+    const MILLION = 7;
+    const BILLION = 10;
+    const TRILLION = 13;
+    if(psLength < MILLION)
+    {
+        return priceString.slice(0,psLength-3)+","+priceString.slice(psLength-3);
+    }
+    else if(psLength >= MILLION && psLength < BILLION )
+    {
+        return priceString.slice(0,psLength-6)+","+priceString.slice(psLength-6,psLength-3) + "," + priceString.slice(psLength-3);
+    }
+    else if(psLength >= BILLION && psLength < TRILLION)
+    {
+        return priceString.slice(0,psLength-9)+","+priceString.slice(psLength-9,psLength-6) + "," + priceString.slice(psLength-6,psLength-3)+ "," + priceString.slice(psLength-3);
+    }
+    else
+    {
+        return priceString;
+    }
+}
+
+function getFinalPrice(ingredients,display)
+{
+    if(display === "essential")
+    {
+        let finalPrice = 0;
+        for(const ingredient of ingredients)
+        {
+            // console.log(ingredient);
+            if(!untradeableItems[ingredient.itemID])
+            {
+                finalPrice += ingredient.data.totalPrice.value;
+            }
+        }
+        // console.log("finalPrice",finalPrice);
+        const parsedPrice = parsePrice(finalPrice);
+        const finalPriceCoinPile = getCoinPile(finalPrice);
+        // console.log(parsePrice(finalPrice))
+        return {value:finalPrice,"string":parsedPrice,"coinPile":finalPriceCoinPile};
+    }
+    else if(display === "full")
+    {
+        return 1;
+    }
+    else
+    {
+        throw new ExpressError("Invalid display option",500);
+    }
+}
+
+
+
+
 
 const untradeableItems = {
     "1526": "Clean snake weed",
@@ -128,6 +208,48 @@ const untradeableItems = {
     "900016": "Super antifire (4)",
     "900017": "Elder overload salve (6)",
     "900018": "Phoenix feather",
+    "900019": "Extreme attack (1)",
+    "900020": "Extreme strength (1)",
+    "900021": "Extreme defence (1)",
+    "900022": "Extreme ranging (1)",
+    "900023": "Extreme magic (1)",
+    "900031": "Adrenaline potion (1)",
+    "900024": "Extreme attack (4)",
+    "900025": "Extreme strength (4)",
+    "900026": "Extreme defence (4)",
+    "900027": "Extreme ranging (4)",
+    "900028": "Extreme magic (4)",
+    "900029": "Adrenaline potion (3)",
+    "900030": "Adrenaline potion (4)",
+    "900032": "Enhanced replenishment potion",
+    "900033": "Adrenaline renewal potion (3)",
+    "900034": "Super adrenaline potion (1)",
+    "900035": "Super adrenaline potion (3)",
+    "900036": "Super adrenaline potion (4)",
+    "900037": "Antipoison+ (unf)",
+    "900038": "Antipoison++ (unf)",
+    "900039": "Weapon poison+ (unf)",
+    "900040": "Weapon poison++ (unf)",
+    "900041": "Cave nightshade",
+    "900041":"Aggroverload (6)",
+    "900042":"Brightfire potion (6)",
+    "900043":"Extreme battlemage's potion (6)",
+    "900044":"Extreme brawler's potion (6)",
+    "900045":"Extreme sharpshooter's potion (6)",
+    "900046":"Extreme warmaster's potion (6)",
+    "900047":"Holy aggroverload (6)",
+    "900048":"Holy overload potion (6)",
+    "900049":"Overload salve (6)",
+    "900050":"Perfect plus potion (6)",
+    "900051":"Replenishment potion (6)",
+    "900052":"Searing overload potion (6)",
+    "900053":"Supreme attack potion (6)",
+    "900054":"Supreme defence potion (6)",
+    "900055":"Supreme magic potion (6)",
+    "900056":"Supreme overload salve (6)",
+    "900057":"Supreme ranging potion (6)",
+    "900058":"Supreme strength potion (6)",
+    "900059":"Wyrmfire potion (6)"
 
 }
 
@@ -212,6 +334,9 @@ module.exports = {
     setImage,
     setIngredients,
     getCoinPile,
+    parseName,
+    parsePrice,
+    getFinalPrice,
     untradeableItems,
     shortHandNames,
 };

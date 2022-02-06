@@ -10,34 +10,34 @@ The last ingredient is dealt with individually, possibly due to bad implementati
     </div>
     <div class="row">
         <% if(displaySetting==="full"){ %> 
-            <%console.log(`INGREDIENTS LENGTH=${ingredients.length}`)%>
+
             <% ingredients.forEach((ingredient,idx)=>{ %>
-                <%console.log(`[Outer Loop] item=${ingredient.item} tab=${ingredient.tab},idx=${idx}`)%>
+
                 
                 <% if(ingredient.tab===1){ %>
                     <details class="col-xl-6 my-2">
-                        <%console.log(`[Inner Loop]idx=${idx}; ingredients.length-1:${ingredients.length-1} ,idx===ingredients.length-1 = ${idx===ingredients.length-1}`)%>
+                        
                         
                     <%for(let i=idx; i<ingredients.length-1; i++ ){%>
-                        <%console.log(`[Inner Loop] item=${ingredients[i].item} tab=${ingredients[i].tab} idx=${idx} i=${i}`)%>
+                        
                         <%if(ingredients[i+1].tab===1){%>
                             <p>
                                 <summary style="padding-left:<%=ingredients[i].tab*1.5%>em;font-weight: <%=600-50*ingredients[i].tab%>;" > 
                                     <input type="checkbox" id="<%=i%>" class="d-none d-md-inline-block d-md-inline mx-2 form-check-input">
                                         <label class="form-check-label tab<%=ingredients[i].tab%>" for="<%=i%>">
-                                            <%=ingredients[i].data.number%> &times; <img src="<%=ingredients[i].data.image%>" alt=""> <%=ingredients[i].item%> <img src="<%=ingredients[i].data.coinPile%>" alt="" class="d-none d-md-inline" data-bs-toggle="tooltip" title="<%=ingredients[i].data.totalPrice%>gp">
+                                            <%=ingredients[i].data.number%> &times; <img src="<%=ingredients[i].data.image%>" alt=""> <%=ingredients[i].item%> 
                                         </label>
                                 </summary>
                             </p>
-                            <%console.log(`[Inner Loop] BREAKING AT,item=${ingredients[i].item} tab=${ingredients[i].tab} idx=${idx} i=${i}`)%>
+                            
                             <%break;%>
                         <% }%>
                         <p>
-                            <%console.log(`[Inner Loop] ADDING TO PAGE item=${ingredients[i].item} tab=${ingredients[i].tab} idx=${idx} i=${i}`)%>
+                            
                             <summary style="padding-left:<%=ingredients[i].tab*1.5%>em;font-weight: <%=600-50*ingredients[i].tab%>;" >
                                 <input type="checkbox" id="<%=i%>" class="d-none d-md-inline-block mx-2 form-check-input">
                                     <label class="form-check-label tab<%=ingredients[i].tab%>" for="<%=i%>">
-                                        <%=ingredients[i].data.number%> &times; <img src="<%=ingredients[i].data.image%>" alt=""> <%=ingredients[i].item%> <img src="<%=ingredients[i].data.coinPile%>" alt="" class="d-none d-md-inline" data-bs-toggle="tooltip" title="<%=ingredients[i].data.totalPrice%>gp" >
+                                        <%=ingredients[i].data.number%> &times; <img src="<%=ingredients[i].data.image%>" alt=""> <%=ingredients[i].item%> 
                                     </label>
                             </summary>
                         </p>
@@ -47,22 +47,22 @@ The last ingredient is dealt with individually, possibly due to bad implementati
                     Seriously need to crawl through this step by step to figure it out. -->
                     <% if(idx===ingredients.length-1){ %>
                         <p>
-                            <%console.log(`[Inner Loop] LAST INGREDIENT item=${ingredients[idx].item} tab=${ingredients[idx].tab} idx=${idx}`)%>
+                            
                             <summary style="padding-left:<%=ingredients[idx].tab*1.5%>em;font-weight: <%=600-50*ingredients[idx].tab%>;" >
                                 <input type="checkbox" id="<%=idx%>" class="d-none d-md-inline-block mx-2 form-check-input">
                                     <label class="form-check-label tab<%=ingredients[idx].tab%>" for="<%=idx%>">
-                                        <%=ingredients[idx].data.number%> &times; <img src="<%=ingredients[idx].data.image%>" alt=""> <%=ingredients[idx].item%> <img src="<%=ingredients[idx].data.coinPile%>" alt="" class="d-none d-md-inline" data-bs-toggle="tooltip" title="<%=ingredients[idx].data.totalPrice%>gp">
+                                        <%=ingredients[idx].data.number%> &times; <img src="<%=ingredients[idx].data.image%>" alt=""> <%=ingredients[idx].item%> 
                                     </label>
                             </summary>
                         </p>
                     <% } %>
                     <% if(idx+1===ingredients.length-1){ %>
                         <p>
-                            <%console.log(`[Inner Loop] LAST INGREDIENT item=${ingredients[idx+1].item} tab=${ingredients[idx+1].tab} idx=${idx+1}`)%>
+
                             <summary style="padding-left:<%=ingredients[idx+1].tab*1.5%>em;font-weight: <%=600-50*ingredients[idx+1].tab%>;" >
                                 <input type="checkbox" id="<%=idx+1%>" class="d-none d-md-inline-block mx-2 form-check-input">
                                     <label class="form-check-label tab<%=ingredients[idx].tab%>" for="<%=idx+1%>">
-                                        <%=ingredients[idx+1].data.number%> &times; <img src="<%=ingredients[idx+1].data.image%>" alt=""> <%=ingredients[idx+1].item%> <img src="<%=ingredients[idx+1].data.coinPile%>" alt="" class="d-none d-md-inline" data-bs-toggle="tooltip" title="<%=ingredients[idx+1].data.totalPrice%>gp">
+                                        <%=ingredients[idx+1].data.number%> &times; <img src="<%=ingredients[idx+1].data.image%>" alt=""> <%=ingredients[idx+1].item%> 
                                     </label>
                             </summary>
                         </p>
@@ -70,16 +70,34 @@ The last ingredient is dealt with individually, possibly due to bad implementati
                 </details>
                 <% } %>
             <% }) %>
+            <!-- <div class="col-xl-12 col-sm-12 d-flex flex-column align-items-center" >
+                <p class="mt-4 fs-4">Price to make: <%=costData.priceToMake.string%> <img src="<%=costData.priceToMake.coinPile%>" data-bs-toggle="tooltip" title="<%=costData.priceToMake.string%>gp"></p>
+                <%if(costData.profit.value <0){%>
+                <p class="fs-4">Resale: <span class="text-danger">-<%=costData.profit.string%></span> <img src="<%=costData.profit.coinPile%>" data-bs-toggle="tooltip" title="<%=costData.profit.string%>gp"></p>
+                <% }else if(costData.profit.value === 0){ %>
+                    <p class="fs-4">Resale: <span><%=costData.profit.string%></span></p>
+                <% }else{ %>
+                <p class="fs-4">Resale: <span class="text-success"><%=costData.profit.string%></span> <img src="<%=costData.profit.coinPile%>" data-bs-toggle="tooltip" title="<%=costData.profit.string%>gp"></p>
+                <% } %>
+            </div> -->
         <% }else if(displaySetting === "essential"){ %> 
                 <div class="col-xl-12 col-sm-12 d-flex flex-column align-items-center">       
                     <%ingredients.slice(1).forEach((ingredient,i)=>{%>    
                         <span style="font-size: 1.7em;">
                             <input type="checkbox" id="<%=i%>" class="d-none essential d-md-inline-block form-check-input">
                                 <label class="form-check-label" for="<%=i%>">
-                                    <%=ingredient.data.number%> &times; <img src="<%=ingredient.data.image%>"> <%=ingredient.item%> <img src="<%=ingredient.data.coinPile%>" class="d-none d-sm-inline" data-bs-toggle="tooltip" title="<%=ingredient.data.totalPrice%>gp">
+                                    <%=ingredient.data.number%> &times; <img src="<%=ingredient.data.image%>"> <%=ingredient.item%> 
                                 </label>
                         </span>
                     <%})%>
+                    <!-- <p class="mt-4 fs-4">Price to make: <%=costData.priceToMake.string%> <img src="<%=costData.priceToMake.coinPile%>" data-bs-toggle="tooltip" title="<%=costData.priceToMake.string%>gp"></p>
+                    <%if(costData.profit.value <0){%>
+                    <p class="fs-4">Resale: <span class="text-danger">-<%=costData.profit.string%></span> <img src="<%=costData.profit.coinPile%>" data-bs-toggle="tooltip" title="<%=costData.profit.string%>gp"></p>
+                    <% }else if(costData.profit.value === 0){ %>
+                        <p class="fs-4">Resale: <span><%=costData.profit.string%></span></p>
+                    <% }else{ %>
+                    <p class="fs-4">Resale: <span class="text-success"><%=costData.profit.string%></span> <img src="<%=costData.profit.coinPile%>" data-bs-toggle="tooltip" title="<%=costData.profit.string%>gp"></p>
+                    <% } %>  -->
                 </div>
         <% }else{ %>
             <p>Error</p>    
@@ -87,7 +105,7 @@ The last ingredient is dealt with individually, possibly due to bad implementati
 
     </div>
 <div class="d-flex justify-content-center my-3">
-    <a class="btn btn-success" href="/">Search for a new potion</a>
+    <a class="btn btn-success" href="/" id="newSearch">Search for a new potion</a>
 </div>
 <script src="/javascripts/boxesAndButton.js"></script>
 <script src="/javascripts/bootstrapTooltips.js"></script>

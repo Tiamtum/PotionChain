@@ -12,8 +12,9 @@ const {
     setIngredients,
     setImage,
     untradeableItems,
-    shortHandNames,
-    getCoinPile
+    getCoinPile,
+    parseName,
+    parsePrice
 } = require("../utils/potionDataHelpers");
 
 module.exports.renderIndex = async (req,res)=>{
@@ -26,29 +27,12 @@ module.exports.renderChangelog = (req,res)=>{
     res.render("changelog",{pageTitle:"Potion Chain"})
 }
 
-async function parseName(rawName)
-{
-    const lowercaseName = rawName.toLowerCase().trim().replace(/\s+/g, " ");
-    console.log(lowercaseName);
-    if(shortHandNames[lowercaseName])
-    {
-        return shortHandNames[lowercaseName]
-    }
-    else
-    {
-        return rawName.trim().replace(/\s+/g, " ");
-    };
-    
-}
-
 module.exports.showResults = async (req,res)=>{  
-    console.log("req.query", req.query);
     try
     {
         const name = await parseName(req.query.name.trim());
         const number = parseInt(req.query.number);
         const display = req.query.display;
-        let finalPrice = 0;
         const potion = await getItemByName(name);
         req.session.data = [];
         const ingredients =  setIngredients(potion,display);
@@ -58,29 +42,41 @@ module.exports.showResults = async (req,res)=>{
             const ingredientData = await getItemByName(ingredient.item);
             const image = setImage(ingredientData,untradeableItems);
             const exactPrice = ingredientData.dailyPrice;
-            const totalPrice = exactPrice*number;
-            const coinPile = getCoinPile(totalPrice);
+            const totalPrice = {"value":exactPrice*number,"string":parsePrice(exactPrice*number)}
+            const coinPile = getCoinPile(totalPrice.value);
             ingredient.data = {number,image,exactPrice,totalPrice,coinPile};
             req.session.data.push(ingredient);
-            console.log(`${ingredient.item} RECIEVED`,`itemID: ${ingredient.itemID}`);
         }
-        req.session.finalPrice = finalPrice;
+        
+        let totals = 0 ;
+        const costData = 
+        {
+            "profit" : {"value":ingredients[0].data.totalPrice.value - totals, "string":parsePrice(ingredients[0].data.totalPrice.value - totals),"coinPile":getCoinPile(ingredients[0].data.totalPrice.value - totals)},
+            "priceToMake" : {"value":totals,"string":parsePrice(totals),"coinPile":getCoinPile(totals)}
+        }
+
+
+        req.session.costData = costData;
         req.session.displaySetting = display;
         req.session.save();
-        res.render("results",{ingredients,finalPrice,"displaySetting":display,pageTitle:"Potion Chain"}) 
+
+        res.render("results",{ingredients,costData,"displaySetting":display,pageTitle:"Potion Chain"}) 
 
     }
-    catch(e)
+    catch(err)
     {
-        console.log("showResults error",e);
-        console.log(e.name);
-        if(e.name === "TypeError")
+        const name = req.query.name;
+        console.log("showResults error",err);
+        console.log("err.name, ",err.name,typeof(err.name));
+        console.log("err.message, ",err.message,typeof(err.message));
+        console.log("err.name === \"TypeError\"", err.name === "TypeError");
+        if(err.name === "TypeError")
         {
-            throw new ExpressError(`Potion not found: ${name}  - check your spelling. Otherwise the potion you have requested may not be supported yet.`,404)
+            throw new ExpressError(`Potion not found: ${name} - check your spelling or copy and paste the potion name from the Supported Potions menu. Otherwise, the potion you have requested may not be supported yet.`,404)
         }
         else
         {
-            throw new ExpressError(e,500);
+            throw new ExpressError(err,500);
         }
     }
 }

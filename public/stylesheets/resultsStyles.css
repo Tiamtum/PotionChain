@@ -2,12 +2,16 @@ details {
     list-style-type:none;
 }
 
+.row,h1,#uncheck,#newSearch{
+    animation: fadeIn 0.3s ease-in; 
+}
+
 .text-muted{
     text-decoration: line-through;
 }
 
 .tab1{
-    border-bottom: 3.5px solid rgb(0, 0, 0);
+    border-bottom: 3.5px solid rgb(70, 70, 70);
     padding-bottom:0.2rem;
 }
 .tab2{
@@ -15,30 +19,35 @@ details {
     padding-bottom:0.2rem;
 }
 .tab3{
-    border-bottom: 3.5px solid rgb(13, 58, 13);
+    border-bottom: 3.5px solid rgb(23, 102, 23);
     padding-bottom:0.2rem;
 }
 .tab4{
-    border-bottom: 3.5px solid rgb(160, 151, 71);
+    border-bottom: 3.5px solid rgb(192, 181, 86);
     padding-bottom:0.2rem;
 }
 .tab5{
-    border-bottom: 3.5px solid rgb(110, 32, 1);
+    border-bottom: 3.5px solid rgb(158, 46, 2);
     padding-bottom:0.2rem;
 }
 .tab6{
-    border-bottom: 3.5px solid rgb(95, 16, 53);
+    border-bottom: 3.5px solid rgb(139, 25, 78);
     padding-bottom:0.2rem;
 }
 .tab7{
-    border-bottom: 3.5px solid rgb(6, 144, 144);
+    border-bottom: 3.5px solid rgb(9, 190, 190);
     padding-bottom:0.2rem;
 }
 .tab8{
-    border-bottom: 3.5px solid rgb(121, 121, 121);
+    border-bottom: 3.5px solid rgb(163, 162, 162);
     padding-bottom:0.2rem;
 }
 .tab9{
-    border-bottom: 3.5px solid rgb(255, 252, 252);
+    border-bottom: 3.5px solid rgb(255, 255, 255);
     padding-bottom:0.2rem;
+}
+
+@keyframes fadeIn {
+    0% {opacity:0;}
+    100% {opacity:1;}
 }
